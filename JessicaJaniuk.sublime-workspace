@@ -1,0 +1,352 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pass",
+				"passwordStrength"
+			],
+			[
+				"passw",
+				"passwordValidator"
+			],
+			[
+				"input",
+				"inputstr"
+			],
+			[
+				"has",
+				"hasNumbers"
+			],
+			[
+				"in",
+				"inputstr"
+			],
+			[
+				"po",
+				"poundsToKilograms"
+			],
+			[
+				"inc",
+				"inchesToMeters"
+			],
+			[
+				"conver",
+				"convertToFarenheit"
+			],
+			[
+				"Far",
+				"Fahrenheit"
+			],
+			[
+				"alc",
+				"alcratio"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "About Blog Photography R2-D2 YouTube Github Connect ",
+			"settings":
+			{
+				"buffer_size": 52,
+				"line_ending": "Unix",
+				"name": "About Blog Photography R2-D2 YouTube Github Connec"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 347.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: In",
+				"Package Control: Install Package"
+			],
+			[
+				"Pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Package Control: Install Package"
+			],
+			[
+				"PackageC",
+				"Package Control: Install Package"
+			],
+			[
+				"package Control: Instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jessicajaniuk/Documents/Projects/JessicaJaniuk/.gitignore",
+		"/Users/jessicajaniuk/Documents/Projects/warwick/index.html",
+		"/Users/jessicajaniuk/Documents/Projects/warwick/css/main.css",
+		"/Users/jessicajaniuk/Library/Application Support/Google/Chrome/Profile 1/Favicons-journal",
+		"/Users/jessicajaniuk/Library/Application Support/Google/Chrome/System Profile/History",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/strength.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/anagram.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/numbers.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/taxes.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/dates.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/bmi.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/tempconverter.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/bac.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/retirement.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/driving.py3",
+		"/Users/jessicajaniuk/Documents/Projects/LearnPython/password.py3",
+		"/Users/jessicajaniuk/.bash_profile",
+		"/Users/jessicajaniuk/Desktop/IO 2015/Firebase talk",
+		"/Users/jessicajaniuk/Desktop/IO 2015/Polymer talk",
+		"/Users/jessicajaniuk/Desktop/IO 2015/Accessibility Talk",
+		"/Volumes/Windows10Preview/autorun.inf",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/game/main.html",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/game/manifest.json",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/game/js/gamecontroller.js",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/game/js/arduinoid.js",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/manifest.json",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/js/dashboard.js",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/main.html",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/game/gamecontroller.js",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/dashboard.js",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/serial_device.js",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/dashboard.css",
+		"/Users/jessicajaniuk/Documents/Projects/Arduino/ChromeApp/background.js",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/search/sass/style.scss",
+		"/Users/jessicajaniuk/Documents/Projects/grunt-open-with-chrome/tasks/open_with_chrome.js",
+		"/Users/jessicajaniuk/Documents/Projects/grunt-open-with-chrome/tasks/lib/chrome_launcher.js",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/search/sass/_layout.scss",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/search/assets/app.css",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/Gruntfile.js",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/index.html",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/assets/app.js",
+		"/Users/jessicajaniuk/Documents/Projects/angular/Gruntfile.js",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/search/coffeescripts/app.coffee",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/search/coffeescripts/controllers/main_controller.coffee",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/search/coffeescripts/factories/markdown_converter.coffee",
+		"/Users/jessicajaniuk/Documents/Projects/markdown/package.json",
+		"/Users/jessicajaniuk/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/jessicajaniuk/Documents/Projects/weather/package.json",
+		"/Users/jessicajaniuk/Documents/Projects/weather/Gruntfile.js",
+		"/Users/jessicajaniuk/.grunt-init/html5template/root/javascripts/app.js",
+		"/Users/jessicajaniuk/.grunt-init/html5template/root/index.html",
+		"/Users/jessicajaniuk/.grunt-init/html5template/root/Gruntfile.js",
+		"/Users/jessicajaniuk/.grunt-init/html5template/root/stylesheets/style.css",
+		"/Users/jessicajaniuk/.grunt-init/html5template/template.js",
+		"/Users/jessicajaniuk/Documents/Projects/deployment/Gruntfile.js",
+		"/Users/jessicajaniuk/Documents/Projects/kicking_tires/Gruntfile.js",
+		"/Users/jessicajaniuk/Documents/Projects/deployment/index.html",
+		"/Users/jessicajaniuk/Documents/Projects/deployment/stylesheets/style.css",
+		"/Users/jessicajaniuk/Documents/Projects/deployment/javascripts/app.js",
+		"/Users/jessicajaniuk/Documents/Projects/kicking_tires/package.json",
+		"/Users/jessicajaniuk/.profile"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"new",
+			"and",
+			"- "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 52,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36,
+								36
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_name": "About Blog Photography R2-D2 YouTube Github Connec",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "JessicaJaniuk.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
