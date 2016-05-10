@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en-US">
+<html class="no-js" lang="en-US" ng-app>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -12,15 +12,23 @@
 
         <link rel="stylesheet" href="css/site.css">
         <script src="js/modernizr.js"></script>
+        <script src="https://use.typekit.net/dlk7ypt.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
     <body>
         <!--[if lte IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
+        <div class="container">
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
-
+        <h1 class="logo">Jessica Janiuk</h1>
+        <p>About Blog Photography R2-D2 YouTube Github Connect</p>
+        </div>
+        <div ui-view></div>
+        <script src="/js/angular/angular.min.js"></script>
+        <script src="/js/angular/angular-ui-router.min.js"></script>
+        <script src="/js/firebase.js"></script>
+        <script src="/js/angular/angularfire.min.js"></script>
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
             window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;

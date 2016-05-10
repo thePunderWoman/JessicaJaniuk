@@ -1,5 +1,10 @@
 @import '../bower_components/Materialize/sass/materialize.scss';
 
-body {
-	
+html {
+    font-family: "Industry", sans-serif;
+}
+
+h1.logo {
+	color: #814C9E;
+	font-weight: bold;
 }

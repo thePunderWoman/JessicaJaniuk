@@ -7686,5 +7686,13 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 }
+html {
+  font-family: "Industry", sans-serif;
+}
+
+h1.logo {
+  color: #814C9E;
+  font-weight: bold;
+}
 
 /*# sourceMappingURL=site.css.map */

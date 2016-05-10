@@ -10,7 +10,9 @@
     "url": "https://github.com/janiukjf/JessicaJaniuk.git"
   },
   "devDependencies": {
+    "babelify": "^7.3.0",
     "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
