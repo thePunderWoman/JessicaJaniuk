@@ -27,7 +27,9 @@ module.exports = function(grunt) {
              ]
           },
           files: {
-               "./dist/app/app.js": ["./src/app.js"]
+               "./dist/app/app.js": ["./src/app.js"],
+               "./dist/app/controllers/HomeCtrl.js": ["./src/controllers/HomeCtrl.js"],
+               "./dist/app/services/FirebaseService.js": ["./src/services/FirebaseService.js"],
           }
        }
     },
@@ -41,7 +43,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'bower_components/angular-ui-router/release', src: ['angular-ui-router.min.js'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/angularfire/dist/', src: ['angularfire.min.js'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/firebase/', src: ['firebase.js'], dest: 'dist/js'},
-          {expand: true, cwd: 'app/', src: ['*.js'], dest: 'dist/app'},
+          {expand: true, cwd: 'src/', src: ['register.js'], dest: 'dist/app'},
+          {expand: true, cwd: 'src/views', src: ['*.html'], dest: 'dist/app/views'},
         ]
       }
     },
@@ -49,6 +52,10 @@ module.exports = function(grunt) {
       css: {
         files: '**/*.scss',
         tasks: ['sass']
+      },
+      html: {
+        files: '**/*.html',
+        tasks: ['copy']
       },
       scripts: {
         files: ["src/*.js"],

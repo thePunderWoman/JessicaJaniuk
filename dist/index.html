@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en-US" ng-app>
+<html class="no-js" lang="en-US" ng-app="Janiuk">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -14,21 +14,21 @@
         <script src="js/modernizr.js"></script>
         <script src="https://use.typekit.net/dlk7ypt.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
-    </head>
+    </head> 
     <body>
         <!--[if lte IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container">
         <!-- Add your site or application content here -->
-        <h1 class="logo">Jessica Janiuk</h1>
-        <p>About Blog Photography R2-D2 YouTube Github Connect</p>
-        </div>
-        <div ui-view></div>
+        <div ui-view class="container"></div>
         <script src="/js/angular/angular.min.js"></script>
         <script src="/js/angular/angular-ui-router.min.js"></script>
         <script src="/js/firebase.js"></script>
         <script src="/js/angular/angularfire.min.js"></script>
+        <script src="/app/register.js"></script>
+        <script src="/app/app.js"></script>
+        <script src="/app/controllers/HomeCtrl.js"></script>
+        <script src="/app/services/FirebaseService.js"></script>
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
             window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
