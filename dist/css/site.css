@@ -7690,9 +7690,48 @@ html {
   font-family: "Industry", sans-serif;
 }
 
-h1.logo {
-  color: #814C9E;
-  font-weight: bold;
+.logo {
+  position: relative;
+  display: block;
+  margin-top: 25vh;
+}
+.logo .main-logo-wrapper {
+  position: relative;
+  height: auto;
+  width: 50%;
+}
+.logo .main-logo-wrapper .star {
+  width: 4%;
+  height: auto;
+  position: absolute;
+  top: -10%;
+  transform-origin: 50% 50%;
+}
+.logo .main-logo-wrapper .star.star-1 {
+  left: 31.8%;
+  animation: star-rotate 8s linear infinite forwards;
+}
+.logo .main-logo-wrapper .star.star-2 {
+  left: 79.6%;
+  animation: star-rotate 8s -1s linear infinite forwards;
+}
+
+nav.home-nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+nav.home-nav ul a {
+  color: #231F20;
+  font-size: 1.5rem;
+}
+
+@keyframes star-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=site.css.map */

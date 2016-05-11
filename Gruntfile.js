@@ -23,12 +23,13 @@ module.exports = function(grunt) {
        dist: {
           options: {
              transform: [
-                ["babelify"]
+                ["babelify", { presets: ["es2015"] }]
              ]
           },
           files: {
                "./dist/app/app.js": ["./src/app.js"],
                "./dist/app/controllers/HomeCtrl.js": ["./src/controllers/HomeCtrl.js"],
+               "./dist/app/controllers/BlogCtrl.js": ["./src/controllers/BlogCtrl.js"],
                "./dist/app/services/FirebaseService.js": ["./src/services/FirebaseService.js"],
           }
        }
@@ -54,11 +55,11 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       html: {
-        files: '**/*.html',
+        files: 'src/**/*.html',
         tasks: ['copy']
       },
       scripts: {
-        files: ["src/*.js"],
+        files: ["src/**/*.js"],
         tasks: ["browserify"]
       }
     },    
