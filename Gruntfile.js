@@ -28,6 +28,7 @@ module.exports = function(grunt) {
           },
           files: {
                "./dist/app/app.js": ["./src/app.js"],
+               "./dist/app/directives/title.js": ["./src/directives/title.js"],
                "./dist/app/components/LogoHeader.js": ["./src/components/LogoHeader.js"],
                "./dist/app/controllers/HomeCtrl.js": ["./src/controllers/HomeCtrl.js"],
                "./dist/app/controllers/BlogCtrl.js": ["./src/controllers/BlogCtrl.js"],
