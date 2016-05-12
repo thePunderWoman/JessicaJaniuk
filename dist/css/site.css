@@ -7690,28 +7690,38 @@ html {
   font-family: "Industry", sans-serif;
 }
 
-.logo {
-  position: relative;
-  display: block;
+.header-404 {
+  color: #814C9E;
+}
+
+.header {
+  transition-duration: .8s;
+  margin-top: 2vh;
+}
+.header.home {
   margin-top: 25vh;
 }
-.logo .main-logo-wrapper {
+.header .logo {
+  position: relative;
+  display: block;
+}
+.header .logo .main-logo-wrapper {
   position: relative;
   height: auto;
   width: 50%;
 }
-.logo .main-logo-wrapper .star {
+.header .logo .main-logo-wrapper .star {
   width: 4%;
   height: auto;
   position: absolute;
   top: -10%;
   transform-origin: 50% 50%;
 }
-.logo .main-logo-wrapper .star.star-1 {
+.header .logo .main-logo-wrapper .star.star-1 {
   left: 31.8%;
   animation: star-rotate 8s linear infinite forwards;
 }
-.logo .main-logo-wrapper .star.star-2 {
+.header .logo .main-logo-wrapper .star.star-2 {
   left: 79.6%;
   animation: star-rotate 8s -1s linear infinite forwards;
 }

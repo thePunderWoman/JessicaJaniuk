@@ -1,6 +1,6 @@
 class BlogCtrl {
 	constructor() {
-		console.log('constructed');
+		
 	}
 }
 

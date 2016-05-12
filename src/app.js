@@ -26,6 +26,14 @@ angular.module('Janiuk', [
         	url: '/connect',
         	templateUrl: viewUrl("connect.html"),
         })
+        .state('photography', {
+        	url: '/photography',
+        	templateUrl: viewUrl("photography.html"),
+        })
+        .state('r2d2', {
+        	url: '/r2d2',
+        	templateUrl: viewUrl("r2d2.html"),
+        })
         .state('blog', {
         	url: '/blog',
         	templateUrl: viewUrl("blog.html"),

@@ -8,5 +8,10 @@
     "**/bower_components/**",
     "**/sass/**",
     "**/src/**"
-  ]
+  ],
+  "redirects": [ {
+    "source" : "/connect",
+    "destination" : "/#/connect",
+    "type" : 301
+  }]
 }

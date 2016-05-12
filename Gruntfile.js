@@ -28,6 +28,7 @@ module.exports = function(grunt) {
           },
           files: {
                "./dist/app/app.js": ["./src/app.js"],
+               "./dist/app/components/LogoHeader.js": ["./src/components/LogoHeader.js"],
                "./dist/app/controllers/HomeCtrl.js": ["./src/controllers/HomeCtrl.js"],
                "./dist/app/controllers/BlogCtrl.js": ["./src/controllers/BlogCtrl.js"],
                "./dist/app/services/FirebaseService.js": ["./src/services/FirebaseService.js"],
@@ -46,6 +47,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'bower_components/firebase/', src: ['firebase.js'], dest: 'dist/js'},
           {expand: true, cwd: 'src/', src: ['register.js'], dest: 'dist/app'},
           {expand: true, cwd: 'src/views', src: ['*.html'], dest: 'dist/app/views'},
+          {expand: true, cwd: 'src/', src: ['*.html'], dest: 'dist/'},
         ]
       }
     },
@@ -55,7 +57,7 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       html: {
-        files: 'src/**/*.html',
+        files: ['src/**/*.html', 'src/*.html'],
         tasks: ['copy']
       },
       scripts: {

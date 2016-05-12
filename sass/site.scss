@@ -6,33 +6,44 @@ html {
 
 $color: #814C9E;
 
-.logo {
-	position: relative;
-	display: block;
-	margin-top: 25vh;
-	.main-logo-wrapper {
+.header-404 {
+	color: $color;
+}
+
+.header {
+	transition-duration: .8s;
+	margin-top: 2vh;
+
+	&.home {
+		margin-top: 25vh;
+	}
+
+	.logo {
 		position: relative;
-		height: auto;
-		width: 50%;
-		.star {
-			width: 4%;
+		display: block;
+		.main-logo-wrapper {
+			position: relative;
 			height: auto;
-			position: absolute;
-			top: -10%;
-			transform-origin: 50% 50%;
+			width: 50%;
+			.star {
+				width: 4%;
+				height: auto;
+				position: absolute;
+				top: -10%;
+				transform-origin: 50% 50%;
 
-			&.star-1 {
-				left: 31.8%;
-				animation: star-rotate 8s linear infinite forwards;
-			}
+				&.star-1 {
+					left: 31.8%;
+					animation: star-rotate 8s linear infinite forwards;
+				}
 
-			&.star-2 {
-				left: 79.6%;
-				animation: star-rotate 8s -1s linear infinite forwards;
+				&.star-2 {
+					left: 79.6%;
+					animation: star-rotate 8s -1s linear infinite forwards;
+				}
 			}
 		}
 	}
-
 }
 
 nav.home-nav {

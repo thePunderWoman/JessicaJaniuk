@@ -1,5 +1,6 @@
 /**
  * A helper class to simplify registering Angular components and provide a consistent syntax for doing so.
+ * From: https://raw.githubusercontent.com/michaelbromley/angular-es6/master/src/app/utils/register.js
  */
 function register(appName) {
 
@@ -9,6 +10,7 @@ function register(appName) {
         directive: directive,
         controller: controller,
         service: service,
+        component: component,
         provider: provider,
         factory: factory
     };
@@ -19,7 +21,7 @@ function register(appName) {
 
         if (!constructorFn.prototype.compile) {
             // create an empty compile function if none was defined.
-            constructorFn.prototype.compile = () => {};
+            constructorFn.prototype.compile = () => { };
         }
 
         var originalCompileFn = _cloneFunction(constructorFn.prototype.compile);
@@ -51,6 +53,11 @@ function register(appName) {
 
     function service(name, contructorFn) {
         app.service(name, contructorFn);
+        return this;
+    }
+    
+    function component(name, contructorFn) {
+        app.component(name, contructorFn);
         return this;
     }
 
@@ -124,7 +131,7 @@ function register(appName) {
      * @returns {Function}
      */
     function _cloneFunction(original) {
-        return function() {
+        return function () {
             return original.apply(this, arguments);
         };
     }
