@@ -15,9 +15,14 @@ var LogoHeaderCtrl = function () {
 	}
 
 	_createClass(LogoHeaderCtrl, [{
-		key: "isHome",
-		value: function isHome() {
-			return this.$state.current.name === "app";
+		key: "isNotHome",
+		value: function isNotHome() {
+			return this.$state.current.name !== "app" && this.$state.current.name !== '';
+		}
+	}, {
+		key: "openMenu",
+		value: function openMenu($mdOpenMenu, ev) {
+			$mdOpenMenu(ev);
 		}
 	}]);
 

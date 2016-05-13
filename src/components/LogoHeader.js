@@ -4,10 +4,13 @@ class LogoHeaderCtrl {
 		this.$state = $state;
 	}
 
-	isHome() {
-		return this.$state.current.name === "app";
+	isNotHome() {
+		return this.$state.current.name !== "app" && this.$state.current.name !== '';
 	}
 
+    openMenu($mdOpenMenu, ev) {
+      $mdOpenMenu(ev);
+    }
 }
 
 register("Janiuk").component('logoheader', {

@@ -12,19 +12,23 @@ $color: #814C9E;
 
 .header {
 	transition-duration: .8s;
-	margin-top: 2vh;
+	padding-top: 25vh;
 
-	&.home {
-		margin-top: 25vh;
+	&.not-home {
+		padding-top: 2vh;
 	}
 
 	.logo {
 		position: relative;
 		display: block;
+
+		&.row {
+			margin-bottom: 0;
+		}		
 		.main-logo-wrapper {
 			position: relative;
 			height: auto;
-			width: 50%;
+			//width: 50%;
 			.star {
 				width: 4%;
 				height: auto;
@@ -33,12 +37,12 @@ $color: #814C9E;
 				transform-origin: 50% 50%;
 
 				&.star-1 {
-					left: 31.8%;
+					left: 33%;
 					animation: star-rotate 8s linear infinite forwards;
 				}
 
 				&.star-2 {
-					left: 79.6%;
+					left: 77.6%;
 					animation: star-rotate 8s -1s linear infinite forwards;
 				}
 			}
@@ -53,7 +57,7 @@ nav.home-nav {
 	ul {
 		a {
 			color: #231F20;
-			font-size: 1.5rem;
+			font-size: 1.4rem;
 		}
 	}
 }

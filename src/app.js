@@ -4,6 +4,7 @@ angular.module('Janiuk', [
 	'ui.router',
 	'Janiuk.controllers',
 	'Janiuk.services',
+    'ngMaterial'
 ]).config(['$stateProvider', '$urlRouterProvider',  ($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.otherwise('/');
 
