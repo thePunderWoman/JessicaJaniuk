@@ -21,7 +21,7 @@ function register(appName) {
 
         if (!constructorFn.prototype.compile) {
             // create an empty compile function if none was defined.
-            constructorFn.prototype.compile = () => { };
+            constructorFn.prototype.compile = function() { };
         }
 
         var originalCompileFn = _cloneFunction(constructorFn.prototype.compile);
@@ -107,13 +107,21 @@ function register(appName) {
      * @returns {Array.<T>}
      * @private
      */
+    
     function _createFactoryArray(constructorFn) {
         // get the array of dependencies that are needed by this component (as contained in the `$inject` array)
         var args = constructorFn.$inject || [];
         var factoryArray = args.slice(); // create a copy of the array
         // The factoryArray uses Angular's array notation whereby each element of the array is the name of a
         // dependency, and the final item is the factory function itself.
-        factoryArray.push((...args) => {
+
+        factoryArray.push(function() {
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            args = _toArray(args);
+
             //return new constructorFn(...args);
             var instance = new constructorFn(...args);
             for (var key in instance) {
@@ -123,6 +131,10 @@ function register(appName) {
         });
 
         return factoryArray;
+    }
+
+    function _toArray(arr) {
+        return Array.isArray(arr) ? arr : Array.from(arr);
     }
 
     /**

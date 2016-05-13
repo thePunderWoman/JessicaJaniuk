@@ -12,10 +12,11 @@ $color: #814C9E;
 
 .header {
 	transition-duration: .8s;
-	padding-top: 25vh;
+	transform: translateY(25vh);
 
 	&.not-home {
 		padding-top: 2vh;
+		transform: translateY(0vh);
 	}
 
 	.logo {

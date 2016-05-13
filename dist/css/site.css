@@ -7696,10 +7696,11 @@ html {
 
 .header {
   transition-duration: .8s;
-  padding-top: 25vh;
+  transform: translateY(25vh);
 }
 .header.not-home {
   padding-top: 2vh;
+  transform: translateY(0vh);
 }
 .header .logo {
   position: relative;
