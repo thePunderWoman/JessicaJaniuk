@@ -37,12 +37,12 @@ $color: #814C9E;
 				transform-origin: 50% 55%;
 
 				&.star-1 {
-					left: 32.5%;
+					left: 32%;
 					animation: star-rotate 8s linear infinite forwards;
 				}
 
 				&.star-2 {
-					left: 78.3%;
+					left: 79.8%;
 					animation: star-rotate 8s -1s linear infinite forwards;
 				}
 			}
