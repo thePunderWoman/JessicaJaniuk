@@ -35,15 +35,15 @@ $color: #814C9E;
 				height: auto;
 				position: absolute;
 				top: -10%;
-				transform-origin: 50% 50%;
+				transform-origin: 50% 55%;
 
 				&.star-1 {
-					left: 33%;
+					left: 32.5%;
 					animation: star-rotate 8s linear infinite forwards;
 				}
 
 				&.star-2 {
-					left: 77.6%;
+					left: 78.3%;
 					animation: star-rotate 8s -1s linear infinite forwards;
 				}
 			}
