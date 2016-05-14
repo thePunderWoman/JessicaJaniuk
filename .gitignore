@@ -41,5 +41,5 @@ jspm_packages
 .sass-cache
 
 #sublime project file
-.sublime-project
-.sublime-workspace
+*.sublime-project
+*.sublime-workspace
