@@ -39,3 +39,7 @@ jspm_packages
 
 # SCSS cache
 .sass-cache
+
+#sublime project file
+.sublime-project
+.sublime-workspace
