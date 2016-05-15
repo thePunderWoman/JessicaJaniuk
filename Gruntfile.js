@@ -36,7 +36,9 @@ module.exports = function(grunt) {
                "./dist/app/controllers/ConnectCtrl.js": ["./src/controllers/ConnectCtrl.js"],
                "./dist/app/controllers/R2D2Ctrl.js": ["./src/controllers/R2D2Ctrl.js"],
                "./dist/app/controllers/PhotoCtrl.js": ["./src/controllers/PhotoCtrl.js"],
+               "./dist/app/controllers/AlbumCtrl.js": ["./src/controllers/AlbumCtrl.js"],
                "./dist/app/services/FirebaseService.js": ["./src/services/FirebaseService.js"],
+               "./dist/app/services/FlickrService.js": ["./src/services/FlickrService.js"],
           }
        }
     },

@@ -32,6 +32,12 @@ angular.module('Janiuk', ['ui.router', 'ngSanitize', 'ngAnimate', 'Janiuk.contro
         controller: "PhotoCtrl",
         controllerAs: "vm",
         data: { pageTitle: 'Photography' }
+    }).state('album', {
+        url: '/photography/:albumid',
+        templateUrl: viewUrl("album.html"),
+        controller: "AlbumCtrl",
+        controllerAs: "vm",
+        data: { pageTitle: 'Album' }
     }).state('r2d2', {
         url: '/r2d2',
         templateUrl: viewUrl("r2d2.html"),
@@ -44,6 +50,14 @@ angular.module('Janiuk', ['ui.router', 'ngSanitize', 'ngAnimate', 'Janiuk.contro
         controller: "BlogCtrl",
         controllerAs: "vm",
         data: { pageTitle: 'Blog' }
+    });
+}]).run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+    // initialise google analytics
+    $window.ga('create', 'UA-9865973-1', 'auto');
+
+    // track pageview on state change
+    $rootScope.$on('$stateChangeSuccess', function (event) {
+        $window.ga('send', 'pageview', $location.path());
     });
 }]);
 
