@@ -1,4 +1,8 @@
 @import '../../bower_components/Materialize/sass/materialize.scss';
+@import '../../bower_components/font-awesome/scss/font-awesome.scss';
+
+$link-color: color("grey", "darken-2") !default;
+$primary-color: #814C9E;
 
 html {
     font-family: "Industry", sans-serif;

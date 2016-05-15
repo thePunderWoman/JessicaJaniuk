@@ -31,6 +31,7 @@
     "angular-messages": "^1.5.5",
     "Materialize": "materialize#^0.97.6",
     "angular-material": "^1.0.8",
-    "angular-sanitize": "^1.5.5"
+    "angular-sanitize": "^1.5.5",
+    "font-awesome": "^4.6.3"
   }
 }

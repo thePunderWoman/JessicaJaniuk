@@ -11,11 +11,14 @@ var ConnectCtrl = function () {
 
 		this.$timeout = $timeout;
 		this.content = "";
+		this.connections = [];
 		this.show = false;
 		this.update = this.update.bind(this);
+		this.loaded = this.loaded.bind(this);
 		this.error = this.error.bind(this);
 
 		FirebaseService.pages.once("value", this.update, this.error);
+		FirebaseService.connect.once("value", this.loaded, this.error);
 	}
 
 	_createClass(ConnectCtrl, [{
@@ -26,6 +29,17 @@ var ConnectCtrl = function () {
 			this.$timeout(function () {
 				_this.content = data.val().connect;
 				_this.show = true;
+			}, 1);
+		}
+	}, {
+		key: "loaded",
+		value: function loaded(data) {
+			var _this2 = this;
+
+			this.$timeout(function () {
+				data.val().forEach(function (item) {
+					_this2.connections.push(item);
+				});
 			}, 1);
 		}
 	}, {

@@ -44,6 +44,7 @@ module.exports = function(grunt) {
       main: {
         files: [
           {expand: true, cwd: 'bower_components/Materialize/dist/font/', src: ['**'], dest: 'dist/fonts'},
+          {expand: true, cwd: 'bower_components/font-awesome/fonts/', src: ['**'], dest: 'dist/fonts'},
           {expand: true, cwd: 'bower_components/modernizr/', src: ['modernizr.js'], dest: 'dist/js'},
           {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js', 'angular.min.js.map'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/angular-ui-router/release', src: ['angular-ui-router.min.js'], dest: 'dist/js/angular'},
