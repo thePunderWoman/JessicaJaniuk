@@ -21,7 +21,6 @@ class AlbumCtrl {
 		var photos = JSON.parse(tempData);
 		this.title = photos.photoset.title;
 		this.photos.push.apply(this.photos, photos.photoset.photo)
-		console.log(this.photos);
 	}
 }
 
