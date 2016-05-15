@@ -32,6 +32,10 @@ module.exports = function(grunt) {
                "./dist/app/components/LogoHeader.js": ["./src/components/LogoHeader.js"],
                "./dist/app/controllers/HomeCtrl.js": ["./src/controllers/HomeCtrl.js"],
                "./dist/app/controllers/BlogCtrl.js": ["./src/controllers/BlogCtrl.js"],
+               "./dist/app/controllers/AboutCtrl.js": ["./src/controllers/AboutCtrl.js"],
+               "./dist/app/controllers/ConnectCtrl.js": ["./src/controllers/ConnectCtrl.js"],
+               "./dist/app/controllers/R2D2Ctrl.js": ["./src/controllers/R2D2Ctrl.js"],
+               "./dist/app/controllers/PhotoCtrl.js": ["./src/controllers/PhotoCtrl.js"],
                "./dist/app/services/FirebaseService.js": ["./src/services/FirebaseService.js"],
           }
        }
@@ -46,6 +50,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'bower_components/angular-messages/', src: ['angular-messages.min.js','angular-messages.min.js.map'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/angular-aria/', src: ['angular-aria.min.js','angular-aria.min.js.map'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/angular-animate/', src: ['angular-animate.min.js','angular-animate.min.js.map'], dest: 'dist/js/angular'},
+          {expand: true, cwd: 'bower_components/angular-sanitize/', src: ['angular-sanitize.min.js','angular-sanitize.min.js.map'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/angularfire/dist/', src: ['angularfire.min.js'], dest: 'dist/js/angular'},
           {expand: true, cwd: 'bower_components/firebase/', src: ['firebase.js'], dest: 'dist/js'},
           {expand: true, cwd: 'bower_components/jQuery/dist', src: ['jquery.min.js','jquery.min.map'], dest: 'dist/js'},

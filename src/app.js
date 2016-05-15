@@ -1,10 +1,13 @@
 'use strict'
 
 angular.module('Janiuk', [
-	'ui.router',
+    'ui.router',
+	'ngSanitize',
+    'ngAnimate',
 	'Janiuk.controllers',
 	'Janiuk.services',
-    'ngMaterial'
+    'ngMaterial',
+    'firebase'
 ]).config(['$stateProvider', '$urlRouterProvider',  ($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.otherwise('/');
 
@@ -23,21 +26,29 @@ angular.module('Janiuk', [
         .state('about', {
         	url: '/about',
         	templateUrl: viewUrl("about.html"),
+            controller: "AboutCtrl",
+            controllerAs: "vm",
             data : { pageTitle: 'About Me' }
         })
         .state('connect', {
         	url: '/connect',
         	templateUrl: viewUrl("connect.html"),
+            controller: "ConnectCtrl",
+            controllerAs: "vm",
             data : { pageTitle: 'Connect With Me' }
         })
         .state('photography', {
         	url: '/photography',
         	templateUrl: viewUrl("photography.html"),
+            controller: "PhotoCtrl",
+            controllerAs: "vm",
             data : { pageTitle: 'Photography' }
         })
         .state('r2d2', {
         	url: '/r2d2',
         	templateUrl: viewUrl("r2d2.html"),
+            controller: "R2D2Ctrl",
+            controllerAs: "vm",
             data : { pageTitle: 'R2-D2' }
         })
         .state('blog', {

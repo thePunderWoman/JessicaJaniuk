@@ -3,8 +3,15 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var BlogCtrl = function BlogCtrl() {
+var BlogCtrl = function BlogCtrl($timeout) {
+	var _this = this;
+
 	_classCallCheck(this, BlogCtrl);
+
+	this.show = false;
+	$timeout(function () {
+		_this.show = true;
+	}, 1);
 };
 
 register("Janiuk.controllers").controller('BlogCtrl', BlogCtrl);

@@ -4,7 +4,12 @@
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var FirebaseService = function FirebaseService() {
-	_classCallCheck(this, FirebaseService);
+  _classCallCheck(this, FirebaseService);
+
+  var root = new Firebase("https://resplendent-inferno-2474.firebaseio.com/");
+  this.root = root;
+  this.pages = root.child('pages');
+  this.connect = root.child('connect');
 };
 
 register('Janiuk.services').service('FirebaseService', FirebaseService);

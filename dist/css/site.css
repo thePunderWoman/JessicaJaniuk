@@ -7728,6 +7728,10 @@ html {
   animation: star-rotate 8s -1s linear infinite forwards;
 }
 
+img.selfie {
+  max-width: 200px;
+}
+
 nav.home-nav {
   background-color: transparent;
   box-shadow: none;
@@ -7737,12 +7741,32 @@ nav.home-nav ul a {
   font-size: 1.4rem;
 }
 
+.content-block {
+  display: block;
+  clear: both;
+}
+
+.fade.ng-enter {
+  animation: fade 0.5s linear;
+}
+.fade.ng-leave {
+  animation: fade 0.5s linear reverse;
+}
+
 @keyframes star-rotate {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

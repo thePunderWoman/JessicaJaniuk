@@ -1,6 +1,9 @@
 class BlogCtrl {
-	constructor() {
-		
+	constructor($timeout) {
+		this.show = false;
+		$timeout(() => {
+			this.show = true;
+		}, 1);		
 	}
 }
 

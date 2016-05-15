@@ -50,6 +50,10 @@ $color: #814C9E;
 	}
 }
 
+img.selfie {
+	max-width: 200px;
+}
+
 nav.home-nav {
 	background-color: transparent;
 	box-shadow: none;
@@ -62,6 +66,20 @@ nav.home-nav {
 	}
 }
 
+.content-block {
+	display: block;
+	clear: both;
+}
+
+.fade {
+	&.ng-enter {
+		animation: fade 0.5s linear;
+	}
+	&.ng-leave {
+		animation: fade 0.5s linear reverse;
+	}
+}
+
 @keyframes star-rotate {
 	0% {
 		transform: rotate(0deg);
@@ -69,5 +87,15 @@ nav.home-nav {
 
 	100% {
 		transform: rotate(360deg);
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }
