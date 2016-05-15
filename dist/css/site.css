@@ -10606,7 +10606,7 @@ nav.home-nav ul a {
 
 .content-block {
   display: block;
-  clear: both;
+  padding-top: .5rem;
 }
 
 .fade.ng-enter {
