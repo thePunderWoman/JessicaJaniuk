@@ -39,6 +39,7 @@ module.exports = function(grunt) {
                "./dist/app/controllers/AlbumCtrl.js": ["./src/controllers/AlbumCtrl.js"],
                "./dist/app/services/FirebaseService.js": ["./src/services/FirebaseService.js"],
                "./dist/app/services/FlickrService.js": ["./src/services/FlickrService.js"],
+               "./dist/app/register.js": ["./src/services/FlickrService.js"],
           }
        }
     },

@@ -1,3 +1,7 @@
+'use strict';
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /**
  * A helper class to simplify registering Angular components and provide a consistent syntax for doing so.
  * From: https://raw.githubusercontent.com/michaelbromley/angular-es6/master/src/app/utils/register.js
@@ -21,7 +25,7 @@ function register(appName) {
 
         if (!constructorFn.prototype.compile) {
             // create an empty compile function if none was defined.
-            constructorFn.prototype.compile = function() { };
+            constructorFn.prototype.compile = function () {};
         }
 
         var originalCompileFn = _cloneFunction(constructorFn.prototype.compile);
@@ -55,7 +59,7 @@ function register(appName) {
         app.service(name, contructorFn);
         return this;
     }
-    
+
     function component(name, contructorFn) {
         app.component(name, contructorFn);
         return this;
@@ -107,7 +111,7 @@ function register(appName) {
      * @returns {Array.<T>}
      * @private
      */
-    
+
     function _createFactoryArray(constructorFn) {
         // get the array of dependencies that are needed by this component (as contained in the `$inject` array)
         var args = constructorFn.$inject || [];
@@ -115,7 +119,7 @@ function register(appName) {
         // The factoryArray uses Angular's array notation whereby each element of the array is the name of a
         // dependency, and the final item is the factory function itself.
 
-        factoryArray.push(function() {
+        factoryArray.push(function () {
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
             }
@@ -123,7 +127,7 @@ function register(appName) {
             args = _toArray(args);
 
             //return new constructorFn(...args);
-            var instance = new constructorFn(...args);
+            var instance = new (Function.prototype.bind.apply(constructorFn, [null].concat(_toConsumableArray(args))))();
             for (var key in instance) {
                 instance[key] = instance[key];
             }
@@ -155,7 +159,6 @@ function register(appName) {
      * @param callback
      */
     function _override(object, methodName, callback) {
-        object[methodName] = callback(object[methodName])
+        object[methodName] = callback(object[methodName]);
     }
-
 }
