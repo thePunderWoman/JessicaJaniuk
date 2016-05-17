@@ -6,10 +6,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var AboutCtrl = function () {
-	function AboutCtrl(FirebaseService, $timeout) {
+	function AboutCtrl(FirebaseService, $scope) {
 		_classCallCheck(this, AboutCtrl);
 
-		this.$timeout = $timeout;
+		this.$scope = $scope;
 		this.content = "";
 		this.show = false;
 		this.update = this.update.bind(this);
@@ -21,12 +21,9 @@ var AboutCtrl = function () {
 	_createClass(AboutCtrl, [{
 		key: "update",
 		value: function update(data) {
-			var _this = this;
-
-			this.$timeout(function () {
-				_this.content = data.val().about;
-				_this.show = true;
-			}, 1);
+			this.content = data.val().about;
+			this.show = true;
+			this.$scope.$digest();
 		}
 	}, {
 		key: "error",

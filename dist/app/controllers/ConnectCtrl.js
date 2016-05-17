@@ -6,10 +6,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ConnectCtrl = function () {
-	function ConnectCtrl(FirebaseService, $timeout) {
+	function ConnectCtrl(FirebaseService, $scope) {
 		_classCallCheck(this, ConnectCtrl);
 
-		this.$timeout = $timeout;
+		this.$scope = $scope;
 		this.content = "";
 		this.connections = [];
 		this.show = false;
@@ -24,23 +24,19 @@ var ConnectCtrl = function () {
 	_createClass(ConnectCtrl, [{
 		key: "update",
 		value: function update(data) {
-			var _this = this;
-
-			this.$timeout(function () {
-				_this.content = data.val().connect;
-				_this.show = true;
-			}, 1);
+			this.content = data.val().connect;
+			this.show = true;
+			this.$scope.$digest();
 		}
 	}, {
 		key: "loaded",
 		value: function loaded(data) {
-			var _this2 = this;
+			var _this = this;
 
-			this.$timeout(function () {
-				data.val().forEach(function (item) {
-					_this2.connections.push(item);
-				});
-			}, 1);
+			data.val().forEach(function (item) {
+				_this.connections.push(item);
+			});
+			this.$scope.$digest();
 		}
 	}, {
 		key: "error",

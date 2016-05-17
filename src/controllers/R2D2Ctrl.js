@@ -1,6 +1,6 @@
 class R2D2Ctrl {
-	constructor(FirebaseService, $timeout) {
-		this.$timeout = $timeout;
+	constructor(FirebaseService, $scope) {
+		this.$scope = $scope;
 		this.content = "";
 		this.show = false;
 		this.update = this.update.bind(this);
@@ -10,10 +10,9 @@ class R2D2Ctrl {
 	}
 
 	update(data) {
-		this.$timeout(() => {
-			this.content = data.val().r2d2;
-			this.show = true;
-		}, 1);
+		this.content = data.val().r2d2;
+		this.show = true;
+		this.$scope.$digest();
 	}
 
 	error(errorObject) {

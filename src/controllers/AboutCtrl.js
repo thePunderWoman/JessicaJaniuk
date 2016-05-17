@@ -1,6 +1,6 @@
 class AboutCtrl {
-	constructor(FirebaseService, $timeout) {
-		this.$timeout = $timeout;
+	constructor(FirebaseService, $scope) {
+		this.$scope = $scope;
 		this.content = "";
 		this.show = false;
 		this.update = this.update.bind(this);
@@ -11,10 +11,9 @@ class AboutCtrl {
 	}
 
 	update(data) {
-		this.$timeout(() => {
-			this.content = data.val().about;
-			this.show = true;
-		}, 1);
+		this.content = data.val().about;
+		this.show = true;
+		this.$scope.$digest();
 	}
 
 	error(errorObject) {

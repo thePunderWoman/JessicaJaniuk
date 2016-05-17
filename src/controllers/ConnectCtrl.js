@@ -1,6 +1,6 @@
 class ConnectCtrl {
-	constructor(FirebaseService, $timeout) {
-		this.$timeout = $timeout;
+	constructor(FirebaseService, $scope) {
+		this.$scope = $scope;
 		this.content = "";
 		this.connections = [];
 		this.show = false;
@@ -13,18 +13,16 @@ class ConnectCtrl {
 	}
 
 	update(data) {
-		this.$timeout(() => {
-			this.content = data.val().connect;
-			this.show = true;
-		}, 1);
+		this.content = data.val().connect;
+		this.show = true;
+		this.$scope.$digest();
 	}
 
 	loaded(data) {
-		this.$timeout(() => {
-			data.val().forEach((item) => {
-				this.connections.push(item);
-			})
-		}, 1);
+		data.val().forEach((item) => {
+			this.connections.push(item);
+		})
+		this.$scope.$digest();
 	}
 
 	error(errorObject) {
