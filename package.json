@@ -31,6 +31,7 @@
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.22-1",
+    "angular2-materialize": "^6.3.0",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
@@ -39,10 +40,11 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
+    "materialize-css": "^0.97.8",
     "protractor": "4.0.9",
-    "typescript": "~2.0.3",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
+    "typescript": "~2.0.3",
     "webdriver-manager": "10.2.5"
   }
 }
