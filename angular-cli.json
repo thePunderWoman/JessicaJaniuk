@@ -18,11 +18,9 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss",
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
