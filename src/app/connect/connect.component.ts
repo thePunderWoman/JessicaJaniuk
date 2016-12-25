@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { Title }     from '@angular/platform-browser';
 
 @Component({
   selector: 'app-connect',
@@ -12,7 +13,7 @@ export class ConnectComponent implements OnInit {
   body: string = '';
   show: boolean = false;
 
-  constructor(af: AngularFire) {
+  constructor(af: AngularFire, private titleService: Title) {
     this.items = af.database.list('/connect');
     this.page = af.database.object('/pages/connect');
     this.page.subscribe(snapshot => {
@@ -22,6 +23,6 @@ export class ConnectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Connect | Jessica Janiuk');
   }
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import { Title }     from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -11,7 +12,7 @@ export class AboutComponent implements OnInit {
   body: string = '';
   show: boolean = false;
 
-  constructor(af: AngularFire) {
+  constructor(af: AngularFire, private titleService: Title) {
     this.page = af.database.object('/pages/about');
     this.page.subscribe(snapshot => {
       this.body = snapshot.$value;
@@ -20,6 +21,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('About Me | Jessica Janiuk');
   }
 
 }

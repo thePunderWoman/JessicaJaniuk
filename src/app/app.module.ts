@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -12,12 +13,14 @@ import { LogoHeaderComponent } from './logo-header/logo-header.component';
 import { AboutComponent } from './about/about.component';
 import { AngularFireModule } from 'angularfire2';
 import { ConnectComponent } from './connect/connect.component';
-import 'hammerjs';
+import { NotFoundComponent } from './notfound/notfound.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'connect', component: ConnectComponent }
+  { path: 'connect', component: ConnectComponent },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 export const firebaseConfig = {
@@ -35,7 +38,8 @@ export const firebaseConfig = {
     HomeComponent,
     LogoHeaderComponent,
     AboutComponent,
-    ConnectComponent
+    ConnectComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
