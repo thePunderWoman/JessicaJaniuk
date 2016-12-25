@@ -11,11 +11,13 @@ import { HomeComponent } from './home/home.component';
 import { LogoHeaderComponent } from './logo-header/logo-header.component';
 import { AboutComponent } from './about/about.component';
 import { AngularFireModule } from 'angularfire2';
+import { ConnectComponent } from './connect/connect.component';
 import 'hammerjs';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'about', component: AboutComponent },
+  { path: 'connect', component: ConnectComponent }
 ];
 
 export const firebaseConfig = {
@@ -32,7 +34,8 @@ export const firebaseConfig = {
     NavigationComponent,
     HomeComponent,
     LogoHeaderComponent,
-    AboutComponent
+    AboutComponent,
+    ConnectComponent
   ],
   imports: [
     BrowserModule,
