@@ -7,11 +7,6 @@ import { AlbumListComponent } from './album-list/album-list.component';
 
 const photographyRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'photography',
-    pathMatch: 'full'
-  },
-  {
     path: 'photography',
     component: PhotographyComponent,
     children: [
