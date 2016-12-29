@@ -18,8 +18,10 @@ import { ConnectComponent }     from './connect/connect.component';
 import { NotFoundComponent }    from './notfound/notfound.component';
 
 import { PhotographyModule }    from './photography/photography.module';
+import { BlogModule }    from './blog/blog.module';
 
 import { FlickrService } from './services/flickr.service';
+import { R2d2Component } from './r2d2/r2d2.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDEj0wEUEV9JVj9WRPPQxhVRzRTuuggLAs',
@@ -37,13 +39,15 @@ export const firebaseConfig = {
     HomeComponent,
     AboutComponent,
     ConnectComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    R2d2Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     PhotographyModule,
+    BlogModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig)
