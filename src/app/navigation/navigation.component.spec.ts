@@ -4,6 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { NavigationComponent } from './navigation.component';
+import { Router } from '@angular/router';
+import { MdMenuModule } from '@angular/material/menu';
+import { MdIconModule } from '@angular/material/icon';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -11,7 +14,14 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ]
+      declarations: [ NavigationComponent ],
+      imports: [
+        MdMenuModule.forRoot(),
+        MdIconModule.forRoot(),
+      ],
+      providers: [
+        { provide: Router, useValue: Router },
+      ]
     })
     .compileComponents();
   }));
