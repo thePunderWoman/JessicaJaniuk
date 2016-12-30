@@ -5,13 +5,9 @@
     "firebase.json",
     "**/.*",
     "**/node_modules/**",
-    "**/bower_components/**",
-    "**/sass/**",
-    "**/src/**"
+    "**/scss/**",
+    "**/src/**",
+    "**/e2e/**"
   ],
-  "redirects": [ {
-    "source" : "/connect",
-    "destination" : "/#/connect",
-    "type" : 301
-  }]
+  "redirects": []
 }

@@ -18,16 +18,13 @@ export class AlbumComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-       this.flickrService.getPhotos(params['id']).subscribe(this.handlePhotos);
-    });
+    let id = this.route.snapshot.params['id'];
+    this.flickrService.getPhotos(id).subscribe(this.handlePhotos);
   }
 
   handlePhotos(data) {
     this.show = true;
-    let tempData = data.text().replace('jsonFlickrApi(', '');
-    tempData = tempData.slice(0, -1);
-    let photos = JSON.parse(tempData);
+    let photos = data.json();
     this.title = photos.photoset.title;
     this.photos.push.apply(this.photos, photos.photoset.photo);
     this.titleService.setTitle(this.title + ' | Jessica Janiuk');

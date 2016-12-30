@@ -21,10 +21,7 @@ export class AlbumListComponent implements OnInit {
   }
 
   handleAlbums(data) {
-    let body = data.text().replace('jsonFlickrApi(', '');
-    body = body.slice(0, -1);
-    let bodyjson = JSON.parse(body);
-    this.albums.push.apply(this.albums, bodyjson.photosets.photoset);
+    this.albums.push.apply(this.albums, data.json().photosets.photoset);
     this.show = true;
   }
 }

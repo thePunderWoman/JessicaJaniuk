@@ -13,11 +13,14 @@ export class AboutComponent implements OnInit {
   show: boolean = false;
 
   constructor(af: AngularFire, private titleService: Title) {
+    this.handlePage = this.handlePage.bind(this);
     this.page = af.database.object('/pages/about');
-    this.page.subscribe(snapshot => {
-      this.body = snapshot.$value;
-      this.show = true;
-    });
+    this.page.subscribe(this.handlePage);
+  }
+
+  handlePage(snapshot) {
+    this.body = snapshot.$value;
+    this.show = true;
   }
 
   ngOnInit() {
