@@ -1,14 +1,4 @@
 {
-  "public": "dist",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**",
-    "**/scss/**",
-    "**/src/**",
-    "**/e2e/**"
-  ],
-  "redirects": [],
   "database": {
     "rules": "database.rules.json"
   },
@@ -19,6 +9,15 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "redirects": [],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/scss/**",
+      "**/src/**",
+      "**/e2e/**"
     ]
   }
 }
