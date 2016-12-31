@@ -14,15 +14,18 @@ export class ConnectComponent implements OnInit {
   show: boolean = false;
 
   constructor(af: AngularFire, private titleService: Title) {
+    this.handlePage = this.handlePage.bind(this);
     this.items = af.database.list('/connect');
     this.page = af.database.object('/pages/connect');
-    this.page.subscribe(snapshot => {
-      this.body = snapshot.$value;
-      this.show = true;
-    });
+    this.page.subscribe(this.handlePage);
   }
 
   ngOnInit() {
     this.titleService.setTitle('Connect | Jessica Janiuk');
+  }
+
+  handlePage(snapshot) {
+    this.body = snapshot.$value;
+    this.show = true;
   }
 }

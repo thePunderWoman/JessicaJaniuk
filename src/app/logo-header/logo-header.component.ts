@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './logo-header.component.html',
   styleUrls: ['./logo-header.component.scss']
 })
-export class LogoHeaderComponent implements OnInit {
+export class LogoHeaderComponent {
   router: Router;
 
   constructor(private _router: Router) {
@@ -16,8 +16,4 @@ export class LogoHeaderComponent implements OnInit {
   isNotHome() {
     return this.router.url !== '/';
   }
-
-  ngOnInit() {
-  }
-
 }

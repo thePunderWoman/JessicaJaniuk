@@ -13,11 +13,10 @@ describe('ConnectComponent', () => {
   let TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
+  let fbObject = { subscribe: jasmine.createSpy('subscribe') };
+  let fbList = { subscribe: jasmine.createSpy('subscribe') };
 
   beforeEach(async(() => {
-    let fbObject = { subscribe: jasmine.createSpy('subscribe') };
-    let fbList = { subscribe: jasmine.createSpy('subscribe') };
-
     let AngularFireStub = {
       database: {
         object: () => fbObject,
@@ -43,5 +42,20 @@ describe('ConnectComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.page).toBe(fbObject);
+    expect(component.items).toBe(fbList);
+    expect(fbObject.subscribe).toHaveBeenCalledWith(component.handlePage);
+  });
+
+  it('should handle page data', () => {
+    let pageData = { $value: 'content' };
+    component.handlePage(pageData);
+    expect(component.body).toBe('content');
+    expect(component.show).toBeTruthy();
+  });
+
+  it('should ngOnInit', () => {
+    component.ngOnInit();
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Connect | Jessica Janiuk');
   });
 });

@@ -13,9 +13,9 @@ describe('AboutComponent', () => {
   let TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
+  let fbObject = { subscribe: jasmine.createSpy('subscribe') };
 
   beforeEach(async(() => {
-    let fbObject = { subscribe: jasmine.createSpy('subscribe') };
 
     let AngularFireStub = {
       database: {
@@ -41,6 +41,8 @@ describe('AboutComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.page).toBe(fbObject);
+    expect(fbObject.subscribe).toHaveBeenCalledWith(component.handlePage);
   });
 
   it('should ngOnInit', () => {
