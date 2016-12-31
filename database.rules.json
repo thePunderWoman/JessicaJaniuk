@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "pages": {
+      ".read": true,
+      ".write": false
+    },
+    "connect": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}
