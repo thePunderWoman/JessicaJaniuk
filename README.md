@@ -5,6 +5,7 @@
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
 
 # Backlog
+- [x] Add code coverage badge
 - [ ] Add hidden authentication component
 - [ ] Add Google Auth
 - [ ] Add Blog Post form
@@ -30,4 +31,3 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Add coding blog section
 - [ ] Refactor 404 page to allow for better analytics
 - [ ] Add end to end tests
-- [x] Add code coverage badge
