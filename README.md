@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/janiukjf/JessicaJaniuk.svg?branch=master)](https://travis-ci.org/janiukjf/JessicaJaniuk) [![Coverage Status](https://coveralls.io/repos/janiukjf/JessicaJaniuk/badge.svg?branch=master)](https://coveralls.io/r/janiukjf/JessicaJaniuk?branch=master)
+[![Build Status](https://travis-ci.org/janiukjf/JessicaJaniuk.svg?branch=master)](https://travis-ci.org/janiukjf/JessicaJaniuk) [![Coverage Status](https://coveralls.io/repos/janiukjf/<repository>/badge.svg?branch=master)](https://coveralls.io/r/janiukjf/JessicaJaniuk?branch=master)
 
 # Jessica Janiuk's Personal Website
 
@@ -30,4 +30,4 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Add coding blog section
 - [ ] Refactor 404 page to allow for better analytics
 - [ ] Add end to end tests
-- [ ] Add code coverage badge
+- [x] Add code coverage badge
