@@ -6,8 +6,8 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 
 # Backlog
 - [x] Add code coverage badge
-- [ ] Add hidden authentication component
-- [ ] Add Google Auth
+- [x] Add hidden authentication component
+- [x] Add Google Auth
 - [ ] Add Blog Post form
 - [ ] Add Support for draft and published
 - [ ] Add post versioning
