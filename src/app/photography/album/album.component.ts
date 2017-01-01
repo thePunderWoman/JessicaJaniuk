@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
-import { FlickrService } from '../../services/flickr.service';
+import { TitleService } from '../../services/title/title.service';
+import { FlickrService } from '../../services/flickr/flickr.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class AlbumComponent implements OnInit {
   title: string = '';
   photos: any = [];
 
-  constructor(private flickrService: FlickrService, private titleService: Title, private route: ActivatedRoute) {
+  constructor(private flickrService: FlickrService, private titleService: TitleService, private route: ActivatedRoute) {
     this.handlePhotos = this.handlePhotos.bind(this);
   }
 
@@ -27,7 +27,7 @@ export class AlbumComponent implements OnInit {
     let photos = data.json();
     this.title = photos.photoset.title;
     this.photos.push.apply(this.photos, photos.photoset.photo);
-    this.titleService.setTitle(this.title + ' | Jessica Janiuk');
+    this.titleService.setTitle(this.title);
   }
 
 }

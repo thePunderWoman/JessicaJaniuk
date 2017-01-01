@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 @Component({
   selector: 'app-about',
@@ -12,7 +12,7 @@ export class AboutComponent implements OnInit {
   body: string = '';
   show: boolean = false;
 
-  constructor(af: AngularFire, private titleService: Title) {
+  constructor(af: AngularFire, private titleService: TitleService) {
     this.handlePage = this.handlePage.bind(this);
     this.page = af.database.object('/pages/about');
     this.page.subscribe(this.handlePage);
@@ -24,7 +24,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('About Me | Jessica Janiuk');
+    this.titleService.setTitle('About Me');
   }
 
 }

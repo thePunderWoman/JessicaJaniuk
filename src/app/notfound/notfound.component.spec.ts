@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { NotFoundComponent } from './notfound.component';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -17,7 +17,7 @@ describe('NotFoundComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NotFoundComponent ],
       providers: [
-        { provide: Title, useValue: TitleServiceMock },
+        { provide: TitleService, useValue: TitleServiceMock },
       ]
     })
     .compileComponents();
@@ -35,6 +35,6 @@ describe('NotFoundComponent', () => {
 
   it('should set title on init', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('404! Not Found | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('404! Not Found');
   });
 });

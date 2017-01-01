@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { R2d2Component } from './r2d2.component';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 describe('R2d2Component', () => {
   let component: R2d2Component;
@@ -17,7 +17,7 @@ describe('R2d2Component', () => {
     TestBed.configureTestingModule({
       declarations: [ R2d2Component ],
       providers: [
-        { provide: Title, useValue: TitleServiceMock },
+        { provide: TitleService, useValue: TitleServiceMock },
       ]
     })
     .compileComponents();
@@ -35,6 +35,6 @@ describe('R2d2Component', () => {
 
   it('should set title on init', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('R2-D2 | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('R2-D2');
   });
 });
