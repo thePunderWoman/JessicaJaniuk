@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/janiukjf/JessicaJaniuk.svg?branch=master)](https://travis-ci.org/janiukjf/JessicaJaniuk) [![Coverage Status](https://coveralls.io/repos/janiukjf/JessicaJaniuk/badge.svg?branch=master)](https://coveralls.io/r/janiukjf/JessicaJaniuk?branch=master)
+[![Build Status](https://travis-ci.org/janiukjf/JessicaJaniuk.svg?branch=master)](https://travis-ci.org/janiukjf/JessicaJaniuk) [![Coverage Status](https://coveralls.io/repos/github/janiukjf/JessicaJaniuk/badge.svg?branch=master)](https://coveralls.io/github/janiukjf/JessicaJaniuk?branch=master)
 
 # Jessica Janiuk's Personal Website
 
