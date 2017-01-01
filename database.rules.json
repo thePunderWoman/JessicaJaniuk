@@ -1,5 +1,9 @@
 {
   "rules": {
+    "users": {
+      ".read": true,
+      ".write": false
+    },
     "pages": {
       ".read": true,
       ".write": false
