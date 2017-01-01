@@ -22,4 +22,7 @@ before_script:
 - npm install -g karma
 - npm install
 
-script: karma start karma.conf.js --single-run
+script: ng test --code-coverage --watch=false
+
+after_success:
+- npm run coveralls
