@@ -1,89 +1,19 @@
 @import "materialize/materialize.scss";
 
+@import "app/logo-header/logo-header.component.scss";
+@import "app/navigation/navigation.component";
+@import "app/notfound/notfound.component";
+@import "app/about/about.component";
+
 $link-color: color("grey", "darken-2") !default;
-$primary-color: #814C9E;
 
 html {
     font-family: "Industry", sans-serif;
 }
 
-$color: #814C9E;
-
-.header-404 {
-  color: $color;
-}
-
-.header {
-  transition-duration: .8s;
-  padding-top: 25vh;
-
-  &.not-home {
-    padding-top: 2vh;
-  }
-
-  .logo {
-    position: relative;
-    display: block;
-
-    &.row {
-      margin-bottom: 0;
-    }
-    .main-logo-wrapper {
-      position: relative;
-      height: auto;
-      //width: 50%;
-      .star {
-        width: 4%;
-        height: auto;
-        position: absolute;
-        top: -10%;
-        transform-origin: 50% 55%;
-
-        &.star-1 {
-          left: 32%;
-          animation: star-rotate 8s linear infinite forwards;
-        }
-
-        &.star-2 {
-          left: 79.8%;
-          animation: star-rotate 8s -1s linear infinite forwards;
-        }
-      }
-      .logo-name {
-        width: 100%;
-      }
-    }
-  }
-}
-
-img.selfie {
-  max-width: 200px;
-}
-
-nav.home-nav {
-  background-color: transparent;
-  box-shadow: none;
-
-  ul {
-    a {
-      color: #231F20;
-      font-size: 1.4rem;
-    }
-  }
-}
-
 .content-block {
   display: block;
   padding-top: .5rem;
-}
-
-.fade {
-  &.ng-enter {
-    animation: fade 0.5s linear;
-  }
-  &.ng-leave {
-    animation: fade 0.5s linear reverse;
-  }
 }
 
 @keyframes star-rotate {
@@ -93,15 +23,5 @@ nav.home-nav {
 
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }
