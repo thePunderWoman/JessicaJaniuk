@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AlbumListComponent } from './album-list.component';
-import { FlickrService } from '../../services/flickr.service';
+import { FlickrService } from '../../services/flickr/flickr.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../../services/title/title.service';
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
@@ -32,7 +32,7 @@ describe('AlbumListComponent', () => {
       imports: [ RouterTestingModule ],
       providers: [
         { provide: FlickrService, useValue: flickrServiceMock },
-        { provide: Title, useValue: TitleServiceMock }
+        { provide: TitleService, useValue: TitleServiceMock }
       ]
     })
     .compileComponents();
@@ -52,7 +52,7 @@ describe('AlbumListComponent', () => {
     component.ngOnInit();
     expect(flickrServiceMock.getAlbums).toHaveBeenCalled();
     expect(fakeObservable.subscribe).toHaveBeenCalledWith(component.handleAlbums);
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Photography | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Photography');
   });
 
   it('should handle photo data', () => {

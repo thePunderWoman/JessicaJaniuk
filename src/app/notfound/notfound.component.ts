@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 @Component({
   selector: 'app-notfound',
@@ -8,9 +8,9 @@ import { Title }     from '@angular/platform-browser';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: TitleService) { }
 
   ngOnInit() {
-    this.titleService.setTitle('404! Not Found | Jessica Janiuk');
+    this.titleService.setTitle('404! Not Found');
   }
 }

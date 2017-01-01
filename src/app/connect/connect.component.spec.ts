@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { ConnectComponent } from './connect.component';
 import { AngularFire } from 'angularfire2';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 describe('ConnectComponent', () => {
   let component: ConnectComponent;
@@ -28,7 +28,7 @@ describe('ConnectComponent', () => {
       declarations: [ ConnectComponent ],
       providers: [
         { provide: AngularFire, useValue: AngularFireStub },
-        { provide: Title, useValue: TitleServiceMock },
+        { provide: TitleService, useValue: TitleServiceMock },
       ],
     })
     .compileComponents();
@@ -56,6 +56,6 @@ describe('ConnectComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Connect | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Connect');
   });
 });

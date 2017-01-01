@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { AboutComponent } from './about.component';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 describe('AboutComponent', () => {
   let component: AboutComponent;
@@ -27,7 +27,7 @@ describe('AboutComponent', () => {
       declarations: [ AboutComponent ],
       providers: [
         { provide: AngularFire, useValue: AngularFireStub },
-        { provide: Title, useValue: TitleServiceMock },
+        { provide: TitleService, useValue: TitleServiceMock },
       ],
     })
     .compileComponents();
@@ -47,7 +47,7 @@ describe('AboutComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('About Me | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('About Me');
   });
 
   it('should handle page data', () => {

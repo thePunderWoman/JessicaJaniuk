@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AlbumComponent } from './album.component';
-import { FlickrService } from '../../services/flickr.service';
+import { FlickrService } from '../../services/flickr/flickr.service';
 import { ActivatedRoute } from '@angular/router';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../../services/title/title.service';
 
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
@@ -39,7 +39,7 @@ describe('AlbumComponent', () => {
       providers: [
         { provide: FlickrService, useValue: flickrServiceMock },
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: Title, useValue: TitleServiceMock }
+        { provide: TitleService, useValue: TitleServiceMock }
       ]
     })
     .compileComponents();
@@ -80,6 +80,6 @@ describe('AlbumComponent', () => {
     expect(component.show).toBeTruthy();
     expect(component.photos).toEqual(photoData.photoset.photo);
     expect(component.title).toBe(photoData.photoset.title);
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('album of stuff | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('album of stuff');
   });
 });

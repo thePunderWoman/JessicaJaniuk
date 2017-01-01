@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { BlogComponent } from './blog.component';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 describe('BlogComponent', () => {
   let component: BlogComponent;
@@ -17,7 +17,7 @@ describe('BlogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BlogComponent ],
       providers: [
-        { provide: Title, useValue: TitleServiceMock },
+        { provide: TitleService, useValue: TitleServiceMock },
       ],
     })
     .compileComponents();
@@ -35,6 +35,6 @@ describe('BlogComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Blog | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Blog');
   });
 });

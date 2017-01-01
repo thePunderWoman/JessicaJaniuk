@@ -20,7 +20,8 @@ import { NotFoundComponent }    from './notfound/notfound.component';
 import { PhotographyModule }    from './photography/photography.module';
 import { BlogModule }    from './blog/blog.module';
 
-import { FlickrService } from './services/flickr.service';
+import { FlickrService } from './services/flickr/flickr.service';
+import { TitleService } from './services/title/title.service';
 import { R2d2Component } from './r2d2/r2d2.component';
 
 export const firebaseConfig = {
@@ -52,7 +53,10 @@ export const firebaseConfig = {
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [FlickrService],
+  providers: [
+    FlickrService,
+    TitleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { HomeComponent } from './home.component';
-import { Title }     from '@angular/platform-browser';
+import { TitleService } from '../services/title/title.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,7 +17,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       providers: [
-        { provide: Title, useValue: TitleServiceMock },
+        { provide: TitleService, useValue: TitleServiceMock },
       ]
     })
     .compileComponents();
@@ -35,6 +35,6 @@ describe('HomeComponent', () => {
 
   it('should set title on init', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Welcome | Jessica Janiuk');
+    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Welcome');
   });
 });
