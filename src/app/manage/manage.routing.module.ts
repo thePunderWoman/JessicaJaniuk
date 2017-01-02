@@ -12,6 +12,9 @@ const manageRoutes: Routes = [
     component: ManageComponent,
     canActivate: [
       AuthGuard
+    ],
+    canActivateChild: [
+      AuthGuard
     ]
   },
 ];
