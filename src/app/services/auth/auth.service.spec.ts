@@ -78,7 +78,14 @@ describe('AuthService', () => {
     expect(service.user).toBeUndefined();
   }));
 
-  it('should determine not authed when user not found', inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
+  it('should determine not authed when user found but missing google data',
+    inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
+    service.user = new User(af, '', '', '', '', '', '');
+    service.determineAuthed({});
+    expect(service.user).toBeUndefined();
+  }));
+
+  it('should determine authed when user found', inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
     service.user = undefined;
     let data = {
       google: {
@@ -97,6 +104,23 @@ describe('AuthService', () => {
     expect(service.user.providerId).toBe(data.google.providerId);
     expect(service.user.googleUid).toBe(data.google.uid);
     expect(service.user.uid).toBe(data.uid);
+  }));
+
+  it('should determine authed when user found but already have user data',
+    inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
+    service.user = new User(af, 'Diana Prince', '', '', '', '', '');
+    let data = {
+      google: {
+        displayName: 'test testerson',
+        email: 'test@testerson.com',
+        photoURL: 'path/to/photo',
+        providerId: '1',
+        uid: 42
+      },
+      uid: 'ff111'
+    };
+    service.determineAuthed(data);
+    expect(service.user.displayName).toBe('Diana Prince');
   }));
 
 });

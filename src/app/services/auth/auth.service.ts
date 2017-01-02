@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   determineAuthed(data): void {
-    if (!data) {
+    if (!data || (data && !data.google)) {
       this.user = undefined;
       return;
     }

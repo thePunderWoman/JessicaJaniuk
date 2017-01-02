@@ -11,6 +11,7 @@
     "e2e": "protractor",
     "coverage": "ng test --code-coverage --single-run",
     "deploy": "ng build --prod && firebase deploy",
+    "view-coverage": "http-server -c-1 -o -p 9875 ./coverage",
     "coveralls": "cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls -v"
   },
   "private": true,

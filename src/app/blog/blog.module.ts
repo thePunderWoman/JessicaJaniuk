@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BlogComponent } from './blog.component';
 import { BlogRoutingModule } from './blog.routing.module';
 import { ListComponent } from './list/list.component';
+import { ManageComponent } from './manage/manage.component';
+import { AuthGuard } from '../services/auth/auth-guard';
 
 @NgModule({
   imports: [
@@ -11,7 +13,11 @@ import { ListComponent } from './list/list.component';
   ],
   declarations: [
     BlogComponent,
-    ListComponent
+    ListComponent,
+    ManageComponent
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class BlogModule { }
