@@ -4,21 +4,18 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { BlogComponent } from './blog.component';
-import { TitleService } from '../services/title/title.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BlogComponent', () => {
   let component: BlogComponent;
   let fixture: ComponentFixture<BlogComponent>;
-  let TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BlogComponent ],
-      providers: [
-        { provide: TitleService, useValue: TitleServiceMock },
-      ],
+      imports: [
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -31,10 +28,5 @@ describe('BlogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should ngOnInit', () => {
-    component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Blog');
   });
 });
