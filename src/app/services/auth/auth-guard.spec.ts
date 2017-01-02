@@ -32,6 +32,17 @@ describe('AuthGuard', () => {
       AuthServiceMock.isAdmin.and.returnValue(true);
       expect(guard.canActivate()).toBeTruthy();
     }));
+  });
 
+  describe('canActivateChild', () => {
+    it('should not activate child if not admin', inject([AuthGuard], (guard: AuthGuard) => {
+      AuthServiceMock.isAdmin.and.returnValue(false);
+      expect(guard.canActivateChild()).toBeFalsy();
+    }));
+
+    it('should activate child if is admin', inject([AuthGuard], (guard: AuthGuard) => {
+      AuthServiceMock.isAdmin.and.returnValue(true);
+      expect(guard.canActivateChild()).toBeTruthy();
+    }));
   });
 });
