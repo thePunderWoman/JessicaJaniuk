@@ -7,7 +7,7 @@ import { AlbumListComponent } from './album-list/album-list.component';
 
 const photographyRoutes: Routes = [
   {
-    path: 'photography',
+    path: '',
     component: PhotographyComponent,
     children: [
       {
@@ -24,7 +24,7 @@ const photographyRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(photographyRoutes)
+    RouterModule.forChild(photographyRoutes)
   ],
   exports: [ RouterModule ]
 })

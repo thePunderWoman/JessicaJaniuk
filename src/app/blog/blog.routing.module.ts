@@ -6,7 +6,7 @@ import { ListComponent } from './list/list.component';
 
 const blogRoutes: Routes = [
   {
-    path: 'blog',
+    path: '',
     component: BlogComponent,
     children: [
       {
@@ -19,7 +19,7 @@ const blogRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(blogRoutes)
+    RouterModule.forChild(blogRoutes)
   ],
   exports: [ RouterModule ]
 })

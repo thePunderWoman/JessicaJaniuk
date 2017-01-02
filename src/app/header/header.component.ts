@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-logo-header',
-  templateUrl: './logo-header.component.html',
-  styleUrls: ['./logo-header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class LogoHeaderComponent {
+export class HeaderComponent {
   router: Router;
 
   constructor(private _router: Router) {
