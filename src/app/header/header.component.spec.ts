@@ -6,7 +6,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
 import { Router } from '@angular/router';
-import { NavigationComponent } from '../navigation/navigation.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -19,7 +18,6 @@ describe('HeaderComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: Router, useValue: routerStub },
-        { provide: NavigationComponent, useValue: NavigationComponent },
       ]
     })
     .compileComponents();
