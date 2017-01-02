@@ -17,10 +17,10 @@ import { AboutComponent }       from './about/about.component';
 import { ConnectComponent }     from './connect/connect.component';
 import { NotFoundComponent }    from './notfound/notfound.component';
 import { R2d2Component } from './r2d2/r2d2.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
 
 import { PhotographyModule }    from './photography/photography.module';
 import { BlogModule }    from './blog/blog.module';
+import { ManageModule }    from './manage/manage.module';
 
 import { FlickrService } from './services/flickr/flickr.service';
 import { TitleService } from './services/title/title.service';
@@ -50,8 +50,7 @@ export const myFirebaseAuthConfig = {
     AboutComponent,
     ConnectComponent,
     NotFoundComponent,
-    R2d2Component,
-    AuthenticationComponent
+    R2d2Component
   ],
   imports: [
     BrowserModule,
@@ -59,6 +58,7 @@ export const myFirebaseAuthConfig = {
     HttpModule,
     PhotographyModule,
     BlogModule,
+    ManageModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)

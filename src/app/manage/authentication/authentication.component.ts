@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFire } from 'angularfire2';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-authentication',

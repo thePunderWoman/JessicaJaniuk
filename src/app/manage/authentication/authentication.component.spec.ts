@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { AuthenticationComponent } from './authentication.component';
 import { AngularFire } from 'angularfire2';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 describe('AuthenticationComponent', () => {
   let component: AuthenticationComponent;
@@ -18,6 +18,7 @@ describe('AuthenticationComponent', () => {
   };
   let AuthServiceMock = {
     isLoggedIn: jasmine.createSpy('isLoggedIn'),
+    isAdmin: jasmine.createSpy('isAdmin'),
     user: {
       displayName: 'stuff'
     }
