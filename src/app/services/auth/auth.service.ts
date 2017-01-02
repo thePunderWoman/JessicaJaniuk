@@ -15,6 +15,10 @@ export class AuthService {
     return this.user !== undefined;
   }
 
+  isAdmin(): boolean {
+    return this.isLoggedIn() && this.user.isAdmin;
+  }
+
   determineAuthed(data): void {
     if (!data) {
       this.user = undefined;

@@ -35,15 +35,42 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should be logged in when a user is present', inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
-    service.user = new User(af, '', '', '', '', '', '');
-    expect(service.isLoggedIn()).toBeTruthy();
-  }));
+  describe('isLoggedIn', () => {
 
-  it('should not be logged in when no user', inject([AuthService], (service: AuthService, af: AngularFire) => {
-    service.user = undefined;
-    expect(service.isLoggedIn()).toBeFalsy();
-  }));
+    it('should be logged in when a user is present', inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
+      service.user = new User(af, '', '', '', '', '', '');
+      expect(service.isLoggedIn()).toBeTruthy();
+    }));
+
+    it('should not be logged in when no user', inject([AuthService], (service: AuthService, af: AngularFire) => {
+      service.user = undefined;
+      expect(service.isLoggedIn()).toBeFalsy();
+    }));
+
+  });
+
+  describe('isAdmin', () => {
+    it('should be admin when logged in and admin is true', inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
+      service.user = new User(af, '', '', '', '', '', '');
+      service.user.isAdmin = true;
+      spyOn(service, 'isLoggedIn').and.returnValue(true);
+      expect(service.isAdmin()).toBeTruthy();
+    }));
+
+    it('should not be admin when logged in and admin is not true',
+        inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
+      service.user = new User(af, '', '', '', '', '', '');
+      service.user.isAdmin = false;
+      spyOn(service, 'isLoggedIn').and.returnValue(true);
+      expect(service.isAdmin()).toBeFalsy();
+    }));
+
+    it('should not be admin when not logged in', inject([AuthService], (service: AuthService, af: AngularFire) => {
+      service.user = undefined;
+      spyOn(service, 'isLoggedIn').and.returnValue(false);
+      expect(service.isAdmin()).toBeFalsy();
+    }));
+  });
 
   it('should determine not authed when user not found', inject([AuthService, AngularFire], (service: AuthService, af: AngularFire) => {
     service.user = new User(af, '', '', '', '', '', '');
