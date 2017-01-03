@@ -18,7 +18,6 @@ export class PostFormComponent implements OnInit {
   constructor(private af: AngularFire, private route: ActivatedRoute) {
     this.populatePost = this.populatePost.bind(this);
     this.removeTag = this.removeTag.bind(this);
-    this.setContent = this.setContent.bind(this);
   }
 
   ngOnInit() {
@@ -52,10 +51,6 @@ export class PostFormComponent implements OnInit {
         this.id = value.key;
       });
     }
-  }
-
-  setContent(content): void {
-    this.post.Content = content;
   }
 
   addTag(): void {

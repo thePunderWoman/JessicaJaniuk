@@ -9,8 +9,8 @@ import { BlogComponent } from './blog/blog.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
-import { SimpleTinyComponent } from './simple-tiny/simple-tiny.component';
 import { DatepickerModule } from 'angular2-material-datepicker';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   imports: [
@@ -18,6 +18,7 @@ import { DatepickerModule } from 'angular2-material-datepicker';
     FormsModule,
     ManageRoutingModule,
     DatepickerModule,
+    CKEditorModule,
     MaterialModule.forRoot()
   ],
   declarations: [
@@ -27,7 +28,6 @@ import { DatepickerModule } from 'angular2-material-datepicker';
     DashboardComponent,
     BlogComponent,
     PostFormComponent,
-    SimpleTinyComponent,
   ]
 })
 export class ManageModule { }

@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MdInputModule } from '@angular/material/input';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('PostFormComponent', () => {
+fdescribe('PostFormComponent', () => {
   let component: PostFormComponent;
   let fixture: ComponentFixture<PostFormComponent>;
   let activatedRouteMock = {
