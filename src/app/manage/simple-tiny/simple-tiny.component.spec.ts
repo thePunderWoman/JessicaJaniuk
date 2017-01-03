@@ -3,23 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ManageComponent } from './manage.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SimpleTinyComponent } from './simple-tiny.component';
 
-describe('ManageComponent', () => {
-  let component: ManageComponent;
-  let fixture: ComponentFixture<ManageComponent>;
+xdescribe('SimpleTinyComponent', () => {
+  let component: SimpleTinyComponent;
+  let fixture: ComponentFixture<SimpleTinyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [ SimpleTinyComponent ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageComponent);
+    fixture = TestBed.createComponent(SimpleTinyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

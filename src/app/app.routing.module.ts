@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent }    from './notfound/notfound.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: 'app/public/public.module#PublicModule'},
   { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: '**', redirectTo: '/404' },
+  { path: '', loadChildren: 'app/public/public.module#PublicModule'}
 ];
 
 @NgModule({

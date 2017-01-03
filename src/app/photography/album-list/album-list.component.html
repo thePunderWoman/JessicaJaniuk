@@ -11,7 +11,7 @@
           <p>{{album.description._content}}</p>
         </div>
         <div class="card-action lighten-1">
-          <a [routerLink]="album.id" class="grey-text darken-3">View Photos</a>
+          <a [routerLink]="['/album/', album.id]" class="grey-text darken-3">View Photos</a>
         </div>
       </div>
     </div>

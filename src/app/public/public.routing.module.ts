@@ -18,7 +18,7 @@ const publicRoutes: Routes = [
       { path: 'blog', loadChildren: 'app/blog/blog.module#BlogModule' },
       { path: 'photography', loadChildren: 'app/photography/photography.module#PhotographyModule' }
     ]
-  },
+  }
 ];
 
 @NgModule({
