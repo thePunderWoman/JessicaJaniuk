@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-manage-navigation',
@@ -8,13 +8,13 @@ import { AngularFire } from 'angularfire2';
 })
 export class ManageNavigationComponent implements OnInit {
 
-  constructor(public af: AngularFire) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
 
   logout() {
-    this.af.auth.logout();
+    this.authService.logout();
   }
 
 }

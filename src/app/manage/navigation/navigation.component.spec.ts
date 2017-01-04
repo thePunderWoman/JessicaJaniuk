@@ -5,15 +5,13 @@ import { DebugElement } from '@angular/core';
 
 import { ManageNavigationComponent } from './navigation.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AngularFire } from 'angularfire2';
+import { AuthService } from '../../services/auth/auth.service';
 
 describe('NavigationComponent', () => {
   let component: ManageNavigationComponent;
   let fixture: ComponentFixture<ManageNavigationComponent>;
-  let AngularFireMock = {
-    auth: {
-      logout: jasmine.createSpy('logout')
-    }
+  let AuthServiceMock = {
+    logout: jasmine.createSpy('logout')
   };
 
   beforeEach(async(() => {
@@ -21,7 +19,7 @@ describe('NavigationComponent', () => {
       declarations: [ ManageNavigationComponent ],
       imports: [ RouterTestingModule ],
       providers: [
-        { provide: AngularFire, useValue: AngularFireMock }
+      { provide: AuthService, useValue: AuthServiceMock }
       ]
     })
     .compileComponents();
@@ -39,6 +37,6 @@ describe('NavigationComponent', () => {
 
   it('should log out', () => {
     component.logout();
-    expect(AngularFireMock.auth.logout).toHaveBeenCalled();
+    expect(AuthServiceMock.logout).toHaveBeenCalled();
   });
 });

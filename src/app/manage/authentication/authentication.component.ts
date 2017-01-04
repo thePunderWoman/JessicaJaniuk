@@ -20,6 +20,6 @@ export class AuthenticationComponent {
   }
 
   logout() {
-     this.af.auth.logout();
+    this.authService.logout();
   }
 }

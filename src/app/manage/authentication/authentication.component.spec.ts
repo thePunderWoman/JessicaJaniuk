@@ -19,6 +19,7 @@ describe('AuthenticationComponent', () => {
   let AuthServiceMock = {
     isLoggedIn: jasmine.createSpy('isLoggedIn'),
     isAdmin: jasmine.createSpy('isAdmin'),
+    logout: jasmine.createSpy('logout'),
     user: {
       displayName: 'stuff'
     }
@@ -62,6 +63,6 @@ describe('AuthenticationComponent', () => {
 
   it('should logout', () => {
     component.logout();
-    expect(AngularFireMock.auth.logout).toHaveBeenCalled();
+    expect(AuthServiceMock.logout).toHaveBeenCalled();
   });
 });

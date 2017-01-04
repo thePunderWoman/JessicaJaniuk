@@ -18,6 +18,7 @@ import { PublicModule }    from './public/public.module';
 import { FlickrService } from './services/flickr/flickr.service';
 import { TitleService } from './services/title/title.service';
 import { AuthService } from './services/auth/auth.service';
+import { StorageService } from './services/storage/storage.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDEj0wEUEV9JVj9WRPPQxhVRzRTuuggLAs',
@@ -53,7 +54,8 @@ export const myFirebaseAuthConfig = {
   providers: [
     FlickrService,
     TitleService,
-    AuthService
+    AuthService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })
