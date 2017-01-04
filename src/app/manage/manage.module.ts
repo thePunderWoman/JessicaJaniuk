@@ -10,7 +10,6 @@ import { PostFormComponent } from './post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { DatepickerModule } from 'angular2-material-datepicker';
-import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   imports: [
@@ -18,7 +17,6 @@ import { CKEditorModule } from 'ng2-ckeditor';
     FormsModule,
     ManageRoutingModule,
     DatepickerModule,
-    CKEditorModule,
     MaterialModule.forRoot()
   ],
   declarations: [

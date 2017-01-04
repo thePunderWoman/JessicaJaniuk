@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
-  posts: FirebaseListObservable<Post[]>;
   fbPost: FirebaseObjectObservable<Post>;
   post: Post = new Post();
   tag: string = '';
@@ -18,11 +17,15 @@ export class PostFormComponent implements OnInit {
   constructor(private af: AngularFire, private route: ActivatedRoute) {
     this.populatePost = this.populatePost.bind(this);
     this.removeTag = this.removeTag.bind(this);
+    this.setId = this.setId.bind(this);
   }
 
   ngOnInit() {
-    this.posts = this.af.database.list('/blog/post');
     this.id = this.route.snapshot.params['id'];
+    this.getPost();
+  }
+
+  getPost() {
     if (this.id) {
       this.fbPost = this.af.database.object(`/blog/post/${this.id}`);
       this.fbPost.subscribe(this.populatePost);
@@ -47,14 +50,18 @@ export class PostFormComponent implements OnInit {
     if (this.id) {
       this.fbPost.set(this.post);
     } else {
-      this.posts.push(this.post).then((value) => {
-        this.id = value.key;
-      });
+      this.af.database.list('/blog/post')
+        .push(this.post)
+        .then(this.setId);
     }
   }
 
+  setId(value) {
+    this.id = value.key;
+  }
+
   addTag(): void {
-    if (this.tag.trim() !== '' && !this.post.Tags.find((ptag) => { return ptag.toLowerCase() === this.tag.toLowerCase(); })) {
+    if (this.tag.trim() !== '' && !this.post.Tags.find((ptag) => { return ptag.toLowerCase() === this.tag.trim().toLowerCase(); })) {
       this.post.Tags.push(this.tag.trim());
     }
     this.tag = '';

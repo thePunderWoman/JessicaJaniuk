@@ -17,12 +17,9 @@
         </div>
         <div class="row">
           <div class="col s12">
-            <ckeditor
-              [(ngModel)]="post.Content"
-              name="content"
-              debounce="500">
-              Sample Content
-            </ckeditor>
+            <md-input-container style="width: 100%">
+              <textarea md-input name="content" [(ngModel)]="post.Content"></textarea>
+            </md-input-container>
           </div>
         </div>
       </div>
