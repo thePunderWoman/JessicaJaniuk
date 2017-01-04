@@ -1,5 +1,11 @@
 {
   "rules": {
+    "blog": {
+      "post": {
+        ".read": true,
+        ".write": "'k8tQZKZaoSfx5dbgvILthsc9eZ42' === auth.uid"
+      }
+    },
     "users": {
       ".read": true,
       ".write": false
