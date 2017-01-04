@@ -8,7 +8,8 @@ import { PostFormComponent } from './post-form.component';
 import { AngularFire } from 'angularfire2';
 import { ActivatedRoute } from '@angular/router';
 import { MdInputModule } from '@angular/material/input';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MdSlideToggleModule } from '@angular/material/slide-toggle';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 fdescribe('PostFormComponent', () => {
   let component: PostFormComponent;
@@ -37,9 +38,10 @@ fdescribe('PostFormComponent', () => {
       declarations: [ PostFormComponent ],
       imports: [
         FormsModule,
+        CKEditorModule,
+        MdSlideToggleModule.forRoot(),
         MdInputModule.forRoot(),
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
         { provide: AngularFire, useValue: AngularFireMock }
