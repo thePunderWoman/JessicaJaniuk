@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { QuillModule } from './quill/quill.module';
+import { PagesComponent } from './pages/pages.component';
+import { PageFormComponent } from './page-form/page-form.component';
 
 @NgModule({
   imports: [
@@ -28,6 +30,8 @@ import { QuillModule } from './quill/quill.module';
     DashboardComponent,
     BlogComponent,
     PostFormComponent,
+    PagesComponent,
+    PageFormComponent,
   ],
 })
 export class ManageModule { }

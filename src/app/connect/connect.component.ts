@@ -11,6 +11,7 @@ export class ConnectComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
   page: FirebaseObjectObservable<any>;
   body: string = '';
+  title: string = '';
   show: boolean = false;
 
   constructor(af: AngularFire, private titleService: TitleService) {
@@ -25,7 +26,8 @@ export class ConnectComponent implements OnInit {
   }
 
   handlePage(snapshot) {
-    this.body = snapshot.$value;
+    this.body = snapshot.Content;
+    this.title = snapshot.Title;
     this.show = true;
   }
 }

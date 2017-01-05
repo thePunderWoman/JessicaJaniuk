@@ -12,7 +12,7 @@
     },
     "pages": {
       ".read": true,
-      ".write": false
+      ".write": "'k8tQZKZaoSfx5dbgvILthsc9eZ42' === auth.uid"
     },
     "connect": {
       ".read": true,

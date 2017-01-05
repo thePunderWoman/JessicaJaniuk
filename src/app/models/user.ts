@@ -1,5 +1,3 @@
-import { AngularFire } from 'angularfire2';
-
 export class User {
   public isAdmin: boolean = false;
 
