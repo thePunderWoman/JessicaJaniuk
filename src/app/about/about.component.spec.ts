@@ -51,9 +51,10 @@ describe('AboutComponent', () => {
   });
 
   it('should handle page data', () => {
-    let pageData = { $value: 'content' };
+    let pageData = { Content: 'content', Title: 'titlestuff' };
     component.handlePage(pageData);
     expect(component.body).toBe('content');
+    expect(component.title).toBe('titlestuff');
     expect(component.show).toBeTruthy();
   });
 });

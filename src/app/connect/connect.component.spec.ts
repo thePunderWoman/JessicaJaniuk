@@ -48,9 +48,10 @@ describe('ConnectComponent', () => {
   });
 
   it('should handle page data', () => {
-    let pageData = { $value: 'content' };
+    let pageData = { Content: 'content', Title: 'things' };
     component.handlePage(pageData);
     expect(component.body).toBe('content');
+    expect(component.title).toBe('things');
     expect(component.show).toBeTruthy();
   });
 

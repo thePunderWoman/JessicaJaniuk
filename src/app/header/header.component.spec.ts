@@ -4,29 +4,27 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { LogoHeaderComponent } from './logo-header.component';
+import { HeaderComponent } from './header.component';
 import { Router } from '@angular/router';
-import { NavigationComponent } from '../navigation/navigation.component';
 
-describe('LogoHeaderComponent', () => {
-  let component: LogoHeaderComponent;
-  let fixture: ComponentFixture<LogoHeaderComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
   let routerStub = { url: '/' };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogoHeaderComponent ],
+      declarations: [ HeaderComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: Router, useValue: routerStub },
-        { provide: NavigationComponent, useValue: NavigationComponent },
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogoHeaderComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

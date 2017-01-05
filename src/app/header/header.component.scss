@@ -1,0 +1,8 @@
+.header {
+  transition-duration: .8s;
+  padding-top: 25vh;
+
+  &.not-home {
+    padding-top: 2vh;
+  }
+}

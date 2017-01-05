@@ -1,9 +1,11 @@
 @import "materialize/materialize.scss";
 
-@import "app/logo-header/logo-header.component.scss";
+@import "app/header/header.component.scss";
+@import "app/logo/logo.component.scss";
 @import "app/navigation/navigation.component";
 @import "app/notfound/notfound.component";
 @import "app/about/about.component";
+@import "app/blog/blog.component";
 
 $link-color: color("grey", "darken-2") !default;
 

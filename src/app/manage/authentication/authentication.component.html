@@ -1,5 +1,5 @@
 <button *ngIf="!isLoggedIn()" (click)="login()">Login</button>
 <div *ngIf="isLoggedIn()">
-  <p>Welcome, {{ authService.user.displayName }}</p>
+  <p>Welcome, {{ authService.user.displayName }}. <a routerLink="/manage" *ngIf="authService.isAdmin()">Manage</a></p>
   <button (click)="logout()">Logout</button>
 </div>

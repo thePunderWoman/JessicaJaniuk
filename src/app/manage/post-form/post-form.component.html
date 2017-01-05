@@ -1,0 +1,82 @@
+<h3><span>{{addOrEdit()}}</span> Post</h3>
+<div class="row">
+  <form class="col s12" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col s9">
+        <div class="row">
+          <div class="col s12">
+            <md-input-container style="width: 100%">
+              <input md-input
+                     placeholder="Title"
+                     name="title"
+                     required
+                     [(ngModel)]="post.Title"
+              >
+            </md-input-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <label for="content">Post Content</label>
+            <app-quill-editor name="content" theme="bubble" id="content" [(ngModel)]="post.Content"></app-quill-editor>
+          </div>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="row">
+          <div class="col s12">
+            <md-input-container style="width: 100%">
+              <input md-input
+                     placeholder="Category"
+                     name="category"
+                     required
+                     [(ngModel)]="post.Category"
+              >
+            </md-input-container>
+          </div>
+          <div class="col s12">
+            <md-input-container style="width: 100%">
+              <input md-input
+                     placeholder="Published Date"
+                     name="published-date"
+                     required
+                     [(ngModel)]="post.PublishDate"
+              >
+            </md-input-container>
+          </div>
+          <p>{{post.publishedDate}}</p>
+          <div class="col s12">
+            <md-slide-toggle [(ngModel)]="post.Published" color="primary" name="published" ngDefaultControl>
+              <span *ngIf="!post.Published">Not</span> Published
+            </md-slide-toggle>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <md-input-container style="width: 75%">
+              <input md-input
+                     placeholder="Tag"
+                     name="tag"
+                     [(ngModel)]="tag"
+              >
+            </md-input-container>
+            <button (click)="addTag()" type="button" color="secondary">Add</button>
+          </div>
+          <div class="col s12">
+            <p>Tag List</p>
+            <ul *ngIf="post.Tags">
+              <li *ngFor="let tag of post.Tags;">
+                {{tag}} <a (click)="removeTag(tag)" style="cursor: pointer;">&times;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button md-raised-button class="right" color="primary" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

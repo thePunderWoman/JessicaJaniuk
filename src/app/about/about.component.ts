@@ -10,6 +10,7 @@ import { TitleService } from '../services/title/title.service';
 export class AboutComponent implements OnInit {
   page: FirebaseObjectObservable<any>;
   body: string = '';
+  title: string = '';
   show: boolean = false;
 
   constructor(af: AngularFire, private titleService: TitleService) {
@@ -19,7 +20,8 @@ export class AboutComponent implements OnInit {
   }
 
   handlePage(snapshot) {
-    this.body = snapshot.$value;
+    this.body = snapshot.Content;
+    this.title = snapshot.Title;
     this.show = true;
   }
 

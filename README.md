@@ -8,8 +8,10 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add code coverage badge
 - [x] Add hidden authentication component
 - [x] Add Google Auth
-- [ ] Add Blog Post form
-- [ ] Add Support for draft and published
+- [x] Add Page Content Editing
+- [x] Add Blog Post form
+- [x] Add Support for draft and published
+- [ ] Add Blog Post Date Picker
 - [ ] Add post versioning
 - [ ] Add Blog List page
 - [ ] Add Blog Detail page
@@ -20,8 +22,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Add RSS feeds
 - [ ] Add Animations Site Wide
 - [ ] Add Grungey Video Game 3D feel
-- [ ] Add Dynamic Mening
-- [ ] Add Page Content Editing
+- [ ] Add Dynamic Menuing
 - [ ] Add Contact form
 - [ ] Refactor Album pages to better show imagery
 - [ ] Ensure all albums have a description

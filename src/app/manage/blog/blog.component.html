@@ -1,0 +1,24 @@
+<h3>Blog Posts</h3>
+<table>
+  <thead>
+    <tr>
+        <th data-field="title">Title</th>
+        <th data-field="publishDate">Published Date</th>
+        <th data-field="published">Published</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts | async">
+      <td>{{post.Title}}</td>
+      <td>{{post.PublishDate}}</td>
+      <td>{{post.Published}}</td>
+      <td><a [routerLink]="['/manage/blog/edit',post.$key]">Edit</a></td>
+    </tr>
+  </tbody>
+</table>
+<div class="fixed-action-btn add-post">
+  <a class="btn-floating btn-large waves-effect waves-light purple" routerLink="/manage/blog/add">
+    <i class="material-icons">add</i>
+  </a>
+</div>

@@ -1,0 +1,20 @@
+<h3>Content Pages</h3>
+<table>
+  <thead>
+    <tr>
+        <th data-field="title">Title</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let page of pages | async">
+      <td>{{page.Title}}</td>
+      <td><a [routerLink]="['/manage/pages/edit', page.$key]">Edit</a></td>
+    </tr>
+  </tbody>
+</table>
+<div class="fixed-action-btn add-page">
+  <a class="btn-floating btn-large waves-effect waves-light purple" routerLink="/manage/pages/add">
+    <i class="material-icons">add</i>
+  </a>
+</div>
