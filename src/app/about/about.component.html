@@ -1,4 +1,9 @@
 <div class="content-block fade" *ngIf="show">
   <h4 [innerText]="title"></h4>
-  <div [innerHTML]="body"></div>
+  <div class="row">
+    <div class="col l4 m5 s12">
+      <img src="/assets/Jessica.jpg" alt="Jessica Janiuk" class="circle responsive-img selfie" />
+    </div>
+    <div class="col l8 m7 s12" [innerHTML]="body"></div>
+  </div>
 </div>
