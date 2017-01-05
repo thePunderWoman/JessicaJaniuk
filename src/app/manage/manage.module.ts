@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManageComponent } from './manage.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -10,6 +10,7 @@ import { PostFormComponent } from './post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { DatepickerModule } from 'angular2-material-datepicker';
+import { QuillModule } from './quill/quill.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { DatepickerModule } from 'angular2-material-datepicker';
     FormsModule,
     ManageRoutingModule,
     DatepickerModule,
+    QuillModule,
     MaterialModule.forRoot()
   ],
   declarations: [
@@ -26,6 +28,6 @@ import { DatepickerModule } from 'angular2-material-datepicker';
     DashboardComponent,
     BlogComponent,
     PostFormComponent,
-  ]
+  ],
 })
 export class ManageModule { }

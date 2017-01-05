@@ -17,9 +17,8 @@
         </div>
         <div class="row">
           <div class="col s12">
-            <md-input-container style="width: 100%">
-              <textarea md-input name="content" [(ngModel)]="post.Content"></textarea>
-            </md-input-container>
+            <label for="content">Post Content</label>
+            <app-quill-editor name="content" theme="bubble" id="content" [(ngModel)]="post.Content"></app-quill-editor>
           </div>
         </div>
       </div>
