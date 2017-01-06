@@ -1,12 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Page } from '../../models/page';
 
 import { PageFormComponent } from './page-form.component';
-import { QuillEditorComponent } from '../quill/quill-editor.component';
 import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { MdInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
@@ -42,11 +41,12 @@ describe('PageFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageFormComponent, QuillEditorComponent ],
+      declarations: [ PageFormComponent ],
       imports: [
         FormsModule,
         MdInputModule.forRoot()
       ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
         { provide: AngularFire, useValue: AngularFireMock }
