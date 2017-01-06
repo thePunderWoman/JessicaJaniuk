@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { Post } from '../../models/post';
 
 import { PostFormComponent } from './post-form.component';
-import { QuillEditorComponent } from '../quill/quill-editor.component';
 import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { ActivatedRoute } from '@angular/router';
 import { MdInputModule } from '@angular/material/input';
@@ -44,11 +43,14 @@ describe('PostFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostFormComponent, QuillEditorComponent ],
+      declarations: [ PostFormComponent ],
       imports: [
         FormsModule,
         MdSlideToggleModule.forRoot(),
         MdInputModule.forRoot(),
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },

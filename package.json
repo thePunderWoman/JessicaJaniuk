@@ -35,6 +35,7 @@
     "materialize-sass": "^0.95.2",
     "quill": "^1.1.9",
     "rxjs": "^5.0.1",
+    "tinymce": "^4.5.2",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },

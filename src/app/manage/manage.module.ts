@@ -10,9 +10,9 @@ import { PostFormComponent } from './post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { DatepickerModule } from 'angular2-material-datepicker';
-import { QuillModule } from './quill/quill.module';
 import { PagesComponent } from './pages/pages.component';
 import { PageFormComponent } from './page-form/page-form.component';
+import { TinymceComponent } from './tinymce/tinymce.component';
 
 @NgModule({
   imports: [
@@ -20,7 +20,6 @@ import { PageFormComponent } from './page-form/page-form.component';
     FormsModule,
     ManageRoutingModule,
     DatepickerModule,
-    QuillModule,
     MaterialModule.forRoot()
   ],
   declarations: [
@@ -32,6 +31,7 @@ import { PageFormComponent } from './page-form/page-form.component';
     PostFormComponent,
     PagesComponent,
     PageFormComponent,
+    TinymceComponent,
   ],
 })
 export class ManageModule { }
