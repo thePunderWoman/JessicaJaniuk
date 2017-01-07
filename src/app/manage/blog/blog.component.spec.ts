@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { BlogComponent } from './blog.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AngularFire } from 'angularfire2';
+import { MomentModule } from 'angular2-moment';
 
 describe('BlogComponent', () => {
   let component: BlogComponent;
@@ -19,7 +20,7 @@ describe('BlogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BlogComponent ],
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, MomentModule ],
       providers: [
         { provide: AngularFire, useValue: AngularFireMock}
       ]
