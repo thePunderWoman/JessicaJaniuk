@@ -2,6 +2,7 @@
   "rules": {
     "blog": {
       "post": {
+        ".indexOn": ["Published","PublishDate","Category"],
         ".read": true,
         ".write": "'k8tQZKZaoSfx5dbgvILthsc9eZ42' === auth.uid"
       }

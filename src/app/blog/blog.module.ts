@@ -4,11 +4,13 @@ import { BlogComponent } from './blog.component';
 import { BlogRoutingModule } from './blog.routing.module';
 import { ListComponent } from './list/list.component';
 import { AuthGuard } from '../services/auth/auth-guard';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   imports: [
     CommonModule,
-    BlogRoutingModule
+    BlogRoutingModule,
+    MomentModule
   ],
   declarations: [
     BlogComponent,
