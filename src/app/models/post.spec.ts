@@ -1,11 +1,13 @@
 import { Post } from './post';
 import * as moment from 'moment';
 
-describe('Post model', () => {
+fdescribe('Post model', () => {
   it('should get and set published date string', () => {
+    let date = new Date(2017, 0, 11, 14, 23);
+    let datestr = moment(date).format('M-D-YYYY h:mm a');
     let post = new Post();
-    post.PublishDateString = '1-11-2017 2:23 pm';
-    expect(post.PublishDate).toBe('2017-01-11T14:23:00-05:00');
-    expect(post.PublishDateString).toBe('1-11-2017 2:23 pm');
+    post.PublishDateString = datestr;
+    expect(post.PublishDate).toBe(moment(date).format());
+    expect(post.PublishDateString).toBe(datestr);
   });
 });
