@@ -6,7 +6,7 @@ export class Post {
   public Category: string;
   public Tags: string[] = [];
   public Published: boolean = false;
-  public PublishDate: string;
+  public PublishDate: string = moment().format();
 
   constructor() {}
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './app.routing.module';
+import { MomentModule } from 'angular2-moment';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ export const myFirebaseAuthConfig = {
     ManageModule,
     PublicModule,
     AppRoutingModule,
+    MomentModule,
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],

@@ -11,7 +11,7 @@
   <tbody>
     <tr *ngFor="let post of posts | async">
       <td>{{post.Title}}</td>
-      <td>{{post.PublishDate}}</td>
+      <td>{{post.PublishDate | amDateFormat:'M-D-YYYY h:mm a'}}</td>
       <td>{{post.Published}}</td>
       <td><a [routerLink]="['/manage/blog/edit',post.$key]">Edit</a></td>
     </tr>
