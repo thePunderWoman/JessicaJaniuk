@@ -5,7 +5,7 @@
       <div class="col s12">
         <div class="row">
           <div class="col s12 m9">
-            <md-input-container style="width: 100%">
+            <md-input-container class="width-100">
               <input md-input
                      placeholder="Title"
                      name="title"
@@ -15,7 +15,7 @@
             </md-input-container>
           </div>
           <div class="col s12 m3">
-            <md-input-container style="width: 100%">
+            <md-input-container class="width-100">
               <input md-input
                      placeholder="Category"
                      name="category"
@@ -35,12 +35,15 @@
     </div>
     <div class="row">
       <div class="col s12 m6">
-        <md-input-container style="width: 100%">
+        <md-input-container class="width-100">
           <input md-input
                  placeholder="Published Date"
                  name="published-date"
+                 ng2-datetime-picker
+                 date-format="M-D-YYYY h:mm a"
                  required
-                 [(ngModel)]="post.PublishDate"
+                 autocomplete="false"
+                 [(ngModel)]="post.PublishDateString"
           >
         </md-input-container>
       </div>
@@ -55,7 +58,7 @@
     </div>
     <div class="row">
       <div class="col s4">
-        <md-input-container style="width: 75%">
+        <md-input-container class="width-75">
           <input md-input
                  placeholder="Tag"
                  name="tag"

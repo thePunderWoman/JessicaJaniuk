@@ -31,6 +31,7 @@
       ],
       "scripts": [
         "../node_modules/hammerjs/hammer.js",
+        "../node_modules/moment/min/moment-with-locales.js",
         "../node_modules/tinymce/tinymce.js",
         "../node_modules/tinymce/themes/modern/theme.js",
         "../node_modules/tinymce/plugins/advlist/plugin.js",

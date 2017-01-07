@@ -5,12 +5,11 @@ import { DebugElement, SimpleChange} from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { TinymceComponent } from './tinymce.component';
+import * as tinymce from 'tinymce/tinymce';
 
 describe('TinymceComponent', () => {
   let component: TinymceComponent;
   let fixture: ComponentFixture<TinymceComponent>;
-
-  let tinymce = require('tinymce/tinymce');
 
   beforeEach(async(() => {
     spyOn(tinymce, 'init');

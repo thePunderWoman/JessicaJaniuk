@@ -98,7 +98,6 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
   }
 
   handleTextChange() {
-    console.log('changed');
     const text = this.tinymceEditor.getContent();
     this.onModelChange(text);
     this.onContentChanged.emit({

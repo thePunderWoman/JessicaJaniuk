@@ -13,6 +13,7 @@ import { DatepickerModule } from 'angular2-material-datepicker';
 import { PagesComponent } from './pages/pages.component';
 import { PageFormComponent } from './page-form/page-form.component';
 import { TinymceComponent } from './tinymce/tinymce.component';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { TinymceComponent } from './tinymce/tinymce.component';
     FormsModule,
     ManageRoutingModule,
     DatepickerModule,
+    Ng2DatetimePickerModule,
     MaterialModule.forRoot()
   ],
   declarations: [
