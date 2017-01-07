@@ -11,7 +11,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add Page Content Editing
 - [x] Add Blog Post form
 - [x] Add Support for draft and published
-- [ ] Add Blog Post Date Picker
+- [x] Add Blog Post Date Picker
 - [ ] Add post versioning
 - [ ] Add Blog List page
 - [ ] Add Blog Detail page
