@@ -9,7 +9,14 @@
   <tbody>
     <tr *ngFor="let page of pages | async">
       <td>{{page.Title}}</td>
-      <td><a [routerLink]="['/manage/pages/edit', page.$key]">Edit</a></td>
+      <td>
+        <button md-icon-button [routerLink]="['/manage/pages/edit',page.$key]">
+          <md-icon>mode_edit</md-icon>
+        </button>
+        <button md-icon-button (click)="confirmDelete(page.$key)" class="link-pointer">
+          <md-icon>delete</md-icon>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

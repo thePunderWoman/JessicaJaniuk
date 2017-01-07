@@ -15,6 +15,7 @@ import { PageFormComponent } from './page-form/page-form.component';
 import { TinymceComponent } from './tinymce/tinymce.component';
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 import { MomentModule } from 'angular2-moment';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,10 @@ import { MomentModule } from 'angular2-moment';
     PagesComponent,
     PageFormComponent,
     TinymceComponent,
+    DeleteDialogComponent,
   ],
+  entryComponents: [
+    DeleteDialogComponent
+  ]
 })
 export class ManageModule { }

@@ -13,7 +13,14 @@
       <td>{{post.Title}}</td>
       <td>{{post.PublishDate | amDateFormat:'M-D-YYYY h:mm a'}}</td>
       <td>{{post.Published}}</td>
-      <td><a [routerLink]="['/manage/blog/edit',post.$key]">Edit</a></td>
+      <td>
+        <button md-icon-button [routerLink]="['/manage/blog/edit',post.$key]">
+          <md-icon>mode_edit</md-icon>
+        </button>
+        <button md-icon-button (click)="confirmDelete(post.$key)" class="link-pointer">
+          <md-icon>delete</md-icon>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
