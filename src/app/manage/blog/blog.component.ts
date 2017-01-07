@@ -35,7 +35,7 @@ export class BlogComponent implements OnInit {
 
   deletePost(result) {
     if (result) {
-      this.posts.remove(this.key);
+      this.af.database.object(`/blog/post/${this.key}`).remove();
     }
     this.key = undefined;
   }

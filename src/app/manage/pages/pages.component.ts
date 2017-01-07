@@ -34,7 +34,7 @@ export class PagesComponent implements OnInit {
 
   deletePage(result) {
     if (result) {
-      this.pages.remove(this.key);
+      this.af.database.object(`/pages/${this.key}`).remove();
     }
     this.key = undefined;
   }
