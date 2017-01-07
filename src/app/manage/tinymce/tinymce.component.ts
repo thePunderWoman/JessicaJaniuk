@@ -35,6 +35,14 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
   tinymceEditor: any;
   editorElem: HTMLElement;
   content: any;
+  plugins: string[] = ['advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen',
+    'insertdatetime media nonbreaking save table contextmenu directionality',
+    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+  ];
+  toolbar1: string = 'undo redo | insert | styleselect | bold italic |'
+        + ' alignleft aligncenter alignright alignjustify | bullist numlist outdent indent';
+  toolbar2: string = 'link image media | forecolor backcolor emoticons | codesample';
 
   @Input() theme: string;
   @Input() modules: Object;
@@ -49,6 +57,7 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
   onModelChange: Function = () => {};
   onModelTouched: Function = () => {};
 
+
   constructor(private elementRef: ElementRef) {
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -60,15 +69,9 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
       selector: '#' + this.elementId,
       skin_url: '/assets/lightgray',
       height: 500,
-      plugins: [
-        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
-        'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-      ],
-      toolbar1: 'undo redo | insert | styleselect | bold italic |'
-        + ' alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+      plugins: this.plugins,
+      toolbar1: this.toolbar1,
+      toolbar2: this.toolbar2,
       image_advtab: true,
       templates: [
         { title: 'Test template 1', content: 'Test 1' },
@@ -86,7 +89,7 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
     this.tinymceEditor.on('Dirty', this.handleSelectionChange);
 
     // update model if text changes
-    this.tinymceEditor.on('keyup', this.handleTextChange);
+    this.tinymceEditor.on('keyup change blur', this.handleTextChange);
 
   }
 
@@ -95,6 +98,7 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
   }
 
   handleTextChange() {
+    console.log('changed');
     const text = this.tinymceEditor.getContent();
     this.onModelChange(text);
     this.onContentChanged.emit({

@@ -40,15 +40,9 @@ describe('TinymceComponent', () => {
       selector: '#' + component.elementId,
       skin_url: '/assets/lightgray',
       height: 500,
-      plugins: [
-        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
-        'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-      ],
-      toolbar1: 'undo redo | insert | styleselect | bold italic |'
-        + ' alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+      plugins: component.plugins,
+      toolbar1: component.toolbar1,
+      toolbar2: component.toolbar2,
       image_advtab: true,
       templates: [
         { title: 'Test template 1', content: 'Test 1' },
@@ -64,7 +58,7 @@ describe('TinymceComponent', () => {
     component.setupEditor(fakeEditor);
     expect(component.onEditorCreated.emit).toHaveBeenCalled();
     expect(fakeEditor.on).toHaveBeenCalledWith('Dirty', component.handleSelectionChange);
-    expect(fakeEditor.on).toHaveBeenCalledWith('keyup', component.handleTextChange);
+    expect(fakeEditor.on).toHaveBeenCalledWith('keyup change blur', component.handleTextChange);
   });
 
   it('should set model touched when range is false', () => {

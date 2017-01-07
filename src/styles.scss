@@ -1,11 +1,5 @@
 @import "materialize/materialize.scss";
-
-@import "app/header/header.component.scss";
-@import "app/logo/logo.component.scss";
-@import "app/navigation/navigation.component";
-@import "app/notfound/notfound.component";
-@import "app/about/about.component";
-@import "app/blog/blog.component";
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.scss';
 
 $link-color: color("grey", "darken-2") !default;
 

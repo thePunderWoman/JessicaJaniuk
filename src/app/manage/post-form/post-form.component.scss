@@ -1,0 +1,15 @@
+ul.tag-list {
+  display: block;
+
+  li {
+    display: inline;
+    &:after {
+      content: ", ";
+    }
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+  }
+}
