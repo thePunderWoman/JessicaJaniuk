@@ -21,6 +21,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Add blog history calendar
 - [ ] Add blog comment system with social media SSO
 - [ ] Add RSS feeds
+- [ ] Switch to AOT compiling
 - [ ] Add post versioning
 - [ ] Add Grungey Video Game 3D feel
 - [ ] Add Dynamic Menuing
