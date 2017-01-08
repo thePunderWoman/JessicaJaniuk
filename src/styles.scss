@@ -8,37 +8,29 @@ html {
     font-family: "Industry", sans-serif;
     position: relative;
     height: 100%;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,d8d8d8+100 */
+    background-color: #ffffff; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 60%, rgba(216,216,216,1) 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 60%,rgba(216,216,216,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 60%,rgba(216,216,216,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-attachment: fixed;
+
     body {
       height: 100%;
     }
 }
 
-.background {
+.bottom-gradient {
   position: fixed;
-  z-index: 0;
+  bottom: 0;
+  left: 0;
+  height: 35%;
   width: 100%;
-  height: 100%;
-
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,d8d8d8+100 */
-  background-color: #ffffff; /* Old browsers */
-  background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 60%, rgba(216,216,216,1) 100%); /* FF3.6-15 */
-  background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 60%,rgba(216,216,216,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 60%,rgba(216,216,216,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
-  .top-gradient {
-    position: relative;
-    height: 65%;
-    width: 100%;
-    display: block;
-  }
-  .bottom-gradient {
-    position: relative;
-    height: 35%;
-    width: 100%;
-    display: block;
-    border-radius: 30% 30% 0 0;
-    box-shadow: inset 0 50px 200px rgba(0, 0, 0, 0.1), 0 -66px 200px rgba(0, 0, 0, 0.1);
-  }
+  display: block;
+  border-radius: 30% 30% 0 0;
+  box-shadow: inset 0 50px 200px rgba(0, 0, 0, 0.1), 0 -66px 200px rgba(0, 0, 0, 0.1);
+  z-index: 0;
 }
 
 .container {
