@@ -1,0 +1,8 @@
+.album-detail {
+  display: none;
+
+  &.show {
+    display: block;
+    animation: slide-in 400ms;
+  }
+}

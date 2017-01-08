@@ -1,0 +1,15 @@
+<div class="blog-post-detail row" [ngClass]="{'show': show}">
+  <div class="col s12">
+    <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a routerLink="/blog" class="breadcrumb">Blog</a>
+          <a class="breadcrumb" [innerText]="post.Title"></a>
+        </div>
+      </div>
+    </nav>
+    <h5 [innerText]="post.Title"></h5>
+    <p class="by-line">Posted on {{ post.PublishDate | amDateFormat:'MMMM Do YYYY, h:mm a' }}</p>
+    <div [innerHTML]="post.Content"></div>
+  </div>
+</div>

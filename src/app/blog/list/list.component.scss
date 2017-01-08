@@ -1,14 +1,23 @@
-.blog-post {
-  padding-bottom: 15px;
-  border-top: 1px solid #f4f4f4;
+.blog-list {
+  display: none;
 
-  h5 {
-    margin-bottom: 5px;
+  &.show {
+    display: block;
+    animation: slide-in 400ms;
   }
 
-  .by-line {
-    margin-top: 0;
-    font-size: 11px;
-    font-style: italic;
+  .blog-post {
+    padding-bottom: 15px;
+    border-top: 1px solid #f4f4f4;
+
+    h5 {
+      margin-bottom: 5px;
+    }
+
+    .by-line {
+      margin-top: 0;
+      font-size: 11px;
+      font-style: italic;
+    }
   }
 }

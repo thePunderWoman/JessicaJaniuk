@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { AlbumComponent } from './album.component';
 import { FlickrService } from '../../services/flickr/flickr.service';
 import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TitleService } from '../../services/title/title.service';
 
 describe('AlbumComponent', () => {
@@ -36,6 +37,7 @@ describe('AlbumComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AlbumComponent ],
+      imports: [ RouterTestingModule ],
       providers: [
         { provide: FlickrService, useValue: flickrServiceMock },
         { provide: ActivatedRoute, useValue: activatedRouteMock },

@@ -1,3 +1,12 @@
 img.selfie {
   max-width: 200px;
 }
+
+.about-me {
+  display: none;
+
+  &.show {
+    display: block;
+    animation: slide-in 400ms;
+  }
+}

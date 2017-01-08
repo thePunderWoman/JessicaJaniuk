@@ -13,8 +13,9 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add Support for draft and published
 - [x] Add Blog Post Date Picker
 - [x] Add Blog List page
-- [ ] Add Blog Detail page
-- [ ] Add Animations Site Wide
+- [x] Add Blog Detail page
+- [x] Add breadcrumb nav on relevant pages
+- [x] Add Animations Site Wide
 - [ ] Build Node Restify Backend
 - [ ] Migrate front end off of Firebase
 - [ ] Add blog navigation

@@ -7,11 +7,13 @@ import { TitleService } from '../services/title/title.service';
   styleUrls: ['./r2d2.component.scss']
 })
 export class R2d2Component implements OnInit {
+  show: boolean = false;
 
   constructor(private titleService: TitleService) { }
 
   ngOnInit() {
     this.titleService.setTitle('R2-D2');
+    this.show = true;
   }
 
 }

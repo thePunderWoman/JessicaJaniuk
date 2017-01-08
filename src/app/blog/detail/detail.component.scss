@@ -1,0 +1,18 @@
+.blog-post-detail {
+  display: none;
+
+  &.show {
+    display: block;
+    animation: slide-in 400ms;
+  }
+
+  h5 {
+    margin-bottom: 5px;
+  }
+
+  .by-line {
+    margin-top: 0;
+    font-size: 11px;
+    font-style: italic;
+  }
+}

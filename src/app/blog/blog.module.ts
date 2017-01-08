@@ -5,6 +5,7 @@ import { BlogRoutingModule } from './blog.routing.module';
 import { ListComponent } from './list/list.component';
 import { AuthGuard } from '../services/auth/auth-guard';
 import { MomentModule } from 'angular2-moment';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { MomentModule } from 'angular2-moment';
   ],
   declarations: [
     BlogComponent,
-    ListComponent
+    ListComponent,
+    DetailComponent
   ],
   providers: [
     AuthGuard

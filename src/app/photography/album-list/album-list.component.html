@@ -1,4 +1,4 @@
-<div class="content-block fade" *ngIf="show">
+<div class="content-block album-list" [ngClass]="{'show': show}">
   <h4>Photography</h4>
   <div class="row">
     <div class="col s12 m6" *ngFor="let album of albums">
@@ -11,7 +11,7 @@
           <p>{{album.description._content}}</p>
         </div>
         <div class="card-action lighten-1">
-          <a [routerLink]="['/album/', album.id]" class="grey-text darken-3">View Photos</a>
+          <a [routerLink]="['/photography/album/', album.id]" class="grey-text darken-3">View Photos</a>
         </div>
       </div>
     </div>

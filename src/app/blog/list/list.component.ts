@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
   fbPosts: FirebaseListObservable<Post[]>;
   posts: Post[] = [];
   now: Date = new Date();
+  show: boolean = false;
 
   constructor(private af: AngularFire, private titleService: TitleService) {
     this.populatePosts = this.populatePosts.bind(this);
@@ -33,6 +34,7 @@ export class ListComponent implements OnInit {
       return post.Published;
     });
     this.posts.sort(this.sortPosts);
+    this.show = true;
   }
 
   sortPosts(a, b) {

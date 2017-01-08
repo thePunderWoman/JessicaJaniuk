@@ -1,13 +1,18 @@
-<div class="content-block fade" *ngIf="show">
-  <div>
+<div class="content-block album-detail row" [ngClass]="{'show': show}">
+  <div class="col s12">
+    <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a routerLink="/photography" class="breadcrumb">Photography</a>
+          <a class="breadcrumb">{{title}}</a>
+        </div>
+      </div>
+    </nav>
     <h4>{{title}}</h4>
     <div class="row">
       <div class="col s12 m6" *ngFor="let photo of photos">
         <img [src]="photo.url_m" [alt]="photo.title" class="responsive-img"/>
       </div>
-    </div>
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large waves-effect waves-light purple" routerLink="/photography"><i class="material-icons">fast_rewind</i></a>
     </div>
   </div>
 </div>

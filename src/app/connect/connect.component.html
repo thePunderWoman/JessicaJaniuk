@@ -1,4 +1,4 @@
-<div class="content-block fade connections" ng-if="vm.show">
+<div class="content-block connections" [ngClass]="{'show': show}">
   <h4 [innerText]="title"></h4>
   <div [innerHTML]="body"></div>
   <div class="row">

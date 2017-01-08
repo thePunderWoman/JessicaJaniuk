@@ -34,7 +34,9 @@ describe('R2d2Component', () => {
   });
 
   it('should set title on init', () => {
+    component.show = false;
     component.ngOnInit();
     expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('R2-D2');
+    expect(component.show).toBeTruthy();
   });
 });

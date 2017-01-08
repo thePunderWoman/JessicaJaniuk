@@ -8,6 +8,7 @@ import { ListComponent } from './list.component';
 import { TitleService } from '../../services/title/title.service';
 import { AngularFire } from 'angularfire2';
 import { MomentModule } from 'angular2-moment';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -31,7 +32,8 @@ describe('ListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ListComponent ],
       imports: [
-        MomentModule
+        MomentModule,
+        RouterTestingModule
       ],
       providers: [
         { provide: TitleService, useValue: TitleServiceMock },
@@ -64,6 +66,7 @@ describe('ListComponent', () => {
 
   it('should populate posts', () => {
     spyOn(component, 'sortPosts');
+    component.show = false;
     let post1 = new Post();
     post1.Published = true;
     let post2 = new Post();
@@ -74,6 +77,7 @@ describe('ListComponent', () => {
     component.populatePosts(posts);
     expect(component.posts.length).toBe(2);
     expect(component.sortPosts).toHaveBeenCalled();
+    expect(component.show).toBeTruthy();
   });
 
   it('should sort posts', () => {
