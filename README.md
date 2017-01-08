@@ -12,15 +12,16 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add Blog Post form
 - [x] Add Support for draft and published
 - [x] Add Blog Post Date Picker
-- [ ] Add post versioning
-- [ ] Add Blog List page
+- [x] Add Blog List page
 - [ ] Add Blog Detail page
+- [ ] Add Animations Site Wide
+- [ ] Build Node Restify Backend
+- [ ] Migrate front end off of Firebase
 - [ ] Add blog navigation
 - [ ] Add blog history calendar
 - [ ] Add blog comment system with social media SSO
-- [ ] Add Blog animations
 - [ ] Add RSS feeds
-- [ ] Add Animations Site Wide
+- [ ] Add post versioning
 - [ ] Add Grungey Video Game 3D feel
 - [ ] Add Dynamic Menuing
 - [ ] Add Contact form
@@ -31,4 +32,5 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Refactor to support multiple layouts
 - [ ] Add coding blog section
 - [ ] Refactor 404 page to allow for better analytics
+- [ ] Move to Bootstrap 4 on release
 - [ ] Add end to end tests
