@@ -47,6 +47,11 @@ describe('TinymceComponent', () => {
         { title: 'Test template 1', content: 'Test 1' },
         { title: 'Test template 2', content: 'Test 2' }
       ],
+      content_css: [
+        'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css',
+        '/tinymce.css'
+      ],
+      body_class: 'tiny-mce-container',
       setup: component.setupEditor,
     });
   });

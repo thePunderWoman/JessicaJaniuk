@@ -9,6 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "plugins",
         "favicon.ico",
         "android-chrome-192x192.png",
         "android-chrome-512x512.png",
@@ -16,7 +17,8 @@
         "favicon-16x16.png",
         "favicon-32x32.png",
         "mstile-150x150.png",
-        "safari-pinned-tab.svg"
+        "safari-pinned-tab.svg",
+        "tinymce.css"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -26,7 +28,6 @@
       "mobile": false,
       "styles": [
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/tinymce/plugins/codesample/css/prism.css",
         "styles.scss"
       ],
       "scripts": [
