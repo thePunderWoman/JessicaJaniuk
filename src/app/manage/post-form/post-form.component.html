@@ -9,6 +9,7 @@
               <input md-input
                      placeholder="Title"
                      name="title"
+                     type="text"
                      required
                      [(ngModel)]="post.Title"
               >
@@ -19,6 +20,7 @@
               <input md-input
                      placeholder="Category"
                      name="category"
+                     type="text"
                      required
                      [(ngModel)]="post.Category"
               >
@@ -39,6 +41,7 @@
           <input md-input
                  placeholder="Published Date"
                  name="published-date"
+                 type="text"
                  ng2-datetime-picker
                  date-format="M-D-YYYY h:mm a"
                  required
@@ -61,6 +64,7 @@
         <md-input-container class="width-75">
           <input md-input
                  placeholder="Tag"
+                 type="text"
                  name="tag"
                  [(ngModel)]="tag"
           >
