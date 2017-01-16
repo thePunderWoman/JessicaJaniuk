@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
-import { AngularFire } from 'angularfire2';
 import { StorageService } from '../storage/storage.service';
+import { environment } from '../../../environments/environment';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
+  apiBaseUrl: string = environment.apiUrl;
   public user: User;
 
-  constructor(private af: AngularFire, private storageService: StorageService) {
-    this.determineAuthed = this.determineAuthed.bind(this);
-    this.determineAdmin = this.determineAdmin.bind(this);
+  constructor(private storageService: StorageService, private http: Http) {
     this.getUserFromCache();
-    this.af.auth.subscribe(this.determineAuthed);
+  }
+
+  authenticate(username: string, password: string): Observable<Response> {
+    return this.http
+      .post(`${this.apiBaseUrl}authenticate`, {
+        username: username,
+        password: password
+      });
   }
 
   getUserFromCache() {
@@ -22,7 +30,7 @@ export class AuthService {
   }
 
   logout(): void {
-   this.af.auth.logout();
+   this.storageService.remove('token');
    this.storageService.remove('user');
  }
 
@@ -32,33 +40,5 @@ export class AuthService {
 
   isAdmin(): boolean {
     return this.user && this.user.isAdmin;
-  }
-
-  determineAuthed(data): void {
-    if (!data || (data && !data.google)) {
-      this.user = undefined;
-      this.storageService.remove('user');
-      return;
-    }
-
-    if (!this.user && data && data.google) {
-      this.user =
-        new User(data.google.displayName,
-          data.google.email,
-          data.google.photoURL,
-          data.google.providerId,
-          data.google.uid,
-          data.uid);
-      this.af.database.object(`/users/${data.uid}`).subscribe(this.determineAdmin);
-    }
-  }
-
-  determineAdmin(user): void {
-    this.user.isAdmin = user && user.level === 100;
-    this.cacheUser();
-  }
-
-  cacheUser(): void {
-    this.storageService.set('user', JSON.stringify(this.user));
   }
 }

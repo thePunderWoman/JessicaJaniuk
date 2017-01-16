@@ -9,6 +9,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   canActivate(): boolean {
     let user = this.retrieveUser();
+    console.log(user);
     return user.isAdmin;
   }
 
