@@ -1,0 +1,29 @@
+<h3>Users</h3>
+<table>
+  <thead>
+    <tr>
+        <th data-field="title">First Name</th>
+        <th data-field="title">Last Name</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>
+        <button md-icon-button [routerLink]="['/manage/users/edit',user.id]">
+          <md-icon>mode_edit</md-icon>
+        </button>
+        <button md-icon-button (click)="confirmDelete(user.id)" class="link-pointer">
+          <md-icon>delete</md-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="fixed-action-btn add-user">
+  <a class="btn-floating btn-large waves-effect waves-light deep-purple" routerLink="/manage/users/add">
+    <i class="material-icons">add</i>
+  </a>
+</div>

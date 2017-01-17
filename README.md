@@ -16,7 +16,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add Blog Detail page
 - [x] Add breadcrumb nav on relevant pages
 - [x] Add Animations Site Wide
-- [ ] Build Node Restify Backend
+- [x] Build Node Express Backend
 - [ ] Migrate front end off of Firebase
 - [ ] Add blog navigation
 - [ ] Add blog history calendar

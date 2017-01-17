@@ -1,0 +1,104 @@
+<h3><span>{{addOrEdit()}}</span> User</h3>
+<div class="row">
+  <form class="col s6" (ngSubmit)="onSubmit()">
+    <h5>Basic User Information</h5>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Username"
+                 name="username"
+                 type="text"
+                 required
+                 [(ngModel)]="user.username"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="First Name"
+                 name="firstName"
+                 type="text"
+                 required
+                 [(ngModel)]="user.firstName"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Last Name"
+                 name="lastName"
+                 type="text"
+                 required
+                 [(ngModel)]="user.lastName"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Email Address"
+                 name="email"
+                 type="email"
+                 required
+                 [(ngModel)]="user.email"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-slide-toggle [(ngModel)]="user.isAdmin" color="primary" name="isadmin" ngDefaultControl>
+          <span *ngIf="!user.isAdmin">Not</span> Admin
+        </md-slide-toggle>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button md-raised-button class="right" color="primary" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+  <form class="col s6" (ngSubmit)="onChangePassword()">
+    <h5>Change Password</h5>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="New Password"
+                 name="password"
+                 type="password"
+                 required
+                 [(ngModel)]="password"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Confirm Password"
+                 name="confirm-password"
+                 type="password"
+                 required
+                 [(ngModel)]="confirmPassword"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button md-raised-button class="right" color="primary" type="submit">Change Password</button>
+      </div>
+    </div>
+  </form>
+</div>

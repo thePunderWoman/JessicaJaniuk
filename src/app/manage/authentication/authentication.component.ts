@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFire } from 'angularfire2';
 import { AuthService } from '../../services/auth/auth.service';
+import { StorageService } from '../../services/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -8,18 +9,36 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent {
-  constructor(public af: AngularFire, private authService: AuthService) {
+  public username: string;
+  public password: string;
+
+  constructor(
+    private authService: AuthService,
+    private storageService: StorageService,
+    private router: Router) {
+    this.onAuthenticate = this.onAuthenticate.bind(this);
   }
 
   isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  login() {
-    this.af.auth.login();
+    return this.storageService.get('token') && this.storageService.get('user');
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  login() {
+    this.authService.authenticate(this.username, this.password)
+    .subscribe(this.onAuthenticate);
+  }
+
+  onAuthenticate(data) {
+    if (data.ok) {
+      let response = data.json();
+      let tokenData = { token: response.token, expires: response.expires };
+      this.storageService.set('user', JSON.stringify(response.user));
+      this.storageService.set('token', JSON.stringify(tokenData));
+      this.router.navigate(['/manage']);
+    }
   }
 }

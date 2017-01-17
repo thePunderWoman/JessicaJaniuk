@@ -1,11 +1,10 @@
 export class User {
-  public isAdmin: boolean = false;
+  public id: number;
 
-  constructor(public displayName: string,
+  constructor(public firstName: string,
+              public lastName: string,
               public email: string,
-              public photoURL: string,
-              public providerId: string,
-              public googleUid: string,
-              public uid: string) {
+              public username: string,
+              public isAdmin: boolean) {
   }
 }
