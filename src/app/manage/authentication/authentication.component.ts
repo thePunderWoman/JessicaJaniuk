@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -11,12 +12,15 @@ export class AuthenticationComponent {
   public username: string;
   public password: string;
 
-  constructor(private authService: AuthService, private storageService: StorageService) {
+  constructor(
+    private authService: AuthService,
+    private storageService: StorageService,
+    private router: Router) {
     this.onAuthenticate = this.onAuthenticate.bind(this);
   }
 
   isLoggedIn() {
-    return this.storageService.get('token') !== null;
+    return this.storageService.get('token') && this.storageService.get('user');
   }
 
   logout() {
@@ -30,9 +34,11 @@ export class AuthenticationComponent {
 
   onAuthenticate(data) {
     if (data.ok) {
-      let body = JSON.parse(data._body);
-      this.storageService.set('user', JSON.stringify(body.user));
-      this.storageService.set('token', body.token);
+      let response = data.json();
+      let tokenData = { token: response.token, expires: response.expires };
+      this.storageService.set('user', JSON.stringify(response.user));
+      this.storageService.set('token', JSON.stringify(tokenData));
+      this.router.navigate(['/manage']);
     }
   }
 }

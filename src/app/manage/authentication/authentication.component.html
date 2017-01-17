@@ -1,3 +1,4 @@
+<h3>Log In</h3>
 <div *ngIf="isLoggedIn()">
   <p>Welcome, {{ authService.user.firstName }}. <a routerLink="/manage" *ngIf="authService.isAdmin()">Manage</a></p>
   <button (click)="logout()">Logout</button>

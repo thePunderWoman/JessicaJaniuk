@@ -20,6 +20,8 @@ import { FlickrService } from './services/flickr/flickr.service';
 import { TitleService } from './services/title/title.service';
 import { AuthService } from './services/auth/auth.service';
 import { StorageService } from './services/storage/storage.service';
+import { UserService } from './services/user/user.service';
+import { HeaderService } from './services/header/header.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDEj0wEUEV9JVj9WRPPQxhVRzRTuuggLAs',
@@ -57,7 +59,9 @@ export const myFirebaseAuthConfig = {
     FlickrService,
     TitleService,
     AuthService,
-    StorageService
+    StorageService,
+    UserService,
+    HeaderService
   ],
   bootstrap: [AppComponent]
 })
