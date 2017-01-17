@@ -17,6 +17,7 @@ import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 import { MomentModule } from 'angular2-moment';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { UsersComponent } from './users/users.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { UsersComponent } from './users/users.component';
     TinymceComponent,
     DeleteDialogComponent,
     UsersComponent,
+    UserFormComponent,
   ],
   entryComponents: [
     DeleteDialogComponent

@@ -8,7 +8,8 @@ export class HeaderService {
 
   createAuthHeaders(): Headers {
     let headers = new Headers();
-    headers.append('Authorization', `Bearer ${this.storageService.get('token')}`);
+    let tokenData = JSON.parse(this.storageService.get('token'));
+    headers.append('Authorization', `Bearer ${tokenData.token}`);
     return headers;
   }
 }

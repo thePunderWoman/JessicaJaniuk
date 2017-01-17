@@ -8,6 +8,7 @@ import { MdIconModule } from '@angular/material/icon';
 import { MdDialogModule } from '@angular/material/dialog';
 import { UserService } from '../../services/user/user.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { User } from '../../models/user';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -45,6 +46,7 @@ describe('UsersComponent', () => {
   beforeEach(() => {
     fakeSubscribe.subscribe.calls.reset();
     userServiceMock.getAll.calls.reset();
+    userServiceMock.remove.calls.reset();
     authServiceMock.logout.calls.reset();
     fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
@@ -99,14 +101,27 @@ describe('UsersComponent', () => {
       component.key = 5;
       component.deleteUser(true);
       expect(userServiceMock.remove).toHaveBeenCalledWith(5);
-      expect(component.key).toBeUndefined();
+      expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.handleDelete);
     });
 
-    it('should delete user when canceled', () => {
+    it('should not delete user when canceled', () => {
+      fakeSubscribe.subscribe.calls.reset();
       component.key = 5;
       component.deleteUser(undefined);
-      expect(component.key).toBeUndefined();
+      expect(userServiceMock.remove).not.toHaveBeenCalled();
+      expect(fakeSubscribe.subscribe).not.toHaveBeenCalled();
     });
   });
 
+  it('should handle delete', () => {
+    component.key = 5;
+    let user1 = new User('test', 'testerson', '', '', false);
+    user1.id = 5;
+    let user2 = new User('name', 'last', '', '', false);
+    user2.id = 2;
+    component.users.push(user1);
+    component.users.push(user2);
+    component.handleDelete();
+    expect(component.users.length).toBe(1);
+  });
 });

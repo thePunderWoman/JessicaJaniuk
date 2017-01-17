@@ -10,6 +10,7 @@ import { PagesComponent } from './pages/pages.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { PageFormComponent } from './page-form/page-form.component';
 import { UsersComponent } from './users/users.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 const manageRoutes: Routes = [
   { path: 'auth', component: AuthenticationComponent },
@@ -31,6 +32,8 @@ const manageRoutes: Routes = [
       { path: 'pages/add', component: PageFormComponent },
       { path: 'pages/edit/:id', component: PageFormComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'users/add', component: UserFormComponent },
+      { path: 'users/edit/:id', component: UserFormComponent },
     ]
   },
 ];

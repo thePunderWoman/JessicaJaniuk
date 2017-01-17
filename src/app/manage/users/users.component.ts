@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
     this.populateUsers = this.populateUsers.bind(this);
     this.handleError = this.handleError.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   ngOnInit() {
@@ -55,8 +56,13 @@ export class UsersComponent implements OnInit {
 
   deleteUser(result) {
     if (result) {
-      this.userService.remove(this.key);
+      this.userService.remove(this.key).subscribe(this.handleDelete);
     }
+  }
+
+  handleDelete() {
+    let ix = this.users.findIndex((usr) => usr.id === this.key);
+    this.users.splice(ix, 1);
     this.key = undefined;
   }
 

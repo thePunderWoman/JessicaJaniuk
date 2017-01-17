@@ -5,11 +5,11 @@ import { HeaderService } from './header.service';
 import { StorageService } from '../storage/storage.service';
 import { Headers } from '@angular/http';
 
-describe('AuthService', () => {
+describe('HeaderService', () => {
   let StorageServiceMock = {
     get: jasmine.createSpy('get'),
   };
-  StorageServiceMock.get.and.returnValue('faketoken');
+  StorageServiceMock.get.and.returnValue('{ "token": "faketoken" }');
 
   beforeEach(() => {
     TestBed.configureTestingModule({
