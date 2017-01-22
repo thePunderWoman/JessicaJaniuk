@@ -49,14 +49,14 @@ describe('ConnectionService', () => {
     service.apiBaseUrl = '/test/url/';
     let response = service.getAll();
     expect(response).toBe('stuff');
-    expect(MockHttp.get).toHaveBeenCalledWith('/test/url/connection', { headers: 'fake headers' });
+    expect(MockHttp.get).toHaveBeenCalledWith('/test/url/connection');
   }));
 
   it('should call get connection endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {
     service.apiBaseUrl = '/test/url/';
     let response = service.getById(5);
     expect(response).toBe('stuff');
-    expect(MockHttp.get).toHaveBeenCalledWith('/test/url/connection/5', { headers: 'fake headers' });
+    expect(MockHttp.get).toHaveBeenCalledWith('/test/url/connection/5');
   }));
 
   it('should call save connection endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {

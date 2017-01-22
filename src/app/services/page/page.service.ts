@@ -18,12 +18,12 @@ export class PageService {
 
   getById(id: number): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}page/${id}`, { headers: this.headerService.createAuthHeaders() });
+      .get(`${this.apiBaseUrl}page/${id}`);
   }
 
   getByKey(key: string): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}page/key/${key}`, { headers: this.headerService.createAuthHeaders() });
+      .get(`${this.apiBaseUrl}page/key/${key}`);
   }
 
   save(page: Page): Observable<Response> {

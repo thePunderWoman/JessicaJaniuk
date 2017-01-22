@@ -2,7 +2,7 @@
 
 # Jessica Janiuk's Personal Website
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22-1.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
 
 # Backlog
 - [x] Add code coverage badge
@@ -22,6 +22,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Add blog navigation
 - [ ] Add blog history calendar
 - [ ] Add blog comment system with social media SSO
+- [ ] Add server side rendering support
 - [ ] Add RSS feeds
 - [ ] Add post versioning
 - [ ] Add Grungey Video Game 3D feel

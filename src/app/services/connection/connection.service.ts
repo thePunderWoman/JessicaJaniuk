@@ -13,12 +13,12 @@ export class ConnectionService {
 
   getAll(): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}connection`, { headers: this.headerService.createAuthHeaders() });
+      .get(`${this.apiBaseUrl}connection`);
   }
 
   getById(id: number): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}connection/${id}`, { headers: this.headerService.createAuthHeaders() });
+      .get(`${this.apiBaseUrl}connection/${id}`);
   }
 
   save(connection: Connection): Observable<Response> {
