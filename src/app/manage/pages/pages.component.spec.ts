@@ -2,25 +2,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { PageService } from '../../services/page/page.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 import { PagesComponent } from './pages.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AngularFire } from 'angularfire2';
 import { MdIconModule } from '@angular/material/icon';
 import { MdDialogModule } from '@angular/material/dialog';
+import { Page } from '../../models/page';
 
 describe('PagesComponent', () => {
   let component: PagesComponent;
   let fixture: ComponentFixture<PagesComponent>;
-  let AngularFireMock = {
-    database: {
-      list: jasmine.createSpy('list'),
-      object: jasmine.createSpy('object')
-    }
+  let pageServiceMock = {
+    getAll: jasmine.createSpy('getAll'),
+    remove: jasmine.createSpy('remove')
   };
-
-  let fakePage = jasmine.createSpyObj('page', ['remove']);
-  AngularFireMock.database.object.and.returnValue(fakePage);
+  let fakeSubscribe = {
+    subscribe: jasmine.createSpy('subscribe')
+  };
+  pageServiceMock.getAll.and.returnValue(fakeSubscribe);
+  pageServiceMock.remove.and.returnValue(fakeSubscribe);
+  let authServiceMock = {
+    logout: jasmine.createSpy('logout')
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,13 +36,18 @@ describe('PagesComponent', () => {
         MdDialogModule.forRoot()
       ],
       providers: [
-        { provide: AngularFire, useValue: AngularFireMock}
+        { provide: AuthService, useValue: authServiceMock },
+        { provide: PageService, useValue: pageServiceMock }
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    fakeSubscribe.subscribe.calls.reset();
+    pageServiceMock.getAll.calls.reset();
+    pageServiceMock.remove.calls.reset();
+    authServiceMock.logout.calls.reset();
     fixture = TestBed.createComponent(PagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -49,11 +59,36 @@ describe('PagesComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(AngularFireMock.database.list).toHaveBeenCalledWith('/pages');
+    expect(pageServiceMock.getAll).toHaveBeenCalled();
+    expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePages, component.handleError);
+  });
+
+  it('should populate pages', () => {
+    let pages = { data: [{ id: 5, title: 'stuff', 'key': 'things'}, { id: 3, title: 'fake', 'key': 'item'}] };
+    let data = { json: jasmine.createSpy('json') };
+    data.json.and.returnValue(pages);
+    component.populatePages(data);
+    expect(component.pages.length).toBe(2);
+  });
+
+  describe('handleError', () => {
+    it('should log out and redirect on 401', () => {
+      let err = { status: 401 };
+      spyOn(component.router, 'navigate');
+      component.handleError(err);
+      expect(authServiceMock.logout).toHaveBeenCalled();
+      expect(component.router.navigate).toHaveBeenCalledWith(['/auth']);
+    });
+    it('should not log out or redirect on any other error', () => {
+      let err = { status: 500 };
+      spyOn(component.router, 'navigate');
+      component.handleError(err);
+      expect(authServiceMock.logout).not.toHaveBeenCalled();
+      expect(component.router.navigate).not.toHaveBeenCalled();
+    });
   });
 
   it('should confirm delete', () => {
-    let fakeSubscribe = { subscribe: jasmine.createSpy('subscribe') };
     let refFake = jasmine.createSpyObj('mdDialogRef', ['afterClosed']);
     refFake.afterClosed.and.returnValue(fakeSubscribe);
     spyOn(component.dialog, 'open').and.returnValue(refFake);
@@ -61,21 +96,32 @@ describe('PagesComponent', () => {
     expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.deletePage);
   });
 
-  describe('deletePage', () => {
-    it('should delete post when confirmed', () => {
-      component.key = 'testkey';
+  describe('deleteUser', () => {
+    it('should delete user when confirmed', () => {
+      component.key = 5;
       component.deletePage(true);
-      expect(AngularFireMock.database.object).toHaveBeenCalledWith('/pages/testkey');
-      expect(fakePage.remove).toHaveBeenCalled();
-      expect(component.key).toBeUndefined();
+      expect(pageServiceMock.remove).toHaveBeenCalledWith(5);
+      expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.handleDelete);
     });
 
-    it('should delete post when canceled', () => {
-      fakePage.remove.calls.reset();
-      component.key = 'testkey';
+    it('should not delete user when canceled', () => {
+      fakeSubscribe.subscribe.calls.reset();
+      component.key = 5;
       component.deletePage(undefined);
-      expect(fakePage.remove).not.toHaveBeenCalled();
-      expect(component.key).toBeUndefined();
+      expect(pageServiceMock.remove).not.toHaveBeenCalled();
+      expect(fakeSubscribe.subscribe).not.toHaveBeenCalled();
     });
+  });
+
+  it('should handle delete', () => {
+    component.key = 5;
+    let page1 = new Page('test', 'testerson', 'key');
+    page1.id = 5;
+    let page2 = new Page('name', 'last', 'key2');
+    page2.id = 2;
+    component.pages.push(page1);
+    component.pages.push(page2);
+    component.handleDelete();
+    expect(component.pages.length).toBe(1);
   });
 });

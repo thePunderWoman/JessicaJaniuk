@@ -17,12 +17,12 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add breadcrumb nav on relevant pages
 - [x] Add Animations Site Wide
 - [x] Build Node Express Backend
+- [x] Switch to AOT compiling
 - [ ] Migrate front end off of Firebase
 - [ ] Add blog navigation
 - [ ] Add blog history calendar
 - [ ] Add blog comment system with social media SSO
 - [ ] Add RSS feeds
-- [ ] Switch to AOT compiling
 - [ ] Add post versioning
 - [ ] Add Grungey Video Game 3D feel
 - [ ] Add Dynamic Menuing

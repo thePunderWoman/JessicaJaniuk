@@ -3,17 +3,19 @@
   <thead>
     <tr>
         <th data-field="title">Title</th>
+        <th data-field="key">Key</th>
         <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let page of pages | async">
-      <td>{{page.Title}}</td>
+    <tr *ngFor="let page of pages">
+      <td>{{page.title}}</td>
+      <td>{{page.key}}</td>
       <td>
-        <button md-icon-button [routerLink]="['/manage/pages/edit',page.$key]">
+        <button md-icon-button [routerLink]="['/manage/pages/edit',page.id]">
           <md-icon>mode_edit</md-icon>
         </button>
-        <button md-icon-button (click)="confirmDelete(page.$key)" class="link-pointer">
+        <button md-icon-button (click)="confirmDelete(page.id)" class="link-pointer">
           <md-icon>delete</md-icon>
         </button>
       </td>

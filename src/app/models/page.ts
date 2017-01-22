@@ -1,7 +1,8 @@
 export class Page {
-  public Title: string;
-  public Content: string;
+  public id: number;
 
-  constructor() {}
+  constructor(public title: string,
+              public key: string,
+              public content: string) {}
 
 }

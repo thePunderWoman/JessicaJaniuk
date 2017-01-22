@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PageService } from '../../services/page/page.service';
 import { Page } from '../../models/page';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,13 +9,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./page-form.component.scss']
 })
 export class PageFormComponent implements OnInit {
-  fbPage: FirebaseObjectObservable<Page>;
-  page: Page = new Page();
-  id: string = undefined;
+  page: Page = new Page('', '', '');
+  id: number;
+  saving: boolean = false;
 
-  constructor(private af: AngularFire, private route: ActivatedRoute) {
+  constructor(private pageService: PageService, private route: ActivatedRoute) {
     this.populatePage = this.populatePage.bind(this);
-    this.setId = this.setId.bind(this);
+    this.saveComplete = this.saveComplete.bind(this);
   }
 
   ngOnInit() {
@@ -25,8 +25,7 @@ export class PageFormComponent implements OnInit {
 
   getPage() {
     if (this.id) {
-      this.fbPage = this.af.database.object(`/pages/${this.id}`);
-      this.fbPage.subscribe(this.populatePage);
+      this.pageService.getById(this.id).subscribe(this.populatePage);
     }
   }
 
@@ -34,22 +33,24 @@ export class PageFormComponent implements OnInit {
     return this.id === undefined ? 'Add' : 'Edit';
   }
 
-  populatePage(page): void {
-    this.page.Title = page.Title;
-    this.page.Content = page.Content;
-  }
-
-  onSubmit(): void {
-    if (this.id) {
-      this.fbPage.set(this.page);
-    } else {
-      this.af.database.list('/pages')
-        .push(this.page)
-        .then(this.setId);
+  populatePage(data): void {
+    if (data.json().data) {
+      this.page = data.json().data as Page;
     }
   }
 
-  setId(value) {
-    this.id = value.key;
+  onSubmit(): void {
+    this.saving = true;
+    if (this.id) {
+      this.pageService.update(this.id, this.page).subscribe(this.saveComplete);
+    } else {
+      this.pageService.save(this.page).subscribe(this.saveComplete);
+    }
+  }
+
+  saveComplete(data) {
+    let response = data.json();
+    this.id = response.data.id;
+    this.saving = false;
   }
 }
