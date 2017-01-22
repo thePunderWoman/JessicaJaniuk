@@ -52,7 +52,7 @@ describe('ConnectComponent', () => {
 
   it('should handle page data', () => {
     let data = { json: jasmine.createSpy('json') };
-    let pageData = { content: 'content', title: 'titlestuff' };
+    let pageData = { data: { content: 'content', title: 'titlestuff' } };
     data.json.and.returnValue(pageData);
     component.handlePage(data);
     expect(component.body).toBe('content');

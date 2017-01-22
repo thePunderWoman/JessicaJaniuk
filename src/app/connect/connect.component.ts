@@ -26,8 +26,8 @@ export class ConnectComponent implements OnInit {
 
   handlePage(data) {
     let page = data.json();
-    this.body = page.content;
-    this.title = page.title;
+    this.body = page.data.content;
+    this.title = page.data.title;
     this.show = true;
   }
 }
