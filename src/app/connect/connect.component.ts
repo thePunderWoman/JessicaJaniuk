@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { TitleService } from '../services/title/title.service';
 import { PageService } from '../services/page/page.service';
+import { ConnectionService } from '../services/connection/connection.service';
+import { Connection } from '../models/connection';
 
 @Component({
   selector: 'app-connect',
@@ -9,19 +10,21 @@ import { PageService } from '../services/page/page.service';
   styleUrls: ['./connect.component.scss']
 })
 export class ConnectComponent implements OnInit {
-  items: FirebaseListObservable<any[]>;
+  items: Connection[] = [];
   body: string = '';
   title: string = '';
   show: boolean = false;
 
-  constructor(af: AngularFire, private pageService: PageService, private titleService: TitleService) {
+  constructor(private connectionService: ConnectionService,
+    private pageService: PageService, private titleService: TitleService) {
     this.handlePage = this.handlePage.bind(this);
-    this.items = af.database.list('/connect');
+    this.handleConnections = this.handleConnections.bind(this);
   }
 
   ngOnInit() {
     this.titleService.setTitle('Connect');
     this.pageService.getByKey('connect').subscribe(this.handlePage);
+    this.connectionService.getAll().subscribe(this.handleConnections);
   }
 
   handlePage(data) {
@@ -29,5 +32,9 @@ export class ConnectComponent implements OnInit {
     this.body = page.data.content;
     this.title = page.data.title;
     this.show = true;
+  }
+
+  handleConnections(data) {
+    this.items.push.apply(this.items, data.json().data);
   }
 }

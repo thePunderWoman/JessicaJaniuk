@@ -140,11 +140,15 @@ describe('UserFormComponent', () => {
   });
 
   it('should wipe passwords on completed save', () => {
+    let data = { json: jasmine.createSpy('json') };
+    let response = { data: { id: 6 } };
+    data.json.and.returnValue(response);
     component.password = 'stuff';
     component.confirmPassword = 'things';
-    component.saveComplete('');
+    component.saveComplete(data);
     expect(component.password).toBe('');
     expect(component.confirmPassword).toBe('');
+    expect(component.id).toBe(6);
   });
 
   describe('onChangePassword', () => {

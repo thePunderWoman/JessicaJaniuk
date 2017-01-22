@@ -1,0 +1,62 @@
+<h3><span>{{addOrEdit()}}</span> Connection</h3>
+<div class="row">
+  <form class="col s12" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Name"
+                 name="name"
+                 type="text"
+                 required
+                 [(ngModel)]="connection.name"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="URL"
+                 name="url"
+                 type="text"
+                 required
+                 [(ngModel)]="connection.url"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Link Text"
+                 name="linktext"
+                 type="text"
+                 required
+                 [(ngModel)]="connection.linktext"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="FontAwesome Icon"
+                 name="icon"
+                 type="text"
+                 required
+                 [(ngModel)]="connection.icon"
+          >
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button md-raised-button class="right" color="primary" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
