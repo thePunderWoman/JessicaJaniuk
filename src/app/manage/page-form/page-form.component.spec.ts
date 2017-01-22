@@ -3,10 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PageService } from '../../services/page/page.service';
 import { Page } from '../../models/page';
 
 import { PageFormComponent } from './page-form.component';
-import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { MdInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,30 +16,27 @@ describe('PageFormComponent', () => {
   let activatedRouteMock = {
     snapshot: {
       params: {
-        'id': 'things'
+        'id': 5
       }
     }
   };
-  let AngularFireMock = {
-    database: {
-      list: jasmine.createSpy('list'),
-      object: jasmine.createSpy('object')
-    }
+  let pageServiceMock = {
+    getById: jasmine.createSpy('getById'),
+    update: jasmine.createSpy('update'),
+    save: jasmine.createSpy('save'),
   };
   let fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let fakeArray = {
-    push: jasmine.createSpy('push')
-  };
-  let fakeThenable = {
-    then: jasmine.createSpy('then')
-  };
-  fakeArray.push.and.returnValue(fakeThenable);
-  AngularFireMock.database.object.and.returnValue(fakeSubscribe);
-  AngularFireMock.database.list.and.returnValue(fakeArray);
+  pageServiceMock.getById.and.returnValue(fakeSubscribe);
+  pageServiceMock.update.and.returnValue(fakeSubscribe);
+  pageServiceMock.save.and.returnValue(fakeSubscribe);
 
   beforeEach(async(() => {
+    pageServiceMock.getById.calls.reset();
+    pageServiceMock.update.calls.reset();
+    pageServiceMock.save.calls.reset();
+    fakeSubscribe.subscribe.calls.reset();
     TestBed.configureTestingModule({
       declarations: [ PageFormComponent ],
       imports: [
@@ -49,7 +46,7 @@ describe('PageFormComponent', () => {
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: AngularFire, useValue: AngularFireMock }
+        { provide: PageService, useValue: pageServiceMock }
       ]
     })
     .compileComponents();
@@ -73,19 +70,37 @@ describe('PageFormComponent', () => {
 
   describe('getPage', () => {
     it('should get page when an id exists', () => {
-      component.id = 'things';
+      component.id = 5;
       component.getPage();
-      expect(AngularFireMock.database.object).toHaveBeenCalledWith('/pages/things');
+      expect(pageServiceMock.getById).toHaveBeenCalledWith(5);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePage);
     });
 
     it('should not get page when no id exists', () => {
-      component.id = undefined;
-      AngularFireMock.database.object.calls.reset();
+      pageServiceMock.getById.calls.reset();
       fakeSubscribe.subscribe.calls.reset();
+      component.id = undefined;
       component.getPage();
-      expect(AngularFireMock.database.object).not.toHaveBeenCalledWith('/pages/things');
+      expect(pageServiceMock.getById).not.toHaveBeenCalled();
       expect(fakeSubscribe.subscribe).not.toHaveBeenCalledWith(component.populatePage);
+    });
+  });
+
+  describe('populatePage', () => {
+    it('should set user if data is present', () => {
+      let data = { json: jasmine.createSpy('json') };
+      let response = { data: { id: 4, title: 'test' } };
+      data.json.and.returnValue(response);
+      component.populatePage(data);
+      expect(component.page.id).toBe(4);
+      expect(component.page.title).toBe('test');
+    });
+    it('should not set user if data is not present', () => {
+      let data = { json: jasmine.createSpy('json') };
+      let response = { data: undefined };
+      data.json.and.returnValue(response);
+      component.populatePage(data);
+      expect(component.page.id).toBeUndefined();
     });
   });
 
@@ -95,42 +110,38 @@ describe('PageFormComponent', () => {
       expect(component.addOrEdit()).toBe('Add');
     });
     it('should be edit if id is defined', () => {
-      component.id = 'stuff';
+      component.id = 5;
       expect(component.addOrEdit()).toBe('Edit');
     });
   });
 
-  it('should populate page', () => {
-    let fakePage = {
-      Title: 'test',
-      Content: '<p>Cheese</p>',
-    };
-    component.populatePage(fakePage);
-    expect(component.page.Title).toBe(fakePage.Title);
-    expect(component.page.Content).toBe(fakePage.Content);
-  });
-
   describe('onSubmit', () => {
-    it('should submit when id exists', () => {
-      component.page = new Page();
-      component.fbPage = new FirebaseObjectObservable<Page>();
-      spyOn(component.fbPage, 'set');
-      component.id = 'test';
-      component.onSubmit();
-      expect(component.fbPage.set).toHaveBeenCalledWith(component.page);
-    });
-    it('should submit when no id exists', () => {
-      component.page = new Page();
+    it('should save new page when no id', () => {
+      let page = new Page('test', '', '');
       component.id = undefined;
+      component.page = page;
       component.onSubmit();
-      expect(AngularFireMock.database.list).toHaveBeenCalledWith('/pages');
-      expect(fakeArray.push).toHaveBeenCalledWith(component.page);
-      expect(fakeThenable.then).toHaveBeenCalledWith(component.setId);
+      expect(pageServiceMock.save).toHaveBeenCalledWith(component.page);
+      expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
+    });
+    it('should update existing user when id exists', () => {
+      let page = new Page('test', '', '');
+      component.id = 5;
+      component.page = page;
+      component.onSubmit();
+      expect(pageServiceMock.update).toHaveBeenCalledWith(5, component.page);
+      expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
   });
 
-  it('should set id', () => {
-    component.setId({ key: '5' });
-    expect(component.id).toBe('5');
+  it('should set id result on save', () => {
+    let data = { json: jasmine.createSpy('json') };
+    let response = { data: { id: 6 } };
+    data.json.and.returnValue(response);
+    component.saving = true;
+    component.id = undefined;
+    component.saveComplete(data);
+    expect(component.saving).toBeFalsy();
+    expect(component.id).toBe(6);
   });
 });

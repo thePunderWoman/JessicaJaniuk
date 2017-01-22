@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { PageService } from '../../services/page/page.service';
 import { Page } from '../../models/page';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
@@ -11,15 +13,33 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 })
 export class PagesComponent implements OnInit {
   dialogRef: MdDialogRef<any>;
-  pages: FirebaseListObservable<Page[]>;
-  key: string;
+  pages: Page[] = [];
+  key: number;
 
-  constructor(private af: AngularFire, public dialog: MdDialog, public viewContainerRef: ViewContainerRef) {
+  constructor(private pageService: PageService,
+    private authService: AuthService,
+    public router: Router,
+    public dialog: MdDialog,
+    public viewContainerRef: ViewContainerRef) {
     this.deletePage = this.deletePage.bind(this);
+    this.populatePages = this.populatePages.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   ngOnInit() {
-    this.pages = this.af.database.list('/pages');
+    this.pageService.getAll().subscribe(this.populatePages, this.handleError);
+  }
+
+  populatePages(data) {
+    this.pages.push.apply(this.pages, data.json().data);
+  }
+
+  handleError(err): void {
+    if (err.status === 401) {
+      this.authService.logout();
+      this.router.navigate(['/auth']);
+    }
   }
 
   confirmDelete(key) {
@@ -34,8 +54,14 @@ export class PagesComponent implements OnInit {
 
   deletePage(result) {
     if (result) {
-      this.af.database.object(`/pages/${this.key}`).remove();
+      this.pageService.remove(this.key).subscribe(this.handleDelete);
     }
+  }
+
+  handleDelete() {
+    let ix = this.pages.findIndex((page) => page.id === this.key);
+    this.pages.splice(ix, 1);
     this.key = undefined;
   }
+
 }

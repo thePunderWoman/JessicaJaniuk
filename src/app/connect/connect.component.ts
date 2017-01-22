@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { TitleService } from '../services/title/title.service';
+import { PageService } from '../services/page/page.service';
 
 @Component({
   selector: 'app-connect',
@@ -9,25 +10,24 @@ import { TitleService } from '../services/title/title.service';
 })
 export class ConnectComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
-  page: FirebaseObjectObservable<any>;
   body: string = '';
   title: string = '';
   show: boolean = false;
 
-  constructor(af: AngularFire, private titleService: TitleService) {
+  constructor(af: AngularFire, private pageService: PageService, private titleService: TitleService) {
     this.handlePage = this.handlePage.bind(this);
     this.items = af.database.list('/connect');
-    this.page = af.database.object('/pages/connect');
-    this.page.subscribe(this.handlePage);
   }
 
   ngOnInit() {
     this.titleService.setTitle('Connect');
+    this.pageService.getByKey('connect').subscribe(this.handlePage);
   }
 
-  handlePage(snapshot) {
-    this.body = snapshot.Content;
-    this.title = snapshot.Title;
+  handlePage(data) {
+    let page = data.json();
+    this.body = page.content;
+    this.title = page.title;
     this.show = true;
   }
 }

@@ -2,20 +2,31 @@
 <div class="row">
   <form class="col s12" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col s12">
+      <div class="col s8">
         <md-input-container style="width: 100%">
           <input md-input
                  placeholder="Page Title"
                  name="title"
                  type="text"
                  required
-                 [(ngModel)]="page.Title"
+                 [(ngModel)]="page.title"
+          >
+        </md-input-container>
+      </div>
+      <div class="col s4">
+        <md-input-container style="width: 100%">
+          <input md-input
+                 placeholder="Page Key"
+                 name="key"
+                 type="text"
+                 required
+                 [(ngModel)]="page.key"
           >
         </md-input-container>
       </div>
       <div class="col s12">
         <label for="content">Page Content</label>
-        <app-tinymce name="content" [elementId]="'content'" [(ngModel)]="page.Content" ngDefaultControl></app-tinymce>
+        <app-tinymce name="content" [elementId]="'content'" [(ngModel)]="page.content" ngDefaultControl></app-tinymce>
       </div>
     </div>
     <div class="row">

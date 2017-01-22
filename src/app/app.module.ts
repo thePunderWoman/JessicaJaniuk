@@ -21,6 +21,7 @@ import { TitleService } from './services/title/title.service';
 import { AuthService } from './services/auth/auth.service';
 import { StorageService } from './services/storage/storage.service';
 import { UserService } from './services/user/user.service';
+import { PageService } from './services/page/page.service';
 import { HeaderService } from './services/header/header.service';
 
 export const firebaseConfig = {
@@ -61,6 +62,7 @@ export const myFirebaseAuthConfig = {
     AuthService,
     StorageService,
     UserService,
+    PageService,
     HeaderService
   ],
   bootstrap: [AppComponent]
