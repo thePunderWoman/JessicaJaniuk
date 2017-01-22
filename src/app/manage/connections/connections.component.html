@@ -1,0 +1,27 @@
+<h3>Connections</h3>
+<table>
+  <thead>
+    <tr>
+        <th data-field="title">Name</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let connection of connections">
+      <td>{{connection.name}}</td>
+      <td>
+        <button md-icon-button [routerLink]="['/manage/connections/edit',connection.id]">
+          <md-icon>mode_edit</md-icon>
+        </button>
+        <button md-icon-button (click)="confirmDelete(connection.id)" class="link-pointer">
+          <md-icon>delete</md-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="fixed-action-btn add-connection">
+  <a class="btn-floating btn-large waves-effect waves-light deep-purple" routerLink="/manage/connections/add">
+    <i class="material-icons">add</i>
+  </a>
+</div>

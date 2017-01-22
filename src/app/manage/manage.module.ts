@@ -18,6 +18,8 @@ import { MomentModule } from 'angular2-moment';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { UsersComponent } from './users/users.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { ConnectionsComponent } from './connections/connections.component';
+import { ConnectionFormComponent } from './connection-form/connection-form.component';
 
 @NgModule({
   imports: [
@@ -42,6 +44,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     DeleteDialogComponent,
     UsersComponent,
     UserFormComponent,
+    ConnectionsComponent,
+    ConnectionFormComponent
   ],
   entryComponents: [
     DeleteDialogComponent
