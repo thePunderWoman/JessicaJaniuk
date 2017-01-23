@@ -22,7 +22,7 @@ const forceSSL = function() {
 // Instruct the app
 // to use the forceSSL
 // middleware
-// app.use(forceSSL());
+app.use(forceSSL());
 app.use(compression());
 
 // Run the app by serving the static files
