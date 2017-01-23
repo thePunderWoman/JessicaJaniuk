@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { ActivatedRoute } from '@angular/router';
+import { PostService } from '../../services/post/post.service';
 
 @Component({
   selector: 'app-post-form',
@@ -9,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
-  fbPost: FirebaseObjectObservable<Post>;
   post: Post = new Post();
   tag: string = '';
-  id: string = undefined;
+  id: number;
+  saving: boolean = false;
 
-  constructor(private af: AngularFire, private route: ActivatedRoute) {
+  constructor(private postService: PostService, private route: ActivatedRoute) {
     this.populatePost = this.populatePost.bind(this);
     this.removeTag = this.removeTag.bind(this);
-    this.setId = this.setId.bind(this);
+    this.saveComplete = this.saveComplete.bind(this);
   }
 
   ngOnInit() {
@@ -27,8 +27,7 @@ export class PostFormComponent implements OnInit {
 
   getPost() {
     if (this.id) {
-      this.fbPost = this.af.database.object(`/blog/post/${this.id}`);
-      this.fbPost.subscribe(this.populatePost);
+      this.postService.getById(this.id).subscribe(this.populatePost);
     }
   }
 
@@ -36,28 +35,30 @@ export class PostFormComponent implements OnInit {
     return this.id === undefined ? 'Add' : 'Edit';
   }
 
-  populatePost(post): void {
-    this.post.Title = post.Title;
-    this.post.Category = post.Category;
-    this.post.Content = post.Content;
-    this.post.Published = post.Published;
-    this.post.PublishDate = post.PublishDate;
+  populatePost(data): void {
+    let post = data.json().data;
+    this.post.id = post.id;
+    this.post.title = post.title;
+    this.post.category = post.category;
+    this.post.content = post.content;
+    this.post.published = post.published;
+    this.post.publishDate = post.publishDate;
     this.post.Tags = [];
     this.post.Tags.push.apply(this.post.Tags, post.Tags);
   }
 
   onSubmit(): void {
     if (this.id) {
-      this.fbPost.set(this.post);
+      this.postService.update(this.id, this.post).subscribe(this.saveComplete);
     } else {
-      this.af.database.list('/blog/post')
-        .push(this.post)
-        .then(this.setId);
+      this.postService.save(this.post).subscribe(this.saveComplete);
     }
   }
 
-  setId(value) {
-    this.id = value.key;
+  saveComplete(data) {
+    let response = data.json();
+    this.id = response.data.id;
+    this.saving = false;
   }
 
   addTag(): void {

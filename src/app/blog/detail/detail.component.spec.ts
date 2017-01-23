@@ -6,10 +6,10 @@ import { DebugElement } from '@angular/core';
 import { DetailComponent } from './detail.component';
 import { Post } from '../../models/post';
 import { TitleService } from '../../services/title/title.service';
-import { AngularFire } from 'angularfire2';
 import { MomentModule } from 'angular2-moment';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PostService } from '../../services/post/post.service';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -20,20 +20,17 @@ describe('DetailComponent', () => {
   let fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let AngularFireMock = {
-    database: {
-      object: jasmine.createSpy('list')
-    }
-  };
   let activatedRouteMock = {
     snapshot: {
       params: {
-        'id': 'things'
+        'id': 3
       }
     }
   };
-
-  AngularFireMock.database.object.and.returnValue(fakeSubscribe);
+  let PostServiceMock = {
+    getById: jasmine.createSpy('getById')
+  };
+  PostServiceMock.getById.and.returnValue(fakeSubscribe);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,7 +42,7 @@ describe('DetailComponent', () => {
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
         { provide: TitleService, useValue: TitleServiceMock },
-        { provide: AngularFire, useValue: AngularFireMock }
+        { provide: PostService, useValue: PostServiceMock }
       ],
     })
     .compileComponents();
@@ -63,17 +60,20 @@ describe('DetailComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(AngularFireMock.database.object).toHaveBeenCalledWith('/blog/post/things');
+    expect(PostServiceMock.getById).toHaveBeenCalledWith(3);
     expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePost);
   });
 
   it('should populate posts', () => {
     let post = new Post();
-    post.PublishDate = new Date().toUTCString();
-    post.Content = 'stuff';
-    post.Title = 'post title';
-    post.Published = true;
-    component.populatePost(post);
+    post.publishDate = new Date();
+    post.content = 'stuff';
+    post.title = 'post title';
+    post.published = true;
+    let postdata = { data: post };
+    let data = { json: jasmine.createSpy('json') };
+    data.json.and.returnValue(postdata);
+    component.populatePost(data);
     expect(component.post).toBe(post);
     expect(component.show).toBeTruthy();
     expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('post title');

@@ -20,6 +20,7 @@ import { UsersComponent } from './users/users.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { ConnectionFormComponent } from './connection-form/connection-form.component';
+import { PaginationModule } from '../pagination/pagination.module';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ConnectionFormComponent } from './connection-form/connection-form.compo
     DatepickerModule,
     Ng2DatetimePickerModule,
     MomentModule,
+    PaginationModule,
     MaterialModule.forRoot()
   ],
   declarations: [

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TitleService } from '../../services/title/title.service';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { PostService } from '../../services/post/post.service';
 import { Post } from '../../models/post';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,35 +10,39 @@ import { Post } from '../../models/post';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  fbPosts: FirebaseListObservable<Post[]>;
   posts: Post[] = [];
   now: Date = new Date();
   show: boolean = false;
+  page: number = 1;
+  pages: number = 1;
+  perPage: number = 10;
+  totalPosts: number = 0;
 
-  constructor(private af: AngularFire, private titleService: TitleService) {
+  constructor(private postService: PostService, private titleService: TitleService, private route: ActivatedRoute) {
     this.populatePosts = this.populatePosts.bind(this);
+    this.processRoute = this.processRoute.bind(this);
   }
 
   ngOnInit() {
-    this.fbPosts = this.af.database.list('/blog/post', {
-      query: {
-        orderByChild: 'PublishDate',
-        endAt: this.now.toISOString()
-      }
-    });
-    this.fbPosts.subscribe(this.populatePosts);
+    this.route.params.subscribe(this.processRoute);
     this.titleService.setTitle('Blog');
   }
 
+  processRoute(params) {
+    this.page = (params && params.page) ? Number(params.page) : 1;
+    this.postService.getAllPublished(this.page).subscribe(this.populatePosts);
+  }
+
   populatePosts(data) {
-    this.posts = data.filter((post) => {
-      return post.Published;
-    });
-    this.posts.sort(this.sortPosts);
+    this.posts = [];
+    let response = data.json().data;
+    this.totalPosts = response.count;
+    this.posts.push.apply(this.posts, response.posts);
+    this.setPages();
     this.show = true;
   }
 
-  sortPosts(a, b) {
-    return a.PublishDate > b.PublishDate ? -1 : a.PublishDate < b.PublishDate ? 1 : 0;
+  setPages() {
+    this.pages = Math.ceil(this.totalPosts / this.perPage);
   }
 }

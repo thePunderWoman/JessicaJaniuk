@@ -9,23 +9,24 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let post of posts | async">
-      <td>{{post.Title}}</td>
-      <td>{{post.PublishDate | amDateFormat:'M-D-YYYY h:mm a'}}</td>
-      <td>{{post.Published}}</td>
+    <tr *ngFor="let post of posts">
+      <td>{{post.title}}</td>
+      <td>{{post.publishDate | amDateFormat:'M-D-YYYY h:mm a'}}</td>
+      <td>{{post.published}}</td>
       <td>
-        <button md-icon-button [routerLink]="['/manage/blog/edit',post.$key]">
+        <button md-icon-button [routerLink]="['/manage/blog/edit',post.id]">
           <md-icon>mode_edit</md-icon>
         </button>
-        <button md-icon-button (click)="confirmDelete(post.$key)" class="link-pointer">
+        <button md-icon-button (click)="confirmDelete(post.id)" class="link-pointer">
           <md-icon>delete</md-icon>
         </button>
       </td>
     </tr>
   </tbody>
 </table>
+<app-pagination [page]="page" [pages]="pages" route="/manage/blog/"></app-pagination>
 <div class="fixed-action-btn add-post">
-  <a class="btn-floating btn-large waves-effect waves-light deep-purple" routerLink="/manage/blog/add">
+  <a class="btn-floating btn-large waves-effect waves-light deep-purple" routerLink="/manage/blog/post/add">
     <i class="material-icons">add</i>
   </a>
 </div>

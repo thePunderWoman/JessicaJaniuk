@@ -96,15 +96,15 @@ describe('PagesComponent', () => {
     expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.deletePage);
   });
 
-  describe('deleteUser', () => {
-    it('should delete user when confirmed', () => {
+  describe('deletePage', () => {
+    it('should delete page when confirmed', () => {
       component.key = 5;
       component.deletePage(true);
       expect(pageServiceMock.remove).toHaveBeenCalledWith(5);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.handleDelete);
     });
 
-    it('should not delete user when canceled', () => {
+    it('should not delete page when canceled', () => {
       fakeSubscribe.subscribe.calls.reset();
       component.key = 5;
       component.deletePage(undefined);

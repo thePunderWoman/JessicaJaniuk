@@ -8,8 +8,6 @@ import { MomentModule } from 'angular2-moment';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-
 import { NotFoundComponent }    from './notfound/notfound.component';
 
 import { HeaderModule }    from './header/header.module';
@@ -23,6 +21,7 @@ import { StorageService } from './services/storage/storage.service';
 import { UserService } from './services/user/user.service';
 import { PageService } from './services/page/page.service';
 import { ConnectionService } from './services/connection/connection.service';
+import { PostService } from './services/post/post.service';
 import { HeaderService } from './services/header/header.service';
 
 export const firebaseConfig = {
@@ -31,13 +30,6 @@ export const firebaseConfig = {
   databaseURL: 'https://resplendent-inferno-2474.firebaseio.com',
   storageBucket: 'resplendent-inferno-2474.appspot.com',
   messagingSenderId: '546916458455'
-};
-
-export const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Popup,
-  remember: 'default',
-  scope: ['email', 'profile']
 };
 
 @NgModule({
@@ -54,8 +46,7 @@ export const myFirebaseAuthConfig = {
     PublicModule,
     AppRoutingModule,
     MomentModule,
-    MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    MaterialModule.forRoot()
   ],
   providers: [
     FlickrService,
@@ -65,7 +56,8 @@ export const myFirebaseAuthConfig = {
     UserService,
     PageService,
     HeaderService,
-    ConnectionService
+    ConnectionService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

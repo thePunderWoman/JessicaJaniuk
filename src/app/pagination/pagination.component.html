@@ -1,0 +1,12 @@
+<ul class="pagination">
+  <li [ngClass]="{'disabled': page <= 1, 'waves-effect': page > 1}">
+    <a (click)="prevPage()"><i class="material-icons">chevron_left</i></a>
+  </li>
+
+  <li [ngClass]="{'active': page === num, 'waves-effect': page !== num}" *ngFor="let num of pageNumbers">
+    <a [routerLink]="[route, num]">{{num}}</a>
+  </li>
+  <li [ngClass]="{'disabled': page >= pages, 'waves-effect': page < pages}">
+    <a (click)="nextPage()"><i class="material-icons">chevron_right</i></a>
+  </li>
+</ul>

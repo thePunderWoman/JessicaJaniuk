@@ -7,7 +7,7 @@ describe('Post model', () => {
     let datestr = moment(date).format('M-D-YYYY h:mm a');
     let post = new Post();
     post.PublishDateString = datestr;
-    expect(post.PublishDate).toBe(moment(date).format());
+    expect(post.publishDate).toEqual(date);
     expect(post.PublishDateString).toBe(datestr);
   });
 });
