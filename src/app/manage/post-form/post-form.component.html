@@ -11,7 +11,7 @@
                      name="title"
                      type="text"
                      required
-                     [(ngModel)]="post.Title"
+                     [(ngModel)]="post.title"
               >
             </md-input-container>
           </div>
@@ -22,7 +22,7 @@
                      name="category"
                      type="text"
                      required
-                     [(ngModel)]="post.Category"
+                     [(ngModel)]="post.category"
               >
             </md-input-container>
           </div>
@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col s12">
             <label for="content">Post Content</label>
-            <app-tinymce name="content" [elementId]="'content'" [(ngModel)]="post.Content" ngDefaultControl></app-tinymce>
+            <app-tinymce name="content" [elementId]="'content'" [(ngModel)]="post.content" ngDefaultControl></app-tinymce>
           </div>
         </div>
       </div>
@@ -51,8 +51,8 @@
         </md-input-container>
       </div>
       <div class="col s12 m3">
-        <md-slide-toggle [(ngModel)]="post.Published" color="primary" name="published" ngDefaultControl>
-          <span *ngIf="!post.Published">Not</span> Published
+        <md-slide-toggle [(ngModel)]="post.published" color="primary" name="published" ngDefaultControl>
+          <span *ngIf="!post.published">Not</span> Published
         </md-slide-toggle>
       </div>
       <div class="col s3">

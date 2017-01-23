@@ -5,9 +5,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Post } from '../../models/post';
+import { PostService } from '../../services/post/post.service';
 
 import { PostFormComponent } from './post-form.component';
-import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { ActivatedRoute } from '@angular/router';
 import { MdInputModule } from '@angular/material/input';
 import { MdSlideToggleModule } from '@angular/material/slide-toggle';
@@ -22,24 +22,17 @@ describe('PostFormComponent', () => {
       }
     }
   };
-  let AngularFireMock = {
-    database: {
-      list: jasmine.createSpy('list'),
-      object: jasmine.createSpy('object')
-    }
+  let postServiceMock = {
+    getById: jasmine.createSpy('getById'),
+    update: jasmine.createSpy('update'),
+    save: jasmine.createSpy('save'),
   };
   let fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let fakeArray = {
-    push: jasmine.createSpy('push')
-  };
-  let fakeThenable = {
-    then: jasmine.createSpy('then')
-  };
-  fakeArray.push.and.returnValue(fakeThenable);
-  AngularFireMock.database.object.and.returnValue(fakeSubscribe);
-  AngularFireMock.database.list.and.returnValue(fakeArray);
+  postServiceMock.getById.and.returnValue(fakeSubscribe);
+  postServiceMock.update.and.returnValue(fakeSubscribe);
+  postServiceMock.save.and.returnValue(fakeSubscribe);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -54,13 +47,17 @@ describe('PostFormComponent', () => {
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: AngularFire, useValue: AngularFireMock }
+        { provide: PostService, useValue: postServiceMock }
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    postServiceMock.getById.calls.reset();
+    postServiceMock.update.calls.reset();
+    postServiceMock.save.calls.reset();
+    fakeSubscribe.subscribe.calls.reset();
     fixture = TestBed.createComponent(PostFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -78,18 +75,18 @@ describe('PostFormComponent', () => {
 
   describe('getPost', () => {
     it('should get post when an id exists', () => {
-      component.id = 'things';
+      component.id = 4;
       component.getPost();
-      expect(AngularFireMock.database.object).toHaveBeenCalledWith('/blog/post/things');
+      expect(postServiceMock.getById).toHaveBeenCalledWith(4);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePost);
     });
 
     it('should not get post when no id exists', () => {
-      component.id = undefined;
-      AngularFireMock.database.object.calls.reset();
+      postServiceMock.getById.calls.reset();
       fakeSubscribe.subscribe.calls.reset();
+      component.id = undefined;
       component.getPost();
-      expect(AngularFireMock.database.object).not.toHaveBeenCalledWith('/blog/post/things');
+      expect(postServiceMock.getById).not.toHaveBeenCalled();
       expect(fakeSubscribe.subscribe).not.toHaveBeenCalledWith(component.populatePost);
     });
   });
@@ -100,51 +97,60 @@ describe('PostFormComponent', () => {
       expect(component.addOrEdit()).toBe('Add');
     });
     it('should be edit if id is defined', () => {
-      component.id = 'stuff';
+      component.id = 5;
       expect(component.addOrEdit()).toBe('Edit');
     });
   });
 
   it('should populate post', () => {
     let fakePost = {
-      Title: 'test',
-      Category: 'sample',
-      Content: '<p>Cheese</p>',
-      Published: false,
-      PublishDate: '12/12/2017',
+      title: 'test',
+      category: 'sample',
+      content: '<p>Cheese</p>',
+      published: false,
+      publishDate: '12/12/2017',
       Tags: ['stuff', 'things']
     };
-    component.populatePost(fakePost);
-    expect(component.post.Title).toBe(fakePost.Title);
-    expect(component.post.Category).toBe(fakePost.Category);
-    expect(component.post.Content).toBe(fakePost.Content);
-    expect(component.post.Published).toBe(fakePost.Published);
-    expect(component.post.PublishDate).toBe(fakePost.PublishDate);
+    let data = { json: jasmine.createSpy('json') };
+    let response = { data: fakePost };
+    data.json.and.returnValue(response);
+    component.populatePost(data);
+    expect(component.post.title).toBe(fakePost.title);
+    expect(component.post.category).toBe(fakePost.category);
+    expect(component.post.content).toBe(fakePost.content);
+    expect(component.post.published).toBe(fakePost.published);
+    expect(component.post.publishDate).toBe(fakePost.publishDate);
     expect(component.post.Tags).toEqual(fakePost.Tags);
   });
 
   describe('onSubmit', () => {
-    it('should submit when id exists', () => {
-      component.post = new Post();
-      component.fbPost = new FirebaseObjectObservable<Post>();
-      spyOn(component.fbPost, 'set');
-      component.id = 'test';
-      component.onSubmit();
-      expect(component.fbPost.set).toHaveBeenCalledWith(component.post);
-    });
     it('should submit when no id exists', () => {
-      component.post = new Post();
+      let post = new Post();
       component.id = undefined;
+      component.post = post;
       component.onSubmit();
-      expect(AngularFireMock.database.list).toHaveBeenCalledWith('/blog/post');
-      expect(fakeArray.push).toHaveBeenCalledWith(component.post);
-      expect(fakeThenable.then).toHaveBeenCalledWith(component.setId);
+      expect(postServiceMock.save).toHaveBeenCalledWith(component.post);
+      expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
+    });
+    it('should submit when id exists', () => {
+      let post = new Post();
+      component.id = 5;
+      component.post = post;
+      component.onSubmit();
+      expect(postServiceMock.update).toHaveBeenCalledWith(5, component.post);
+      expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
   });
 
-  it('should set id', () => {
-    component.setId({ key: '5' });
-    expect(component.id).toBe('5');
+  it('should set id result on save', () => {
+    let data = { json: jasmine.createSpy('json') };
+    let response = { data: { id: 6 } };
+    data.json.and.returnValue(response);
+    component.saving = true;
+    component.id = undefined;
+    component.saveComplete(data);
+    expect(component.saving).toBeFalsy();
+    expect(component.id).toBe(6);
   });
 
   describe('addTag', () => {

@@ -28,7 +28,8 @@ const manageRoutes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'blog', component: BlogComponent },
-      { path: 'blog/add', component: PostFormComponent },
+      { path: 'blog/:page', component: BlogComponent },
+      { path: 'blog/post/add', component: PostFormComponent },
       { path: 'blog/edit/:id', component: PostFormComponent },
       { path: 'pages', component: PagesComponent },
       { path: 'pages/add', component: PageFormComponent },

@@ -1,21 +1,21 @@
 import * as moment from 'moment';
 
 export class Post {
-  public Title: string;
-  public Content: string;
-  public Category: string;
+  public id: number;
+  public title: string;
+  public content: string;
+  public category: string;
   public Tags: string[] = [];
-  public Published: boolean = false;
-  public PublishDate: string = moment().format();
+  public published: boolean = false;
+  public publishDate: Date = new Date();
 
   constructor() {}
 
   get PublishDateString(): string {
-    let date = new Date(this.PublishDate);
-    return moment(date).format('M-D-YYYY h:mm a');
+    return moment(this.publishDate).format('M-D-YYYY h:mm a');
   }
 
   set PublishDateString(value) {
-    this.PublishDate = moment(value, 'M-D-YYYY h:mm a').format();
+    this.publishDate = moment(value, 'M-D-YYYY h:mm a').toDate();
   }
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Post } from '../../models/post';
 import { MomentModule } from 'angular2-moment';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { PostService } from '../../services/post/post.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-blog',
@@ -12,15 +14,56 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 })
 export class BlogComponent implements OnInit {
   dialogRef: MdDialogRef<any>;
-  posts: FirebaseListObservable<Post[]>;
-  key: string;
+  posts: Post[] = [];
+  key: number;
+  page: number = 1;
+  totalPosts: number = 0;
+  perPage: number = 10;
+  pages: number = 1;
 
-  constructor(private af: AngularFire, public dialog: MdDialog, public viewContainerRef: ViewContainerRef) {
+  constructor(private postService: PostService,
+    private authService: AuthService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public dialog: MdDialog,
+    public viewContainerRef: ViewContainerRef) {
     this.deletePost = this.deletePost.bind(this);
+    this.populatePosts = this.populatePosts.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.processRoute = this.processRoute.bind(this);
   }
 
   ngOnInit() {
-    this.posts = this.af.database.list('/blog/post');
+    this.route.params.subscribe(this.processRoute);
+  }
+
+  processRoute(params) {
+    this.page = (params && params.page) ? Number(params.page) : 1;
+    this.getPosts();
+  }
+
+  getPosts() {
+    this.postService.getAll(this.page).subscribe(this.populatePosts, this.handleError);
+  }
+
+  populatePosts(data) {
+    this.posts = [];
+    let response = data.json().data;
+    this.totalPosts = response.count;
+    this.posts.push.apply(this.posts, response.posts);
+    this.setPages();
+  }
+
+  setPages() {
+    this.pages = Math.ceil(this.totalPosts / this.perPage);
+  }
+
+  handleError(err): void {
+    if (err.status === 401) {
+      this.authService.logout();
+      this.router.navigate(['/auth']);
+    }
   }
 
   confirmDelete(key) {
@@ -35,8 +78,12 @@ export class BlogComponent implements OnInit {
 
   deletePost(result) {
     if (result) {
-      this.af.database.object(`/blog/post/${this.key}`).remove();
+      this.postService.remove(this.key).subscribe(this.handleDelete);
     }
+  }
+
+  handleDelete() {
+    this.getPosts();
     this.key = undefined;
   }
 }
