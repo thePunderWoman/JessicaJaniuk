@@ -5,7 +5,6 @@ import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AuthenticationComponent } from './authentication.component';
-import { AngularFire } from 'angularfire2';
 import { AuthService } from '../../services/auth/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { MdInputModule } from '@angular/material/input';

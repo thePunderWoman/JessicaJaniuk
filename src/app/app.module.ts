@@ -8,8 +8,6 @@ import { MomentModule } from 'angular2-moment';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-
 import { NotFoundComponent }    from './notfound/notfound.component';
 
 import { HeaderModule }    from './header/header.module';
@@ -34,13 +32,6 @@ export const firebaseConfig = {
   messagingSenderId: '546916458455'
 };
 
-export const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Popup,
-  remember: 'default',
-  scope: ['email', 'profile']
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,8 +46,7 @@ export const myFirebaseAuthConfig = {
     PublicModule,
     AppRoutingModule,
     MomentModule,
-    MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    MaterialModule.forRoot()
   ],
   providers: [
     FlickrService,
