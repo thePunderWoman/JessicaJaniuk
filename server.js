@@ -30,7 +30,7 @@ app.use(compression());
 app.use(express.static(__dirname + '/dist'));
 
 app.get('/.well-known/acme-challenge/:content', function(req, res) {
-  res.send('S4wGveIhY-yHVSoajTLZ8AtG1zVmCL_5stdJQzsDClM.FrWxj0SZ3Qo-l4MU6cFvWK3MTxxgej3rxf8yKX5qgds')
+  res.send('v5wsZfb8qQjx4ZVV_ronI5LytXe3_lNn4uscRiFlCt8.FrWxj0SZ3Qo-l4MU6cFvWK3MTxxgej3rxf8yKX5qgds')
 })
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
