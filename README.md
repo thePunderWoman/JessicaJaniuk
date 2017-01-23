@@ -18,7 +18,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add Animations Site Wide
 - [x] Build Node Express Backend
 - [x] Switch to AOT compiling
-- [ ] Migrate front end off of Firebase
+- [x] Migrate front end off of Firebase
 - [ ] Add blog navigation
 - [ ] Add blog history calendar
 - [ ] Add blog comment system with social media SSO

@@ -10,7 +10,6 @@
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "coverage": "ng test --code-coverage --single-run",
-    "deploy": "ng build --prod --aot && firebase deploy",
     "view-coverage": "http-server -c-1 -o -p 9875 ./coverage",
     "coveralls": "cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls -v",
     "postinstall": "ng build --aot --prod"
@@ -38,7 +37,6 @@
     "angular2-moment": "^1.0.0",
     "core-js": "^2.4.1",
     "express": "^4.14.0",
-    "firebase": "^3.6.4",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "materialize-css": "^0.97.8",
