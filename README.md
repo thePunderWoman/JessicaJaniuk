@@ -36,4 +36,3 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [ ] Add coding blog section
 - [ ] Refactor 404 page to allow for better analytics
 - [ ] Move to Bootstrap 4 on release
-- [ ] Add end to end tests
