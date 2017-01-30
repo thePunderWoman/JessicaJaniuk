@@ -4,7 +4,7 @@ export class Post {
   public id: number;
   public title: string;
   public content: string;
-  public category: string;
+  public categoryId: number;
   public Tags: string[] = [];
   public published: boolean = false;
   public publishDate: Date = new Date();

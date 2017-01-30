@@ -13,6 +13,8 @@ import { UsersComponent } from './users/users.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { ConnectionFormComponent } from './connection-form/connection-form.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 const manageRoutes: Routes = [
   { path: 'auth', component: AuthenticationComponent },
@@ -40,6 +42,9 @@ const manageRoutes: Routes = [
       { path: 'connections', component: ConnectionsComponent },
       { path: 'connections/add', component: ConnectionFormComponent },
       { path: 'connections/edit/:id', component: ConnectionFormComponent },
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'categories/add', component: CategoryFormComponent },
+      { path: 'categories/edit/:id', component: CategoryFormComponent },
     ]
   },
 ];

@@ -16,15 +16,11 @@
             </md-input-container>
           </div>
           <div class="col s12 m3">
-            <md-input-container class="width-100">
-              <input md-input
-                     placeholder="Category"
-                     name="category"
-                     type="text"
-                     required
-                     [(ngModel)]="post.category"
-              >
-            </md-input-container>
+            <md-select placeholder="Category" required name="category" [(ngModel)]="post.categoryId" ngDefaultControl>
+              <md-option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </md-option>
+            </md-select>
           </div>
         </div>
         <div class="row">

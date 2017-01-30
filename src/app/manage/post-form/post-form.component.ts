@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
+import { Category } from '../../models/category';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
+import { CategoryService } from '../../services/category/category.service';
 
 @Component({
   selector: 'app-post-form',
@@ -13,15 +15,18 @@ export class PostFormComponent implements OnInit {
   tag: string = '';
   id: number;
   saving: boolean = false;
+  categories: Category[] = [];
 
-  constructor(private postService: PostService, private route: ActivatedRoute) {
+  constructor(private postService: PostService, private categoryService: CategoryService, private route: ActivatedRoute) {
     this.populatePost = this.populatePost.bind(this);
+    this.populateCategories = this.populateCategories.bind(this);
     this.removeTag = this.removeTag.bind(this);
     this.saveComplete = this.saveComplete.bind(this);
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    this.categoryService.getAll().subscribe(this.populateCategories);
     this.getPost();
   }
 
@@ -35,11 +40,15 @@ export class PostFormComponent implements OnInit {
     return this.id === undefined ? 'Add' : 'Edit';
   }
 
+  populateCategories(data): void {
+    this.categories.push.apply(this.categories, data.json().data);
+  }
+
   populatePost(data): void {
     let post = data.json().data;
     this.post.id = post.id;
     this.post.title = post.title;
-    this.post.category = post.category;
+    this.post.categoryId = post.categoryId;
     this.post.content = post.content;
     this.post.published = post.published;
     this.post.publishDate = post.publishDate;

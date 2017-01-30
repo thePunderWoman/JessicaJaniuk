@@ -20,6 +20,8 @@ import { UsersComponent } from './users/users.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { ConnectionFormComponent } from './connection-form/connection-form.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 import { PaginationModule } from '../pagination/pagination.module';
 
 @NgModule({
@@ -47,7 +49,9 @@ import { PaginationModule } from '../pagination/pagination.module';
     UsersComponent,
     UserFormComponent,
     ConnectionsComponent,
-    ConnectionFormComponent
+    ConnectionFormComponent,
+    CategoriesComponent,
+    CategoryFormComponent
   ],
   entryComponents: [
     DeleteDialogComponent
