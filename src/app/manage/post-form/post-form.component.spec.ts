@@ -6,6 +6,7 @@ import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post/post.service';
+import { CategoryService } from '../../services/category/category.service';
 
 import { PostFormComponent } from './post-form.component';
 import { ActivatedRoute } from '@angular/router';
@@ -27,9 +28,13 @@ describe('PostFormComponent', () => {
     update: jasmine.createSpy('update'),
     save: jasmine.createSpy('save'),
   };
+  let categoryServiceMock = {
+    getAll: jasmine.createSpy('getAll'),
+  };
   let fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
+  categoryServiceMock.getAll.and.returnValue(fakeSubscribe);
   postServiceMock.getById.and.returnValue(fakeSubscribe);
   postServiceMock.update.and.returnValue(fakeSubscribe);
   postServiceMock.save.and.returnValue(fakeSubscribe);
@@ -47,7 +52,8 @@ describe('PostFormComponent', () => {
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: PostService, useValue: postServiceMock }
+        { provide: PostService, useValue: postServiceMock },
+        { provide: CategoryService, useValue: categoryServiceMock }
       ]
     })
     .compileComponents();
@@ -57,6 +63,7 @@ describe('PostFormComponent', () => {
     postServiceMock.getById.calls.reset();
     postServiceMock.update.calls.reset();
     postServiceMock.save.calls.reset();
+    categoryServiceMock.getAll.calls.reset();
     fakeSubscribe.subscribe.calls.reset();
     fixture = TestBed.createComponent(PostFormComponent);
     component = fixture.componentInstance;
@@ -70,6 +77,8 @@ describe('PostFormComponent', () => {
   it('should init', () => {
     spyOn(component, 'getPost');
     component.ngOnInit();
+    expect(categoryServiceMock.getAll).toHaveBeenCalled();
+    expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populateCategories);
     expect(component.getPost).toHaveBeenCalled();
   });
 
@@ -105,7 +114,7 @@ describe('PostFormComponent', () => {
   it('should populate post', () => {
     let fakePost = {
       title: 'test',
-      category: 'sample',
+      categoryId: 5,
       content: '<p>Cheese</p>',
       published: false,
       publishDate: '12/12/2017',
@@ -116,11 +125,20 @@ describe('PostFormComponent', () => {
     data.json.and.returnValue(response);
     component.populatePost(data);
     expect(component.post.title).toBe(fakePost.title);
-    expect(component.post.category).toBe(fakePost.category);
+    expect(component.post.categoryId).toBe(fakePost.categoryId);
     expect(component.post.content).toBe(fakePost.content);
     expect(component.post.published).toBe(fakePost.published);
     expect(component.post.publishDate).toBe(fakePost.publishDate);
     expect(component.post.Tags).toEqual(fakePost.Tags);
+  });
+
+  it('should populate categories', () => {
+    let fakeCategories = [{ id: 5, name: 'test' }, { id: 2, name: 'stuff' }];
+    let data = { json: jasmine.createSpy('json') };
+    let response = { data: fakeCategories };
+    data.json.and.returnValue(response);
+    component.populateCategories(data);
+    expect(component.categories.length).toBe(2);
   });
 
   describe('onSubmit', () => {

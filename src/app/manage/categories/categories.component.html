@@ -1,0 +1,27 @@
+<h3>Categories</h3>
+<table>
+  <thead>
+    <tr>
+        <th data-field="title">Name</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{category.name}}</td>
+      <td>
+        <button md-icon-button [routerLink]="['/manage/categories/edit',category.id]">
+          <md-icon>mode_edit</md-icon>
+        </button>
+        <button *ngIf="!hasPosts(category.postCount)" md-icon-button (click)="confirmDelete(category.id)" class="link-pointer">
+          <md-icon>delete</md-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="fixed-action-btn add-page">
+  <a class="btn-floating btn-large waves-effect waves-light deep-purple" routerLink="/manage/categories/add">
+    <i class="material-icons">add</i>
+  </a>
+</div>
