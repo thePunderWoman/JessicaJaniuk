@@ -68,8 +68,8 @@
         <button (click)="addTag()" type="button" color="secondary">Add</button>
       </div>
       <div class="col s18">
-        <ul *ngIf="post.Tags" class="tag-list">
-          <li *ngFor="let tag of post.Tags;">
+        <ul *ngIf="post.tags" class="tag-list">
+          <li *ngFor="let tag of post.tags;">
             {{tag}} <a (click)="removeTag(tag)" style="cursor: pointer;">&times;</a>
           </li>
         </ul>

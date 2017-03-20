@@ -16,10 +16,10 @@ export class BlogComponent implements OnInit {
   dialogRef: MdDialogRef<any>;
   posts: Post[] = [];
   key: number;
-  page: number = 1;
-  totalPosts: number = 0;
-  perPage: number = 10;
-  pages: number = 1;
+  page = 1;
+  totalPosts = 0;
+  perPage = 10;
+  pages = 1;
 
   constructor(private postService: PostService,
     private authService: AuthService,
@@ -49,7 +49,7 @@ export class BlogComponent implements OnInit {
 
   populatePosts(data) {
     this.posts = [];
-    let response = data.json().data;
+    const response = data.json().data;
     this.totalPosts = response.count;
     this.posts.push.apply(this.posts, response.posts);
     this.setPages();
@@ -68,7 +68,7 @@ export class BlogComponent implements OnInit {
 
   confirmDelete(key) {
     this.key = key;
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
