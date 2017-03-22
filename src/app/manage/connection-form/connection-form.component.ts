@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ConnectionFormComponent implements OnInit {
   connection: Connection = new Connection('', '', '', '');
   id: number;
-  saving: boolean = false;
+  saving = false;
 
   constructor(private connectionService: ConnectionService, private route: ActivatedRoute) {
     this.saveComplete = this.saveComplete.bind(this);
@@ -49,7 +49,7 @@ export class ConnectionFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    let response = data.json();
+    const respoconst = data.json();
     this.id = response.data.id;
     this.saving = false;
   }

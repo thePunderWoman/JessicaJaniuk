@@ -9,7 +9,7 @@ import { DeleteDialogComponent } from './delete-dialog.component';
 describe('DeleteDialogComponent', () => {
   let component: DeleteDialogComponent;
   let fixture: ComponentFixture<DeleteDialogComponent>;
-  let mockMdDialogRef = {};
+  const mockMdDialogRef = {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

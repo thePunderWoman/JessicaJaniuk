@@ -49,7 +49,7 @@ export class CategoriesComponent implements OnInit {
 
   confirmDelete(key) {
     this.key = key;
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
@@ -64,7 +64,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   handleDelete() {
-    let ix = this.categories.findIndex((page) => page.id === this.key);
+    const ix = this.categories.findIndex((page) => page.id === this.key);
     this.categories.splice(ix, 1);
     this.key = undefined;
   }

@@ -14,16 +14,16 @@ import { Page } from '../../models/page';
 describe('PagesComponent', () => {
   let component: PagesComponent;
   let fixture: ComponentFixture<PagesComponent>;
-  let pageServiceMock = {
+  const pageServiceMock = {
     getAll: jasmine.createSpy('getAll'),
     remove: jasmine.createSpy('remove')
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   pageServiceMock.getAll.and.returnValue(fakeSubscribe);
   pageServiceMock.remove.and.returnValue(fakeSubscribe);
-  let authServiceMock = {
+  const authServiceMock = {
     logout: jasmine.createSpy('logout')
   };
 
@@ -64,8 +64,8 @@ describe('PagesComponent', () => {
   });
 
   it('should populate pages', () => {
-    let pages = { data: [{ id: 5, title: 'stuff', 'key': 'things'}, { id: 3, title: 'fake', 'key': 'item'}] };
-    let data = { json: jasmine.createSpy('json') };
+    const pages = { data: [{ id: 5, title: 'stuff', 'key': 'things'}, { id: 3, title: 'fake', 'key': 'item'}] };
+    const data = { json: jasmine.createSpy('json') };
     data.json.and.returnValue(pages);
     component.populatePages(data);
     expect(component.pages.length).toBe(2);
@@ -73,14 +73,14 @@ describe('PagesComponent', () => {
 
   describe('handleError', () => {
     it('should log out and redirect on 401', () => {
-      let err = { status: 401 };
+      const err = { status: 401 };
       spyOn(component.router, 'navigate');
       component.handleError(err);
       expect(authServiceMock.logout).toHaveBeenCalled();
       expect(component.router.navigate).toHaveBeenCalledWith(['/auth']);
     });
     it('should not log out or redirect on any other error', () => {
-      let err = { status: 500 };
+      const err = { status: 500 };
       spyOn(component.router, 'navigate');
       component.handleError(err);
       expect(authServiceMock.logout).not.toHaveBeenCalled();
@@ -89,7 +89,7 @@ describe('PagesComponent', () => {
   });
 
   it('should confirm delete', () => {
-    let refFake = jasmine.createSpyObj('mdDialogRef', ['afterClosed']);
+    const refFake = jasmine.createSpyObj('mdDialogRef', ['afterClosed']);
     refFake.afterClosed.and.returnValue(fakeSubscribe);
     spyOn(component.dialog, 'open').and.returnValue(refFake);
     component.confirmDelete('testkey');
@@ -115,9 +115,9 @@ describe('PagesComponent', () => {
 
   it('should handle delete', () => {
     component.key = 5;
-    let page1 = new Page('test', 'testerson', 'key');
+    const page1 = new Page('test', 'testerson', 'key');
     page1.id = 5;
-    let page2 = new Page('name', 'last', 'key2');
+    const page2 = new Page('name', 'last', 'key2');
     page2.id = 2;
     component.pages.push(page1);
     component.pages.push(page2);

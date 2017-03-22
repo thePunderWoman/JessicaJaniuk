@@ -11,9 +11,9 @@ import { Connection } from '../models/connection';
 })
 export class ConnectComponent implements OnInit {
   items: Connection[] = [];
-  body: string = '';
-  title: string = '';
-  show: boolean = false;
+  body = '';
+  title = '';
+  show = false;
 
   constructor(private connectionService: ConnectionService,
     private pageService: PageService, private titleService: TitleService) {
@@ -28,8 +28,8 @@ export class ConnectComponent implements OnInit {
   }
 
   handlePage(data) {
-    let page = data.json();
-    this.body = page.data.content;
+    const page = data.json();
+ constthis.body = page.data.content;
     this.title = page.data.title;
     this.show = true;
   }

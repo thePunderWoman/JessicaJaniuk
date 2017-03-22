@@ -10,13 +10,13 @@ import { PageService } from '../services/page/page.service';
 describe('AboutComponent', () => {
   let component: AboutComponent;
   let fixture: ComponentFixture<AboutComponent>;
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
-  let PageServiceMock = {
+  const PageServiceMock = {
     getByKey: jasmine.createSpy('getByKey')
   };
-  let fakeSubscribe = { subscribe: jasmine.createSpy('subscribe') };
+  const fakeSubscribe = { subscribe: jasmine.createSpy('subscribe') };
   PageServiceMock.getByKey.and.returnValue(fakeSubscribe);
 
   beforeEach(async(() => {
@@ -48,8 +48,8 @@ describe('AboutComponent', () => {
   });
 
   it('should handle page data', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let pageData = { data: { content: 'content', title: 'titlestuff' } };
+    const data = { json: jasmine.createSpy('json') };
+    const pageData = { data: { content: 'content', title: 'titlestuff' } };
     data.json.and.returnValue(pageData);
     component.handlePage(data);
     expect(component.body).toBe('content');

@@ -13,19 +13,19 @@ import { ActivatedRoute } from '@angular/router';
 describe('ConnectionFormComponent', () => {
   let component: ConnectionFormComponent;
   let fixture: ComponentFixture<ConnectionFormComponent>;
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 5
       }
     }
   };
-  let connectionServiceMock = {
+  const connectionServiceMock = {
     getById: jasmine.createSpy('getById'),
     update: jasmine.createSpy('update'),
     save: jasmine.createSpy('save'),
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   connectionServiceMock.getById.and.returnValue(fakeSubscribe);
@@ -88,16 +88,16 @@ describe('ConnectionFormComponent', () => {
 
   describe('populateConnection', () => {
     it('should set user if data is present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: { id: 4, name: 'test' } };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: { id: 4, name: 'test' } };
       data.json.and.returnValue(response);
       component.populateConnection(data);
       expect(component.connection.id).toBe(4);
       expect(component.connection.name).toBe('test');
     });
     it('should not set user if data is not present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: undefined };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: undefined };
       data.json.and.returnValue(response);
       component.populateConnection(data);
       expect(component.connection.id).toBeUndefined();
@@ -117,7 +117,7 @@ describe('ConnectionFormComponent', () => {
 
   describe('onSubmit', () => {
     it('should save new page when no id', () => {
-      let connection = new Connection('test', '', '', '');
+      const connection = new Connection('test', '', '', '');
       component.id = undefined;
       component.connection = connection;
       component.onSubmit();
@@ -125,7 +125,7 @@ describe('ConnectionFormComponent', () => {
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
     it('should update existing user when id exists', () => {
-      let connection = new Connection('test', '', '', '');
+      const connection = new Connection('test', '', '', '');
       component.id = 5;
       component.connection = connection;
       component.onSubmit();
@@ -135,8 +135,8 @@ describe('ConnectionFormComponent', () => {
   });
 
   it('should set id result on save', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: { id: 6 } };
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: { id: 6 } };
     data.json.and.returnValue(response);
     component.saving = true;
     component.id = undefined;

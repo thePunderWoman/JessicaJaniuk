@@ -9,7 +9,7 @@ import { User } from '../../models/user';
 
 describe('UserService', () => {
   let MockHttp;
-  let HeaderServiceMock = {
+  const HeaderServiceMock = {
     createAuthHeaders: jasmine.createSpy('createAuthHeaders')
   };
   HeaderServiceMock.createAuthHeaders.and.returnValue('fake headers');
@@ -47,44 +47,44 @@ describe('UserService', () => {
 
   it('should call get all users endpoint', inject([UserService, HeaderService], (service: UserService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getAll();
+    const response = service.getAll();
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/user', { headers: 'fake headers' });
   }));
 
   it('should call get user endpoint', inject([UserService, HeaderService], (service: UserService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getUser(5);
+    const response = service.getUser(5);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/user/5', { headers: 'fake headers' });
   }));
 
   it('should call save user endpoint', inject([UserService, HeaderService], (service: UserService) => {
     service.apiBaseUrl = '/test/url/';
-    let user = new User('', '', '', '', false);
-    let response = service.saveUser(user);
+    const user = new User('', '', '', '', false);
+    const response = service.saveUser(user);
     expect(response).toBe('posted');
     expect(MockHttp.post).toHaveBeenCalledWith('/test/url/user', user, { headers: 'fake headers' });
   }));
 
   it('should call update user endpoint', inject([UserService, HeaderService], (service: UserService) => {
     service.apiBaseUrl = '/test/url/';
-    let user = new User('', '', '', '', false);
-    let response = service.updateUser(5, user);
+    const user = new User('', '', '', '', false);
+    const response = service.updateUser(5, user);
     expect(response).toBe('putted');
     expect(MockHttp.put).toHaveBeenCalledWith('/test/url/user/5', user, { headers: 'fake headers' });
   }));
 
   it('should call set password endpoint', inject([UserService, HeaderService], (service: UserService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.setPassword(5, 'newstuff');
+    const response = service.setPassword(5, 'newstuff');
     expect(response).toBe('putted');
     expect(MockHttp.put).toHaveBeenCalledWith('/test/url/user/5/password', { password: 'newstuff' }, { headers: 'fake headers' });
   }));
 
   it('should call remove user endpoint', inject([UserService, HeaderService], (service: UserService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.remove(5);
+    const response = service.remove(5);
     expect(response).toBe('things');
     expect(MockHttp.delete).toHaveBeenCalledWith('/test/url/user/5', { headers: 'fake headers' });
   }));

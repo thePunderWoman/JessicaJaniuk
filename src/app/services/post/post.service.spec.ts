@@ -9,7 +9,7 @@ import { Post } from '../../models/post';
 
 describe('PostService', () => {
   let MockHttp;
-  let HeaderServiceMock = {
+  const HeaderServiceMock = {
     createAuthHeaders: jasmine.createSpy('createAuthHeaders')
   };
   HeaderServiceMock.createAuthHeaders.and.returnValue('fake headers');
@@ -47,44 +47,44 @@ describe('PostService', () => {
 
   it('should call get all posts endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getAll(1);
+    const response = service.getAll(1);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post?page=1', { headers: 'fake headers' });
   }));
 
   it('should call get all published posts endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getAllPublished(1);
+    const response = service.getAllPublished(1);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/published?page=1');
   }));
 
   it('should call get post endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getById(5);
+    const response = service.getById(5);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/5');
   }));
 
   it('should call save post endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    let post = new Post();
-    let response = service.save(post);
+    const post = new Post();
+    const response = service.save(post);
     expect(response).toBe('posted');
     expect(MockHttp.post).toHaveBeenCalledWith('/test/url/post', post, { headers: 'fake headers' });
   }));
 
   it('should call update post endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    let post = new Post();
-    let response = service.update(5, post);
+    const post = new Post();
+    const response = service.update(5, post);
     expect(response).toBe('putted');
     expect(MockHttp.put).toHaveBeenCalledWith('/test/url/post/5', post, { headers: 'fake headers' });
   }));
 
   it('should call remove post endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.remove(5);
+    const response = service.remove(5);
     expect(response).toBe('things');
     expect(MockHttp.delete).toHaveBeenCalledWith('/test/url/post/5', { headers: 'fake headers' });
   }));

@@ -8,14 +8,14 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 
 describe('AuthGuard', () => {
-  let StorageServiceMock = {
+  const StorageServiceMock = {
     get: jasmine.createSpy('get')
   };
 
-  let AuthServiceMock = {
+  const AuthServiceMock = {
     logout: jasmine.createSpy('logout')
   };
-  let routerStub = {
+  const routerStub = {
     navigate: jasmine.createSpy('navigate')
   };
 
@@ -39,7 +39,7 @@ describe('AuthGuard', () => {
 
   describe('canActivate', () => {
     it('should not activate if not admin', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() + 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: false});
       spyOn(guard, 'retrieveToken').and.returnValue({token: 'stuff', expires: expDate.toISOString() });
@@ -49,7 +49,7 @@ describe('AuthGuard', () => {
     }));
 
     it('should activate if is admin, has token, and isnt expired', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() + 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: true});
       spyOn(guard, 'retrieveToken').and.returnValue({token: 'stuff', expires: expDate.toISOString() });
@@ -59,7 +59,7 @@ describe('AuthGuard', () => {
     }));
 
     it('should not activate if is admin, has no token', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() + 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: true});
       spyOn(guard, 'retrieveToken').and.returnValue(undefined);
@@ -69,7 +69,7 @@ describe('AuthGuard', () => {
     }));
 
     it('should not activate if is admin, has token, and is expired', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() - 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: true});
       spyOn(guard, 'retrieveToken').and.returnValue({token: 'stuff', expires: expDate.toISOString() });
@@ -81,7 +81,7 @@ describe('AuthGuard', () => {
 
   describe('canActivateChild', () => {
     it('should not activate if not admin', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() + 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: false});
       spyOn(guard, 'retrieveToken').and.returnValue({token: 'stuff', expires: expDate.toISOString() });
@@ -91,7 +91,7 @@ describe('AuthGuard', () => {
     }));
 
     it('should activate if is admin, has token, and isnt expired', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() + 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: true});
       spyOn(guard, 'retrieveToken').and.returnValue({token: 'stuff', expires: expDate.toISOString() });
@@ -101,7 +101,7 @@ describe('AuthGuard', () => {
     }));
 
     it('should not activate if is admin, has no token', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() + 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: true});
       spyOn(guard, 'retrieveToken').and.returnValue(undefined);
@@ -111,7 +111,7 @@ describe('AuthGuard', () => {
     }));
 
     it('should not activate if is admin, has token, and is expired', inject([AuthGuard], (guard: AuthGuard) => {
-      let expDate = new Date();
+      const expDate = new Date();
       expDate.setDate(expDate.getDate() - 1);
       spyOn(guard, 'retrieveUser').and.returnValue({isAdmin: true});
       spyOn(guard, 'retrieveToken').and.returnValue({token: 'stuff', expires: expDate.toISOString() });
@@ -127,7 +127,7 @@ describe('AuthGuard', () => {
     }));
     it('should return User if user in storage', inject([AuthGuard], (guard: AuthGuard) => {
       StorageServiceMock.get.and.returnValue('{"isAdmin": true}');
-      let user = guard.retrieveUser();
+      const user = guard.retrieveUser();
       expect(user).not.toBeNull();
       expect(user.isAdmin).toBeTruthy();
     }));
@@ -140,7 +140,7 @@ describe('AuthGuard', () => {
     }));
     it('should return User if user in storage', inject([AuthGuard], (guard: AuthGuard) => {
       StorageServiceMock.get.and.returnValue('{"token": "data", "expires": "date"}');
-      let token = guard.retrieveToken();
+      const token = guard.retrieveToken();
       expect(token).not.toBeNull();
     }));
   });

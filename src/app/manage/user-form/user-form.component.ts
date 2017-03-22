@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-  password: string = '';
-  confirmPassword: string = '';
+  password = '';
+  confirmPassword = '';
   user: User = new User('', '', '', '', false);
   id: number;
 
@@ -50,7 +50,7 @@ export class UserFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    let response = data.json();
+    const response = dconst.json();
     this.id = response.data.id;
     this.password = '';
     this.confirmPassword = '';

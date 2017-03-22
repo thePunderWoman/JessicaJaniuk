@@ -16,22 +16,22 @@ import { MdSlideToggleModule } from '@angular/material/slide-toggle';
 describe('PostFormComponent', () => {
   let component: PostFormComponent;
   let fixture: ComponentFixture<PostFormComponent>;
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 'things'
       }
     }
   };
-  let postServiceMock = {
+  const postServiceMock = {
     getById: jasmine.createSpy('getById'),
     update: jasmine.createSpy('update'),
     save: jasmine.createSpy('save'),
   };
-  let categoryServiceMock = {
+  const categoryServiceMock = {
     getAll: jasmine.createSpy('getAll'),
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   categoryServiceMock.getAll.and.returnValue(fakeSubscribe);
@@ -112,7 +112,7 @@ describe('PostFormComponent', () => {
   });
 
   it('should populate post', () => {
-    let fakePost = {
+    const fakePost = {
       title: 'test',
       categoryId: 5,
       content: '<p>Cheese</p>',
@@ -120,8 +120,8 @@ describe('PostFormComponent', () => {
       publishDate: '12/12/2017',
       Tags: ['stuff', 'things']
     };
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: fakePost };
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: fakePost };
     data.json.and.returnValue(response);
     component.populatePost(data);
     expect(component.post.title).toBe(fakePost.title);
@@ -133,9 +133,9 @@ describe('PostFormComponent', () => {
   });
 
   it('should populate categories', () => {
-    let fakeCategories = [{ id: 5, name: 'test' }, { id: 2, name: 'stuff' }];
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: fakeCategories };
+    const fakeCategories = [{ id: 5, name: 'test' }, { id: 2, name: 'stuff' }];
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: fakeCategories };
     data.json.and.returnValue(response);
     component.populateCategories(data);
     expect(component.categories.length).toBe(2);
@@ -143,7 +143,7 @@ describe('PostFormComponent', () => {
 
   describe('onSubmit', () => {
     it('should submit when no id exists', () => {
-      let post = new Post();
+      const post = new Post();
       component.id = undefined;
       component.post = post;
       component.onSubmit();
@@ -151,7 +151,7 @@ describe('PostFormComponent', () => {
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
     it('should submit when id exists', () => {
-      let post = new Post();
+      const post = new Post();
       component.id = 5;
       component.post = post;
       component.onSubmit();
@@ -161,8 +161,8 @@ describe('PostFormComponent', () => {
   });
 
   it('should set id result on save', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: { id: 6 } };
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: { id: 6 } };
     data.json.and.returnValue(response);
     component.saving = true;
     component.id = undefined;
@@ -175,33 +175,33 @@ describe('PostFormComponent', () => {
     it('should not add when tag is empty space', () => {
       component.tag = ' ';
       component.addTag();
-      expect(component.post.Tags).toEqual([]);
+      expect(component.post.tags).toEqual([]);
     });
     it('should not add when tag is already present', () => {
-      component.post.Tags.push('test');
+      component.post.tags.push('test');
       component.tag = ' Test ';
       component.addTag();
-      expect(component.post.Tags).toEqual(['test']);
+      expect(component.post.tags).toEqual(['test']);
     });
     it('should add when tag is new', () => {
-      component.post.Tags.push('test');
+      component.post.tags.push('test');
       component.tag = 'stuff';
       component.addTag();
-      expect(component.post.Tags).toEqual(['test', 'stuff']);
+      expect(component.post.tags).toEqual(['test', 'stuff']);
       expect(component.tag).toBe('');
     });
   });
 
   describe('removeTag', () => {
     it('should remove tag if exists', () => {
-      component.post.Tags.push('test');
+      component.post.tags.push('test');
       component.removeTag('test');
-      expect(component.post.Tags).toEqual([]);
+      expect(component.post.tags).toEqual([]);
     });
     it('should do nothing if tag does not exist', () => {
-      component.post.Tags.push('test');
+      component.post.tags.push('test');
       component.removeTag('stuff');
-      expect(component.post.Tags).toEqual(['test']);
+      expect(component.post.tags).toEqual(['test']);
     });
   });
 });

@@ -9,7 +9,7 @@ import { TitleService } from '../../services/title/title.service';
 })
 export class AlbumListComponent implements OnInit {
   albums: any = [];
-  show: boolean = false;
+  show = false;
 
   constructor(private flickrService: FlickrService, private titleService: TitleService) {
     this.handleAlbums = this.handleAlbums.bind(this);

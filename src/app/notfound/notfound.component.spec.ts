@@ -9,7 +9,7 @@ import { TitleService } from '../services/title/title.service';
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
   let fixture: ComponentFixture<NotFoundComponent>;
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
 

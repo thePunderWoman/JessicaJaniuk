@@ -9,7 +9,7 @@ import { Connection } from '../../models/connection';
 
 describe('ConnectionService', () => {
   let MockHttp;
-  let HeaderServiceMock = {
+  const HeaderServiceMock = {
     createAuthHeaders: jasmine.createSpy('createAuthHeaders')
   };
   HeaderServiceMock.createAuthHeaders.and.returnValue('fake headers');
@@ -47,37 +47,37 @@ describe('ConnectionService', () => {
 
   it('should call get all connections endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getAll();
+    const response = service.getAll();
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/connection');
   }));
 
   it('should call get connection endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getById(5);
+    const response = service.getById(5);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/connection/5');
   }));
 
   it('should call save connection endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {
     service.apiBaseUrl = '/test/url/';
-    let connection = new Connection('', '', '', '');
-    let response = service.save(connection);
+    const connection = new Connection('', '', '', '');
+    const response = service.save(connection);
     expect(response).toBe('posted');
     expect(MockHttp.post).toHaveBeenCalledWith('/test/url/connection', connection, { headers: 'fake headers' });
   }));
 
   it('should call update connection endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {
     service.apiBaseUrl = '/test/url/';
-    let connection = new Connection('', '', '', '');
-    let response = service.update(5, connection);
+    const connection = new Connection('', '', '', '');
+    const response = service.update(5, connection);
     expect(response).toBe('putted');
     expect(MockHttp.put).toHaveBeenCalledWith('/test/url/connection/5', connection, { headers: 'fake headers' });
   }));
 
   it('should call remove connection endpoint', inject([ConnectionService, HeaderService], (service: ConnectionService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.remove(5);
+    const response = service.remove(5);
     expect(response).toBe('things');
     expect(MockHttp.delete).toHaveBeenCalledWith('/test/url/connection/5', { headers: 'fake headers' });
   }));

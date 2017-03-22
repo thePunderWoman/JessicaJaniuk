@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let routerStub = { url: '/' };
+  const routerStub = { url: '/' };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -14,20 +14,20 @@ import { MdSlideToggleModule } from '@angular/material/slide-toggle';
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 5
       }
     }
   };
-  let userServiceMock = {
+  const userServiceMock = {
     getUser: jasmine.createSpy('getUser'),
     updateUser: jasmine.createSpy('updateUser'),
     saveUser: jasmine.createSpy('saveUser'),
     setPassword: jasmine.createSpy('setPassword')
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   userServiceMock.getUser.and.returnValue(fakeSubscribe);
@@ -93,16 +93,16 @@ describe('UserFormComponent', () => {
 
   describe('populateUser', () => {
     it('should set user if data is present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: { id: 4, firstName: 'test' } };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: { id: 4, firstName: 'test' } };
       data.json.and.returnValue(response);
       component.populateUser(data);
       expect(component.user.id).toBe(4);
       expect(component.user.firstName).toBe('test');
     });
     it('should not set user if data is not present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: undefined };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: undefined };
       data.json.and.returnValue(response);
       component.populateUser(data);
       expect(component.user.id).toBeUndefined();
@@ -122,7 +122,7 @@ describe('UserFormComponent', () => {
 
   describe('onSubmit', () => {
     it('should save new user when no id', () => {
-      let user = new User('test', '', '', '', false);
+      const user = new User('test', '', '', '', false);
       component.id = undefined;
       component.user = user;
       component.onSubmit();
@@ -130,7 +130,7 @@ describe('UserFormComponent', () => {
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
     it('should update existing user when id exists', () => {
-      let user = new User('test', '', '', '', false);
+      const user = new User('test', '', '', '', false);
       component.id = 5;
       component.user = user;
       component.onSubmit();
@@ -140,8 +140,8 @@ describe('UserFormComponent', () => {
   });
 
   it('should wipe passwords on completed save', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: { id: 6 } };
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: { id: 6 } };
     data.json.and.returnValue(response);
     component.password = 'stuff';
     component.confirmPassword = 'things';

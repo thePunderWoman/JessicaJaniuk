@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PageFormComponent implements OnInit {
   page: Page = new Page('', '', '');
   id: number;
-  saving: boolean = false;
+  saving = false;
 
   constructor(private pageService: PageService, private route: ActivatedRoute) {
     this.populatePage = this.populatePage.bind(this);
@@ -49,7 +49,7 @@ export class PageFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    let response = data.json();
+    const respoconst = data.json();
     this.id = response.data.id;
     this.saving = false;
   }

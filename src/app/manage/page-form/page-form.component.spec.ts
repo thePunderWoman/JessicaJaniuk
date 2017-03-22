@@ -13,19 +13,19 @@ import { ActivatedRoute } from '@angular/router';
 describe('PageFormComponent', () => {
   let component: PageFormComponent;
   let fixture: ComponentFixture<PageFormComponent>;
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 5
       }
     }
   };
-  let pageServiceMock = {
+  const pageServiceMock = {
     getById: jasmine.createSpy('getById'),
     update: jasmine.createSpy('update'),
     save: jasmine.createSpy('save'),
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   pageServiceMock.getById.and.returnValue(fakeSubscribe);
@@ -88,16 +88,16 @@ describe('PageFormComponent', () => {
 
   describe('populatePage', () => {
     it('should set user if data is present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: { id: 4, title: 'test' } };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: { id: 4, title: 'test' } };
       data.json.and.returnValue(response);
       component.populatePage(data);
       expect(component.page.id).toBe(4);
       expect(component.page.title).toBe('test');
     });
     it('should not set user if data is not present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: undefined };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: undefined };
       data.json.and.returnValue(response);
       component.populatePage(data);
       expect(component.page.id).toBeUndefined();
@@ -117,7 +117,7 @@ describe('PageFormComponent', () => {
 
   describe('onSubmit', () => {
     it('should save new page when no id', () => {
-      let page = new Page('test', '', '');
+      const page = new Page('test', '', '');
       component.id = undefined;
       component.page = page;
       component.onSubmit();
@@ -125,7 +125,7 @@ describe('PageFormComponent', () => {
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
     it('should update existing user when id exists', () => {
-      let page = new Page('test', '', '');
+      const page = new Page('test', '', '');
       component.id = 5;
       component.page = page;
       component.onSubmit();
@@ -135,8 +135,8 @@ describe('PageFormComponent', () => {
   });
 
   it('should set id result on save', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: { id: 6 } };
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: { id: 6 } };
     data.json.and.returnValue(response);
     component.saving = true;
     component.id = undefined;

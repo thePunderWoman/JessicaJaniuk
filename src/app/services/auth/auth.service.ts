@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   getUserFromCache() {
-    let userString = this.storageService.get('user');
+    const userString = this.storageService.get('user');
     if (userString) {
       this.user = JSON.parse(userString) as User;
     }

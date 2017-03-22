@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
-  let routerStub = {
+  const routerStub = {
     navigate: jasmine.createSpy('navigate')
   };
-  let fakeRoute = '/test/url';
+  const fakeRoute = '/test/url';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,14 +37,14 @@ describe('PaginationComponent', () => {
 
   it('should handle input changes to page', () => {
     component.page = 1;
-    let change = new SimpleChange(1, 2);
+    const change = new SimpleChange(1, 2);
     component.ngOnChanges({'page': change});
     expect(component.page).toBe(2);
   });
 
   it('should handle input changes to pages', () => {
     component.pages = 1;
-    let change = new SimpleChange(1, 4);
+    const change = new SimpleChange(1, 4);
     component.ngOnChanges({'pages': change});
     expect(component.pages).toBe(4);
   });

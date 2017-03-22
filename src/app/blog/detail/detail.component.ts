@@ -11,14 +11,14 @@ import { PostService } from '../../services/post/post.service';
 })
 export class DetailComponent implements OnInit {
   post: Post = new Post();
-  show: boolean = false;
+  show = false;
 
   constructor(private postService: PostService, private titleService: TitleService, private route: ActivatedRoute) {
     this.populatePost = this.populatePost.bind(this);
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
+    const id = consts.route.snapshot.params['id'];
     this.postService.getById(id).subscribe(this.populatePost);
   }
 

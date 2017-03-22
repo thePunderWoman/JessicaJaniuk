@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 describe('AuthenticationComponent', () => {
   let component: AuthenticationComponent;
   let fixture: ComponentFixture<AuthenticationComponent>;
-  let StorageServiceMock = {
+  const StorageServiceMock = {
     get: jasmine.createSpy('get'),
     set: jasmine.createSpy('set')
   };
-  let AuthServiceMock = {
+  const AuthServiceMock = {
     isLoggedIn: jasmine.createSpy('isLoggedIn'),
     isAdmin: jasmine.createSpy('isAdmin'),
     logout: jasmine.createSpy('logout'),
@@ -26,10 +26,10 @@ describe('AuthenticationComponent', () => {
       displayName: 'stuff'
     }
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let routerStub = {
+  const routerStub = {
     navigate: jasmine.createSpy('navigate')
   };
   AuthServiceMock.authenticate.and.returnValue(fakeSubscribe);
@@ -90,8 +90,8 @@ describe('AuthenticationComponent', () => {
     });
 
     it('should set values and redirect on ok', () => {
-      let data = { ok: true, json: jasmine.createSpy('json') };
-      let response = { token: 'blah', expires: 'things', user: 'stuff' };
+      const data = { ok: true, json: jasmine.createSpy('json') };
+      const response = { token: 'blah', expires: 'things', user: 'stuff' };
       data.json.and.returnValue(response);
       component.onAuthenticate(data);
       expect(StorageServiceMock.set).toHaveBeenCalledWith('user', `"${response.user}"`);
@@ -100,8 +100,8 @@ describe('AuthenticationComponent', () => {
       expect(routerStub.navigate).toHaveBeenCalledWith(['/manage']);
     });
     it('should do nothing if not ok', () => {
-      let data = { ok: false, json: jasmine.createSpy('json') };
-      let response = { token: 'blah', expires: 'things', user: 'stuff' };
+      const data = { ok: false, json: jasmine.createSpy('json') };
+      const response = { token: 'blah', expires: 'things', user: 'stuff' };
       data.json.and.returnValue(response);
       component.onAuthenticate(data);
       expect(StorageServiceMock.set).not.toHaveBeenCalled();

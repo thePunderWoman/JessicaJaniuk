@@ -35,27 +35,27 @@ describe('FlickrService', () => {
   it('should build album url', inject([FlickrService], (service: FlickrService) => {
     service.flickrURL = 'url';
     service.flickrQuery = '?stuff=';
-    let url = 'url?stuff=flickr.photosets.getList&primary_photo_extras=url_t,url_s,url_m,url_o,path_alias,media';
+    const url = 'url?stuff=flickr.photosets.getList&primary_photo_extras=url_t,url_s,url_m,url_o,path_alias,media';
     expect(service.buildAlbumUrl()).toBe(url);
   }));
 
   it('should build photo url', inject([FlickrService], (service: FlickrService) => {
     service.flickrURL = 'url';
     service.flickrQuery = '?stuff=';
-    let url = 'url?stuff=flickr.photosets.getPhotos&photoset_id=5&extras=url_sq,url_t,url_s,url_m,url_o';
+    const url = 'url?stuff=flickr.photosets.getPhotos&photoset_id=5&extras=url_sq,url_t,url_s,url_m,url_o';
     expect(service.buildPhotoUrl(5)).toBe(url);
   }));
 
   it('should call get albums endpoint', inject([FlickrService], (service: FlickrService) => {
     spyOn(service, 'buildAlbumUrl').and.returnValue('/fake/album/url');
-    let response = service.getAlbums();
+    const response = service.getAlbums();
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/fake/album/url');
   }));
 
   it('should call get photos endpoint', inject([FlickrService], (service: FlickrService) => {
     spyOn(service, 'buildPhotoUrl').and.returnValue('/fake/photo/url');
-    let response = service.getPhotos(5);
+    const response = service.getPhotos(5);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/fake/photo/url');
   }));

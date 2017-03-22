@@ -8,17 +8,17 @@ import { PageService } from '../services/page/page.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  body: string = '';
-  title: string = '';
-  show: boolean = false;
+  body = '';
+  title = '';
+  show = false;
 
   constructor(private pageService: PageService, private titleService: TitleService) {
     this.handlePage = this.handlePage.bind(this);
   }
 
   handlePage(data) {
-    let page = data.json();
-    this.body = page.data.content;
+    const page = data.json();
+ constthis.body = page.data.content;
     this.title = page.data.title;
     this.show = true;
   }
