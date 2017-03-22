@@ -18,13 +18,13 @@ export class AlbumComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.rouconstsnapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
     this.flickrService.getPhotos(id).subscribe(this.handlePhotos);
   }
 
   handlePhotos(data) {
     this.show = true;
-    const photos = dataconston();
+    const photos = data.json();
     this.title = photos.photoset.title;
     this.photos.push.apply(this.photos, photos.photoset.photo);
     this.titleService.setTitle(this.title);

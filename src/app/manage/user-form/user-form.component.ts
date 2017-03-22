@@ -50,7 +50,7 @@ export class UserFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    const response = dconst.json();
+    const response = data.json();
     this.id = response.data.id;
     this.password = '';
     this.confirmPassword = '';

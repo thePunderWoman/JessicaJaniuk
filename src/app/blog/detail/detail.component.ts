@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = consts.route.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
     this.postService.getById(id).subscribe(this.populatePost);
   }
 

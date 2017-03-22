@@ -118,7 +118,7 @@ describe('PostFormComponent', () => {
       content: '<p>Cheese</p>',
       published: false,
       publishDate: '12/12/2017',
-      Tags: ['stuff', 'things']
+      Tags: [{name: 'stuff'}, {name: 'things'}]
     };
     const data = { json: jasmine.createSpy('json') };
     const response = { data: fakePost };
@@ -129,7 +129,7 @@ describe('PostFormComponent', () => {
     expect(component.post.content).toBe(fakePost.content);
     expect(component.post.published).toBe(fakePost.published);
     expect(component.post.publishDate).toBe(fakePost.publishDate);
-    expect(component.post.Tags).toEqual(fakePost.Tags);
+    expect(component.post.tags).toEqual(fakePost.Tags.map((tag) => tag.name));
   });
 
   it('should populate categories', () => {

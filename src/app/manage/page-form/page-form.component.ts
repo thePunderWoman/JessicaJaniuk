@@ -49,7 +49,7 @@ export class PageFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    const respoconst = data.json();
+    const response = data.json();
     this.id = response.data.id;
     this.saving = false;
   }

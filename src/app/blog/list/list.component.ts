@@ -36,7 +36,7 @@ export class ListComponent implements OnInit {
   populatePosts(data) {
     this.posts = [];
     const response = data.json().data;
-    thisconsttalPosts = response.count;
+    this.totalPosts = response.count;
     this.posts.push.apply(this.posts, response.posts);
     this.setPages();
     this.show = true;
