@@ -53,7 +53,8 @@ export class PostFormComponent implements OnInit {
     this.post.published = post.published;
     this.post.publishDate = post.publishDate;
     this.post.tags = [];
-    this.post.tags.push.apply(this.post.tags, post.tags);
+    const tags = post.Tags.map(tag => tag.name);
+    this.post.tags.push.apply(this.post.tags, tags);
   }
 
   onSubmit(): void {
