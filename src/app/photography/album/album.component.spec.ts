@@ -12,21 +12,21 @@ import { TitleService } from '../../services/title/title.service';
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
   let fixture: ComponentFixture<AlbumComponent>;
-  let flickrServiceMock = {
+  const flickrServiceMock = {
     getAlbums: jasmine.createSpy('getAlbums'),
     getPhotos: jasmine.createSpy('getPhotos')
   };
-  let fakeObservable = {
+  const fakeObservable = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
 
   flickrServiceMock.getAlbums.and.returnValue(fakeObservable);
   flickrServiceMock.getPhotos.and.returnValue(fakeObservable);
 
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 'things'
@@ -64,10 +64,10 @@ describe('AlbumComponent', () => {
   });
 
   it('should handle photo data', () => {
-    let fakeData = {
+    const fakeData = {
       json: jasmine.createSpy('json')
     };
-    let photoData = {
+    const photoData = {
       photoset: {
         title: 'album of stuff',
         photo: [

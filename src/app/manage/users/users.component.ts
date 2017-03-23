@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
 
   confirmDelete(key) {
     this.key = key;
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit {
   }
 
   handleDelete() {
-    let ix = this.users.findIndex((usr) => usr.id === this.key);
+    const ix = this.users.findIndex((usr) => usr.id === this.key);
     this.users.splice(ix, 1);
     this.key = undefined;
   }

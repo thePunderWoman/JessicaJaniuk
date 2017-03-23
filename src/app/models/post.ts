@@ -5,8 +5,8 @@ export class Post {
   public title: string;
   public content: string;
   public categoryId: number;
-  public Tags: string[] = [];
-  public published: boolean = false;
+  public tags: string[] = [];
+  public published = false;
   public publishDate: Date = new Date();
 
   constructor() {}

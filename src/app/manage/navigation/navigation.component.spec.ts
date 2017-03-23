@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth/auth.service';
 describe('NavigationComponent', () => {
   let component: ManageNavigationComponent;
   let fixture: ComponentFixture<ManageNavigationComponent>;
-  let AuthServiceMock = {
+  const AuthServiceMock = {
     logout: jasmine.createSpy('logout')
   };
 

@@ -33,9 +33,9 @@ export class AuthenticationComponent {
   }
 
   onAuthenticate(data) {
-    let response = data.json();
+    const response = data.json();
     if (data.ok && !response.error) {
-      let tokenData = { token: response.token, expires: response.expires };
+      const tokenData = { token: response.token, expires: response.expires };
       this.storageService.set('user', JSON.stringify(response.user));
       this.storageService.set('token', JSON.stringify(tokenData));
       this.router.navigate(['/manage']);

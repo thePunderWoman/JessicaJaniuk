@@ -9,7 +9,7 @@ import { TitleService } from '../services/title/title.service';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
 

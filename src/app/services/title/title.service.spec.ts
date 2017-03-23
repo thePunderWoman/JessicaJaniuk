@@ -5,7 +5,7 @@ import { TitleService } from './title.service';
 import { Title } from '@angular/platform-browser';
 
 describe('TitleService', () => {
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
   beforeEach(() => {

@@ -12,9 +12,9 @@ import { CategoryService } from '../../services/category/category.service';
 })
 export class PostFormComponent implements OnInit {
   post: Post = new Post();
-  tag: string = '';
+  tag = '';
   id: number;
-  saving: boolean = false;
+  saving = false;
   categories: Category[] = [];
 
   constructor(private postService: PostService, private categoryService: CategoryService, private route: ActivatedRoute) {
@@ -45,15 +45,16 @@ export class PostFormComponent implements OnInit {
   }
 
   populatePost(data): void {
-    let post = data.json().data;
+    const post = data.json().data;
     this.post.id = post.id;
     this.post.title = post.title;
     this.post.categoryId = post.categoryId;
     this.post.content = post.content;
     this.post.published = post.published;
     this.post.publishDate = post.publishDate;
-    this.post.Tags = [];
-    this.post.Tags.push.apply(this.post.Tags, post.Tags);
+    this.post.tags = [];
+    const tags = post.Tags.map(tag => tag.name);
+    this.post.tags.push.apply(this.post.tags, tags);
   }
 
   onSubmit(): void {
@@ -65,22 +66,22 @@ export class PostFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    let response = data.json();
+    const response = data.json();
     this.id = response.data.id;
     this.saving = false;
   }
 
   addTag(): void {
-    if (this.tag.trim() !== '' && !this.post.Tags.find((ptag) => { return ptag.toLowerCase() === this.tag.trim().toLowerCase(); })) {
-      this.post.Tags.push(this.tag.trim());
+    if (this.tag.trim() !== '' && !this.post.tags.find((ptag) => { return ptag.toLowerCase() === this.tag.trim().toLowerCase(); })) {
+      this.post.tags.push(this.tag.trim());
     }
     this.tag = '';
   }
 
   removeTag(tag): void {
-    let ix = this.post.Tags.findIndex((ptag) => { return ptag === tag; });
+    const ix = this.post.tags.findIndex((ptag) => { return ptag === tag; });
     if (ix > -1) {
-      this.post.Tags.splice(ix, 1);
+      this.post.tags.splice(ix, 1);
     }
   }
 }

@@ -44,7 +44,7 @@ export class PagesComponent implements OnInit {
 
   confirmDelete(key) {
     this.key = key;
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
@@ -59,7 +59,7 @@ export class PagesComponent implements OnInit {
   }
 
   handleDelete() {
-    let ix = this.pages.findIndex((page) => page.id === this.key);
+    const ix = this.pages.findIndex((page) => page.id === this.key);
     this.pages.splice(ix, 1);
     this.key = undefined;
   }

@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoryFormComponent implements OnInit {
   category: Category = new Category('', 0);
   id: number;
-  saving: boolean = false;
+  saving = false;
 
   constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
     this.saveComplete = this.saveComplete.bind(this);
@@ -49,7 +49,7 @@ export class CategoryFormComponent implements OnInit {
   }
 
   saveComplete(data) {
-    let response = data.json();
+    const response = data.json();
     this.id = response.data.id;
     this.saving = false;
   }}

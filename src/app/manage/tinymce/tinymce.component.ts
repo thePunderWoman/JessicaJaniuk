@@ -16,7 +16,7 @@ import {
   ControlValueAccessor
 } from '@angular/forms';
 
-declare let tinymce: any;
+declare const tinymce: any;
 declare var window: any;
 
 @Component({
@@ -42,7 +42,7 @@ export class TinymceComponent implements AfterViewInit, ControlValueAccessor, On
   ];
   toolbar1: string = 'undo redo | insert | styleselect | bold italic |'
         + ' alignleft aligncenter alignright alignjustify | bullist numlist outdent indent';
-  toolbar2: string = 'link image media | forecolor backcolor emoticons | codesample';
+  toolbar2 = 'link image media | forecolor backcolor emoticons | codesample';
 
   @Input() theme: string;
   @Input() modules: Object;

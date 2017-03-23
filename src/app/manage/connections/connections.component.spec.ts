@@ -14,16 +14,16 @@ import { Connection } from '../../models/connection';
 describe('ConnectionsComponent', () => {
   let component: ConnectionsComponent;
   let fixture: ComponentFixture<ConnectionsComponent>;
-  let connectionServiceMock = {
+  const connectionServiceMock = {
     getAll: jasmine.createSpy('getAll'),
     remove: jasmine.createSpy('remove')
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   connectionServiceMock.getAll.and.returnValue(fakeSubscribe);
   connectionServiceMock.remove.and.returnValue(fakeSubscribe);
-  let authServiceMock = {
+  const authServiceMock = {
     logout: jasmine.createSpy('logout')
   };
 
@@ -64,8 +64,8 @@ describe('ConnectionsComponent', () => {
   });
 
   it('should populate connections', () => {
-    let connections = { data: [{ id: 1, name: 'fb'}, { id: 2, name: 'tw'}] };
-    let data = { json: jasmine.createSpy('json') };
+    const connections = { data: [{ id: 1, name: 'fb'}, { id: 2, name: 'tw'}] };
+    const data = { json: jasmine.createSpy('json') };
     data.json.and.returnValue(connections);
     component.populateConnections(data);
     expect(component.connections.length).toBe(2);
@@ -73,14 +73,14 @@ describe('ConnectionsComponent', () => {
 
   describe('handleError', () => {
     it('should log out and redirect on 401', () => {
-      let err = { status: 401 };
+      const err = { status: 401 };
       spyOn(component.router, 'navigate');
       component.handleError(err);
       expect(authServiceMock.logout).toHaveBeenCalled();
       expect(component.router.navigate).toHaveBeenCalledWith(['/auth']);
     });
     it('should not log out or redirect on any other error', () => {
-      let err = { status: 500 };
+      const err = { status: 500 };
       spyOn(component.router, 'navigate');
       component.handleError(err);
       expect(authServiceMock.logout).not.toHaveBeenCalled();
@@ -89,7 +89,7 @@ describe('ConnectionsComponent', () => {
   });
 
   it('should confirm delete', () => {
-    let refFake = jasmine.createSpyObj('mdDialogRef', ['afterClosed']);
+    const refFake = jasmine.createSpyObj('mdDialogRef', ['afterClosed']);
     refFake.afterClosed.and.returnValue(fakeSubscribe);
     spyOn(component.dialog, 'open').and.returnValue(refFake);
     component.confirmDelete('testkey');
@@ -115,9 +115,9 @@ describe('ConnectionsComponent', () => {
 
   it('should handle delete', () => {
     component.key = 5;
-    let conn1 = new Connection('test', 'testerson', '', '');
+    const conn1 = new Connection('test', 'testerson', '', '');
     conn1.id = 5;
-    let conn2 = new Connection('name', 'last', '', '');
+    const conn2 = new Connection('name', 'last', '', '');
     conn2.id = 2;
     component.connections.push(conn1);
     component.connections.push(conn2);

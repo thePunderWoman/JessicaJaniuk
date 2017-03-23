@@ -7,8 +7,8 @@ export class HeaderService {
   constructor(private storageService: StorageService) {}
 
   createAuthHeaders(): Headers {
-    let headers = new Headers();
-    let tokenData = JSON.parse(this.storageService.get('token'));
+    const headers = new Headers();
+    const tokenData = JSON.parse(this.storageService.get('token'));
     headers.append('Authorization', `Bearer ${tokenData.token}`);
     return headers;
   }

@@ -13,19 +13,19 @@ import { ActivatedRoute } from '@angular/router';
 describe('CategoryFormComponent', () => {
   let component: CategoryFormComponent;
   let fixture: ComponentFixture<CategoryFormComponent>;
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 5
       }
     }
   };
-  let categoryServiceMock = {
+  const categoryServiceMock = {
     getById: jasmine.createSpy('getById'),
     update: jasmine.createSpy('update'),
     save: jasmine.createSpy('save'),
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   categoryServiceMock.getById.and.returnValue(fakeSubscribe);
@@ -87,16 +87,16 @@ describe('CategoryFormComponent', () => {
 
   describe('populateCategory', () => {
     it('should set category if data is present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: { id: 4, name: 'test' } };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: { id: 4, name: 'test' } };
       data.json.and.returnValue(response);
       component.populateCategory(data);
       expect(component.category.id).toBe(4);
       expect(component.category.name).toBe('test');
     });
     it('should not set category if data is not present', () => {
-      let data = { json: jasmine.createSpy('json') };
-      let response = { data: undefined };
+      const data = { json: jasmine.createSpy('json') };
+      const response = { data: undefined };
       data.json.and.returnValue(response);
       component.populateCategory(data);
       expect(component.category.id).toBeUndefined();
@@ -116,7 +116,7 @@ describe('CategoryFormComponent', () => {
 
   describe('onSubmit', () => {
     it('should save new page when no id', () => {
-      let category = new Category('test', 5);
+      const category = new Category('test', 5);
       component.id = undefined;
       component.category = category;
       component.onSubmit();
@@ -124,7 +124,7 @@ describe('CategoryFormComponent', () => {
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
     it('should update existing user when id exists', () => {
-      let category = new Category('test', 5);
+      const category = new Category('test', 5);
       component.id = 5;
       component.category = category;
       component.onSubmit();
@@ -134,8 +134,8 @@ describe('CategoryFormComponent', () => {
   });
 
   it('should set id result on save', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let response = { data: { id: 6 } };
+    const data = { json: jasmine.createSpy('json') };
+    const response = { data: { id: 6 } };
     data.json.and.returnValue(response);
     component.saving = true;
     component.id = undefined;

@@ -14,20 +14,20 @@ import { PostService } from '../../services/post/post.service';
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     snapshot: {
       params: {
         'id': 3
       }
     }
   };
-  let PostServiceMock = {
+  const PostServiceMock = {
     getById: jasmine.createSpy('getById')
   };
   PostServiceMock.getById.and.returnValue(fakeSubscribe);
@@ -65,13 +65,13 @@ describe('DetailComponent', () => {
   });
 
   it('should populate posts', () => {
-    let post = new Post();
+    const post = new Post();
     post.publishDate = new Date();
     post.content = 'stuff';
     post.title = 'post title';
     post.published = true;
-    let postdata = { data: post };
-    let data = { json: jasmine.createSpy('json') };
+    const postdata = { data: post };
+    const data = { json: jasmine.createSpy('json') };
     data.json.and.returnValue(postdata);
     component.populatePost(data);
     expect(component.post).toBe(post);

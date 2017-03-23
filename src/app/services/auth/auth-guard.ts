@@ -9,8 +9,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private storageService: StorageService, private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    let user = this.retrieveUser();
-    let tokenData = this.retrieveToken();
+    const user = this.retrieveUser();
+    const tokenData = this.retrieveToken();
     if (user && user.isAdmin && tokenData && tokenData.token && Date.now() <= new Date(tokenData.expires).getTime()) {
       return true;
     }
@@ -20,8 +20,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(): boolean {
-    let user = this.retrieveUser();
-    let tokenData = this.retrieveToken();
+    const user = this.retrieveUser();
+    const tokenData = this.retrieveToken();
     if (user && user.isAdmin && tokenData && tokenData.token && Date.now() <= new Date(tokenData.expires).getTime()) {
       return true;
     }
@@ -31,18 +31,18 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   retrieveUser(): User {
-    let userString = this.storageService.get('user');
+    const userString = this.storageService.get('user');
     if (userString) {
-      let user: User = JSON.parse(userString) as User;
+      const user: User = JSON.parse(userString) as User;
       return user;
     }
     return null;
   }
 
   retrieveToken(): any {
-    let tokenString = this.storageService.get('token');
+    const tokenString = this.storageService.get('token');
     if (tokenString) {
-      let tokenData = JSON.parse(tokenString);
+      const tokenData = JSON.parse(tokenString);
       return tokenData;
     }
     return null;

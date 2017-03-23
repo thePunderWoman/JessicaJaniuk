@@ -14,17 +14,17 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let PostServiceMock = {
+  const PostServiceMock = {
     getAllPublished: jasmine.createSpy('getAllPublished')
   };
   PostServiceMock.getAllPublished.and.returnValue(fakeSubscribe);
-  let activatedRouteMock = {
+  const activatedRouteMock = {
     params: fakeSubscribe
   };
 
@@ -65,13 +65,13 @@ describe('ListComponent', () => {
 
   describe('processRoute', () => {
     it('should process route when params exist and get posts', () => {
-      let params = { page: '2' };
+      const params = { page: '2' };
       component.processRoute(params);
       expect(PostServiceMock.getAllPublished).toHaveBeenCalledWith(2);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
     it('should process route when no params exist and get posts', () => {
-      let params: {};
+      const params: {};
       component.processRoute(params);
       expect(PostServiceMock.getAllPublished).toHaveBeenCalledWith(1);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
@@ -81,8 +81,8 @@ describe('ListComponent', () => {
   it('should populate posts', () => {
     component.show = false;
     spyOn(component, 'setPages');
-    let posts = { data: { count: 2, posts: [{ id: 5, title: 'stuff', content: 'things'}, { id: 3, title: 'fake', content: 'item'}] } };
-    let data = { json: jasmine.createSpy('json') };
+    const posts = { data: { count: 2, posts: [{ id: 5, title: 'stuff', content: 'things'}, { id: 3, title: 'fake', content: 'item'}] } };
+    const data = { json: jasmine.createSpy('json') };
     data.json.and.returnValue(posts);
     component.populatePosts(data);
     expect(component.posts.length).toBe(2);

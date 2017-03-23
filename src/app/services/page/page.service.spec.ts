@@ -9,7 +9,7 @@ import { Page } from '../../models/page';
 
 describe('PageService', () => {
   let MockHttp;
-  let HeaderServiceMock = {
+  const HeaderServiceMock = {
     createAuthHeaders: jasmine.createSpy('createAuthHeaders')
   };
   HeaderServiceMock.createAuthHeaders.and.returnValue('fake headers');
@@ -47,44 +47,44 @@ describe('PageService', () => {
 
   it('should call get all pages endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getAll();
+    const response = service.getAll();
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/page', { headers: 'fake headers' });
   }));
 
   it('should call get page endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getById(5);
+    const response = service.getById(5);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/page/5');
   }));
 
   it('should call get page by key endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.getByKey('stuff');
+    const response = service.getByKey('stuff');
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/page/key/stuff');
   }));
 
   it('should call save page endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    let page = new Page('', '', '');
-    let response = service.save(page);
+    const page = new Page('', '', '');
+    const response = service.save(page);
     expect(response).toBe('posted');
     expect(MockHttp.post).toHaveBeenCalledWith('/test/url/page', page, { headers: 'fake headers' });
   }));
 
   it('should call update page endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    let page = new Page('', '', '');
-    let response = service.update(5, page);
+    const page = new Page('', '', '');
+    const response = service.update(5, page);
     expect(response).toBe('putted');
     expect(MockHttp.put).toHaveBeenCalledWith('/test/url/page/5', page, { headers: 'fake headers' });
   }));
 
   it('should call remove page endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    let response = service.remove(5);
+    const response = service.remove(5);
     expect(response).toBe('things');
     expect(MockHttp.delete).toHaveBeenCalledWith('/test/url/page/5', { headers: 'fake headers' });
   }));

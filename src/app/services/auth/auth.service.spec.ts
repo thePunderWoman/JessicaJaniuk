@@ -9,10 +9,10 @@ import { Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions } from 
 
 describe('AuthService', () => {
   let MockHttp;
-  let fakeSubscribe = {
+  const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  let StorageServiceMock = {
+  const StorageServiceMock = {
     get: jasmine.createSpy('get'),
     set: jasmine.createSpy('set'),
     remove: jasmine.createSpy('remove')

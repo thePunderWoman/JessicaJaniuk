@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit {
-  show: boolean = false;
-  title: string = '';
+  show = false;
+  title = '';
   photos: any = [];
 
   constructor(private flickrService: FlickrService, private titleService: TitleService, private route: ActivatedRoute) {
@@ -18,13 +18,13 @@ export class AlbumComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
     this.flickrService.getPhotos(id).subscribe(this.handlePhotos);
   }
 
   handlePhotos(data) {
     this.show = true;
-    let photos = data.json();
+    const photos = data.json();
     this.title = photos.photoset.title;
     this.photos.push.apply(this.photos, photos.photoset.photo);
     this.titleService.setTitle(this.title);

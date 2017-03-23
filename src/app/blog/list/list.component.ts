@@ -12,11 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ListComponent implements OnInit {
   posts: Post[] = [];
   now: Date = new Date();
-  show: boolean = false;
-  page: number = 1;
-  pages: number = 1;
-  perPage: number = 10;
-  totalPosts: number = 0;
+  show = false;
+  page = 1;
+  pages = 1;
+  perPage = 10;
+  totalPosts = 0;
 
   constructor(private postService: PostService, private titleService: TitleService, private route: ActivatedRoute) {
     this.populatePosts = this.populatePosts.bind(this);
@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
 
   populatePosts(data) {
     this.posts = [];
-    let response = data.json().data;
+    const response = data.json().data;
     this.totalPosts = response.count;
     this.posts.push.apply(this.posts, response.posts);
     this.setPages();

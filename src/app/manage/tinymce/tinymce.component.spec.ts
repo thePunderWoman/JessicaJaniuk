@@ -57,7 +57,7 @@ describe('TinymceComponent', () => {
   });
 
   it('should setup editor', () => {
-    let fakeEditor = jasmine.createSpyObj('tinymce', ['on']);
+    const fakeEditor = jasmine.createSpyObj('tinymce', ['on']);
     spyOn(component.onEditorCreated, 'emit');
     component.setupEditor(fakeEditor);
     expect(component.onEditorCreated.emit).toHaveBeenCalled();
@@ -88,16 +88,16 @@ describe('TinymceComponent', () => {
 
   describe('ngOnChanges', () => {
     it('should handle on changes when readonly', () => {
-      let change = new SimpleChange('readOnly', 'readOnly');
-      let attr = { setAttribute: jasmine.createSpy('setAttribute') };
+      const change = new SimpleChange('readOnly', 'readOnly');
+      const attr = { setAttribute: jasmine.createSpy('setAttribute') };
       component.tinymceEditor = jasmine.createSpyObj('editor', ['getBody']);
       component.tinymceEditor.getBody.and.returnValue(attr);
       component.ngOnChanges({'readOnly': change});
       expect(attr.setAttribute).toHaveBeenCalledWith('contenteditable', false);
     });
     it('should handle on changes when not read only', () => {
-      let change = new SimpleChange('things', 'things');
-      let attr = { setAttribute: jasmine.createSpy('setAttribute') };
+      const change = new SimpleChange('things', 'things');
+      const attr = { setAttribute: jasmine.createSpy('setAttribute') };
       component.tinymceEditor = jasmine.createSpyObj('editor', ['getBody']);
       component.tinymceEditor.getBody.and.returnValue(attr);
       component.ngOnChanges({'stuff': change});
@@ -126,13 +126,13 @@ describe('TinymceComponent', () => {
   });
 
   it('should register on change', () => {
-    let spy = jasmine.createSpy('testSpy');
+    const spy = jasmine.createSpy('testSpy');
     component.registerOnChange(spy);
     expect(component.onModelChange).toBe(spy);
   });
 
   it('should register on touched', () => {
-    let spy = jasmine.createSpy('testSpy');
+    const spy = jasmine.createSpy('testSpy');
     component.registerOnTouched(spy);
     expect(component.onModelTouched).toBe(spy);
   });

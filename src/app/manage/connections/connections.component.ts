@@ -45,7 +45,7 @@ export class ConnectionsComponent implements OnInit {
 
   confirmDelete(key) {
     this.key = key;
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(DeleteDialogComponent, config);
@@ -60,7 +60,7 @@ export class ConnectionsComponent implements OnInit {
   }
 
   handleDelete() {
-    let ix = this.connections.findIndex((usr) => usr.id === this.key);
+    const ix = this.connections.findIndex((usr) => usr.id === this.key);
     this.connections.splice(ix, 1);
     this.key = undefined;
   }

@@ -11,18 +11,18 @@ import { TitleService } from '../../services/title/title.service';
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
   let fixture: ComponentFixture<AlbumListComponent>;
-  let flickrServiceMock = {
+  const flickrServiceMock = {
     getAlbums: jasmine.createSpy('getAlbums'),
     getPhotos: jasmine.createSpy('getPhotos')
   };
-  let fakeObservable = {
+  const fakeObservable = {
     subscribe: jasmine.createSpy('subscribe')
   };
 
   flickrServiceMock.getAlbums.and.returnValue(fakeObservable);
   flickrServiceMock.getPhotos.and.returnValue(fakeObservable);
 
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
 
@@ -56,10 +56,10 @@ describe('AlbumListComponent', () => {
   });
 
   it('should handle photo data', () => {
-    let fakeData = {
+    const fakeData = {
       json: jasmine.createSpy('json')
     };
-    let photoData = {
+    const photoData = {
       photosets: {
         photoset: [
           { name: 'stuff' },

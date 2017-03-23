@@ -11,17 +11,17 @@ import { ConnectionService } from '../services/connection/connection.service';
 describe('ConnectComponent', () => {
   let component: ConnectComponent;
   let fixture: ComponentFixture<ConnectComponent>;
-  let TitleServiceMock = {
+  const TitleServiceMock = {
     setTitle: jasmine.createSpy('setTitle')
   };
-  let fbList = { subscribe: jasmine.createSpy('subscribe') };
-  let PageServiceMock = {
+  const fbList = { subscribe: jasmine.createSpy('subscribe') };
+  const PageServiceMock = {
     getByKey: jasmine.createSpy('getByKey')
   };
-  let ConnectionServiceMock = {
+  const ConnectionServiceMock = {
     getAll: jasmine.createSpy('getAll')
   };
-  let fakeSubscribe = { subscribe: jasmine.createSpy('subscribe') };
+  const fakeSubscribe = { subscribe: jasmine.createSpy('subscribe') };
   PageServiceMock.getByKey.and.returnValue(fakeSubscribe);
   ConnectionServiceMock.getAll.and.returnValue(fakeSubscribe);
 
@@ -50,8 +50,8 @@ describe('ConnectComponent', () => {
   });
 
   it('should handle page data', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let pageData = { data: { content: 'content', title: 'titlestuff' } };
+    const data = { json: jasmine.createSpy('json') };
+    const pageData = { data: { content: 'content', title: 'titlestuff' } };
     data.json.and.returnValue(pageData);
     component.handlePage(data);
     expect(component.body).toBe('content');
@@ -60,8 +60,8 @@ describe('ConnectComponent', () => {
   });
 
   it('should handle connection data', () => {
-    let data = { json: jasmine.createSpy('json') };
-    let connectionData = { data: [{ id: 5, name: 'connection' }, { id: 2, name: 'other'}] };
+    const data = { json: jasmine.createSpy('json') };
+    const connectionData = { data: [{ id: 5, name: 'connection' }, { id: 2, name: 'other'}] };
     data.json.and.returnValue(connectionData);
     component.handleConnections(data);
     expect(component.items.length).toBe(2);
