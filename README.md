@@ -19,15 +19,15 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Build Node Express Backend
 - [x] Switch to AOT compiling
 - [x] Migrate front end off of Firebase
+- [x] Add open graph defaults
+- [ ] Update to Angular 4
+- [ ] Add server side rendering support
 - [ ] Add Open Graph support
-- [ ] Add open graph defaults
 - [ ] Add route for blog post url with slug and date
 - [ ] Update current post route to redirect to new route
 - [ ] Add blog comment system with social media SSO
-- [ ] Update to Angular 4
 - [ ] Add blog navigation
 - [ ] Add blog history calendar
-- [ ] Add server side rendering support
 - [ ] Add RSS feeds
 - [ ] Add post versioning
 - [ ] Add Grungey Video Game 3D feel
