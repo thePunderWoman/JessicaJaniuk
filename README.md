@@ -20,11 +20,10 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Switch to AOT compiling
 - [x] Migrate front end off of Firebase
 - [x] Add open graph defaults
+- [x] Add route for blog post url with slug and date
 - [ ] Update to Angular 4
 - [ ] Add server side rendering support
 - [ ] Add Open Graph support
-- [ ] Add route for blog post url with slug and date
-- [ ] Update current post route to redirect to new route
 - [ ] Add blog comment system with social media SSO
 - [ ] Add blog navigation
 - [ ] Add blog history calendar
