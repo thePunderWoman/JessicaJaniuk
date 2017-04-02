@@ -9,7 +9,7 @@
     "e2e": "ng e2e",
     "coverage": "ng test --code-coverage --single-run",
     "view-coverage": "http-server -c-1 -o -p 9875 ./coverage",
-    "coveralls": "ls ./coverage && cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls -v",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls -v",
     "postinstall": "ng build --aot --prod"
   },
   "private": true,
