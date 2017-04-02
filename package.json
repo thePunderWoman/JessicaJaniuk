@@ -9,7 +9,7 @@
     "e2e": "ng e2e",
     "coverage": "ng test --code-coverage --single-run",
     "view-coverage": "http-server -c-1 -o -p 9875 ./coverage",
-    "coveralls": "cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls -v",
+    "coveralls": "ng test --code-coverage --single-run && cat ./coverage/coverage.lcov | ./node_modules/.bin/coveralls -v",
     "postinstall": "ng build --aot --prod"
   },
   "private": true,
@@ -51,15 +51,15 @@
     "@types/jasmine": "2.5.41",
     "@types/node": "~7.0.0",
     "codelyzer": "~2.0.0-beta.1",
-    "coveralls": "^2.11.15",
+    "coveralls": "^2.13.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.3.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-coverage-istanbul-reporter": "^0.3.0",
     "protractor": "~5.1.0",
     "tslint": "~4.5.0"
   }
