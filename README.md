@@ -21,7 +21,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Migrate front end off of Firebase
 - [x] Add open graph defaults
 - [x] Add route for blog post url with slug and date
-- [ ] Update to Angular 4
+- [x] Update to Angular 4
 - [ ] Add server side rendering support
 - [ ] Add Open Graph support
 - [ ] Add blog comment system with social media SSO
