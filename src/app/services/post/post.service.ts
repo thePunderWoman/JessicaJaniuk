@@ -21,9 +21,19 @@ export class PostService {
       .get(`${this.apiBaseUrl}post/published?page=${page}`);
   }
 
+  getAllPublishedPersonal(page: number): Observable<Response> {
+    return this.http
+      .get(`${this.apiBaseUrl}post/category/personal?page=${page}`);
+  }
+
   getById(id: number): Observable<Response> {
     return this.http
       .get(`${this.apiBaseUrl}post/${id}`);
+  }
+
+  getByKeyAndDate(year: number, month: number, day: number, key: string): Observable<Response> {
+    return this.http
+      .get(`${this.apiBaseUrl}post/${year}/${month}/${day}/${key}`);
   }
 
   save(post: Post): Observable<Response> {

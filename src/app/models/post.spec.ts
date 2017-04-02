@@ -10,4 +10,25 @@ describe('Post model', () => {
     expect(post.publishDate).toEqual(date);
     expect(post.PublishDateString).toBe(datestr);
   });
+
+  it('should get month', () => {
+    const date = new Date(2017, 0, 11, 14, 23);
+    const post = new Post();
+    post.publishDate = date;
+    expect(post.month).toEqual(1);
+  });
+
+  it('should get day', () => {
+    const date = new Date(2017, 0, 11, 14, 23);
+    const post = new Post();
+    post.publishDate = date;
+    expect(post.day).toEqual(11);
+  });
+
+  it('should get year', () => {
+    const date = new Date(2017, 0, 11, 14, 23);
+    const post = new Post();
+    post.publishDate = date;
+    expect(post.year).toEqual(2017);
+  });
 });

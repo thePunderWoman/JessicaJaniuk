@@ -8,11 +8,11 @@ import { MomentModule } from 'angular2-moment';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { NotFoundComponent }    from './notfound/notfound.component';
+import { NotFoundComponent } from './notfound/notfound.component';
 
-import { HeaderModule }    from './header/header.module';
-import { ManageModule }    from './manage/manage.module';
-import { PublicModule }    from './public/public.module';
+import { HeaderModule } from './header/header.module';
+import { ManageModule } from './manage/manage.module';
+import { PublicModule } from './public/public.module';
 
 import { FlickrService } from './services/flickr/flickr.service';
 import { TitleService } from './services/title/title.service';

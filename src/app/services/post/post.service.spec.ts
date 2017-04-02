@@ -59,11 +59,25 @@ describe('PostService', () => {
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/published?page=1');
   }));
 
+  it('should call get all published personal posts endpoint', inject([PostService, HeaderService], (service: PostService) => {
+    service.apiBaseUrl = '/test/url/';
+    const response = service.getAllPublishedPersonal(1);
+    expect(response).toBe('stuff');
+    expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/category/personal?page=1');
+  }));
+
   it('should call get post endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
     const response = service.getById(5);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/5');
+  }));
+
+  it('should call get post by date and key endpoint', inject([PostService, HeaderService], (service: PostService) => {
+    service.apiBaseUrl = '/test/url/';
+    const response = service.getByKeyAndDate(2017, 4, 2, 'thisisakey');
+    expect(response).toBe('stuff');
+    expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/2017/4/2/thisisakey');
   }));
 
   it('should call save post endpoint', inject([PostService, HeaderService], (service: PostService) => {
