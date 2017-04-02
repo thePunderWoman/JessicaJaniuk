@@ -18,8 +18,11 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
-    this.postService.getById(id).subscribe(this.populatePost);
+    const year = this.route.snapshot.params['year'];
+    const month = this.route.snapshot.params['month'];
+    const day = this.route.snapshot.params['day'];
+    const key = this.route.snapshot.params['key'];
+    this.postService.getByKeyAndDate(year, month, day, key).subscribe(this.populatePost);
   }
 
   populatePost(data): void {

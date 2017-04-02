@@ -23,14 +23,17 @@ describe('DetailComponent', () => {
   const activatedRouteMock = {
     snapshot: {
       params: {
-        'id': 3
+        'year': 2017,
+        'month': 4,
+        'day': 2,
+        'key': 'this-is-a-key'
       }
     }
   };
   const PostServiceMock = {
-    getById: jasmine.createSpy('getById')
+    getByKeyAndDate: jasmine.createSpy('getByKeyAndDate')
   };
-  PostServiceMock.getById.and.returnValue(fakeSubscribe);
+  PostServiceMock.getByKeyAndDate.and.returnValue(fakeSubscribe);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -60,7 +63,7 @@ describe('DetailComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(PostServiceMock.getById).toHaveBeenCalledWith(3);
+    expect(PostServiceMock.getByKeyAndDate).toHaveBeenCalledWith(2017, 4, 2, 'this-is-a-key');
     expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePost);
   });
 

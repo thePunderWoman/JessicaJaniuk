@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { BlogComponent } from './blog.component';
@@ -15,7 +15,7 @@ const blogRoutes: Routes = [
         component: ListComponent
       },
       {
-        path: 'post/:id',
+        path: 'post/:year/:month/:day/:key',
         component: DetailComponent
       }
     ]

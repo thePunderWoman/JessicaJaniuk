@@ -1,7 +1,7 @@
 <div class="content-block blog-list" [ngClass]="{'show': show}">
   <h4>Blog</h4>
   <div *ngFor="let post of posts" class="blog-post">
-    <h5><a [routerLink]="['/blog/post/', post.id]" [innerText]="post.title"></a></h5>
+    <h5><a [routerLink]="['/blog/post/', post.year, post.month, post.day, post.key]" [innerText]="post.title"></a></h5>
     <p class="by-line">Posted on {{ post.publishDate | amDateFormat:'MMMM Do YYYY, h:mm a' }}</p>
     <div [innerHTML]="post.content"></div>
   </div>

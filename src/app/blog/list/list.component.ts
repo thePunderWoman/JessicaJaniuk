@@ -30,14 +30,17 @@ export class ListComponent implements OnInit {
 
   processRoute(params) {
     this.page = (params && params.page) ? Number(params.page) : 1;
-    this.postService.getAllPublished(this.page).subscribe(this.populatePosts);
+    this.postService.getAllPublishedPersonal(this.page).subscribe(this.populatePosts);
   }
 
   populatePosts(data) {
     this.posts = [];
     const response = data.json().data;
     this.totalPosts = response.count;
-    this.posts.push.apply(this.posts, response.posts);
+    response.posts.forEach((post) => {
+      const pst = new Post(post);
+      this.posts.push(pst);
+    });
     this.setPages();
     this.show = true;
   }

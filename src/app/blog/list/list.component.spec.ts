@@ -21,9 +21,9 @@ describe('ListComponent', () => {
     subscribe: jasmine.createSpy('subscribe')
   };
   const PostServiceMock = {
-    getAllPublished: jasmine.createSpy('getAllPublished')
+    getAllPublishedPersonal: jasmine.createSpy('getAllPublishedPersonal')
   };
-  PostServiceMock.getAllPublished.and.returnValue(fakeSubscribe);
+  PostServiceMock.getAllPublishedPersonal.and.returnValue(fakeSubscribe);
   const activatedRouteMock = {
     params: fakeSubscribe
   };
@@ -46,7 +46,7 @@ describe('ListComponent', () => {
   }));
 
   beforeEach(() => {
-    PostServiceMock.getAllPublished.calls.reset();
+    PostServiceMock.getAllPublishedPersonal.calls.reset();
     fakeSubscribe.subscribe.calls.reset();
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
@@ -67,13 +67,13 @@ describe('ListComponent', () => {
     it('should process route when params exist and get posts', () => {
       const params = { page: '2' };
       component.processRoute(params);
-      expect(PostServiceMock.getAllPublished).toHaveBeenCalledWith(2);
+      expect(PostServiceMock.getAllPublishedPersonal).toHaveBeenCalledWith(2);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
     it('should process route when no params exist and get posts', () => {
-      const params: {};
+      const params = {};
       component.processRoute(params);
-      expect(PostServiceMock.getAllPublished).toHaveBeenCalledWith(1);
+      expect(PostServiceMock.getAllPublishedPersonal).toHaveBeenCalledWith(1);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
   });
