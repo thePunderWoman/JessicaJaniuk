@@ -32,14 +32,14 @@ export class Post {
   }
 
   get month(): number {
-    return this.publishDate.getMonth() + 1;
+    return this.publishDate.getUTCMonth() + 1;
   }
 
   get day(): number {
-    return this.publishDate.getDate();
+    return this.publishDate.getUTCDate();
   }
 
   get year(): number {
-    return this.publishDate.getFullYear();
+    return this.publishDate.getUTCFullYear();
   }
 }
