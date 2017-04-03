@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Observable } from 'RxJS';
+import { Observable } from 'rxjs/Observable';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post/post.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { BlogComponent } from './blog.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MomentModule } from 'angular2-moment';
-import { MdIconModule } from '@angular/material/icon';
-import { MdDialogModule } from '@angular/material/dialog';
+import { MdIconModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
 
 describe('BlogComponent', () => {
   let component: BlogComponent;

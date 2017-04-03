@@ -5,9 +5,10 @@ import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category/category.service';
 import { Category } from '../../models/category';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CategoryFormComponent } from './category-form.component';
-import { MdInputModule } from '@angular/material/input';
+import { MdInputModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 
 describe('CategoryFormComponent', () => {
@@ -41,6 +42,7 @@ describe('CategoryFormComponent', () => {
       declarations: [ CategoryFormComponent ],
       imports: [
         FormsModule,
+        BrowserAnimationsModule,
         MdInputModule.forRoot()
       ],
       providers: [

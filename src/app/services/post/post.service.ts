@@ -21,9 +21,9 @@ export class PostService {
       .get(`${this.apiBaseUrl}post/published?page=${page}`);
   }
 
-  getAllPublishedPersonal(page: number): Observable<Response> {
+  getAllPublishedByCategory(category: string, page: number): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}post/category/personal?page=${page}`);
+      .get(`${this.apiBaseUrl}post/category/${category}?page=${page}`);
   }
 
   getById(id: number): Observable<Response> {

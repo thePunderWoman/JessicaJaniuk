@@ -3,11 +3,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthenticationComponent } from './authentication.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { StorageService } from '../../services/storage/storage.service';
-import { MdInputModule } from '@angular/material/input';
+import { MdInputModule } from '@angular/material';
 import { Router } from '@angular/router';
 
 describe('AuthenticationComponent', () => {
@@ -39,6 +40,7 @@ describe('AuthenticationComponent', () => {
       declarations: [ AuthenticationComponent ],
       imports: [
         FormsModule,
+        BrowserAnimationsModule,
         MdInputModule.forRoot(),
       ],
       providers: [

@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import { MetaTag } from './MetaTag';
 
 export class Post {
   public id: number;
@@ -7,6 +8,7 @@ export class Post {
   public content: string;
   public categoryId: number;
   public tags: string[] = [];
+  public meta: MetaTag[] = [];
   public published = false;
   public publishDate: Date = new Date();
 
@@ -20,6 +22,7 @@ export class Post {
       this.tags = post.tags;
       this.published = post.published;
       this.publishDate = moment(post.publishDate).toDate();
+      this.meta = post.meta;
     }
   }
 

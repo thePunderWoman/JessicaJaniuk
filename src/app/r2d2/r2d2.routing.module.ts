@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BlogComponent } from './blog.component';
-import { ListComponent } from './list/list.component';
-import { DetailComponent } from './detail/detail.component';
-import { PostResolver } from './blog.post.resolver';
+import { BlogComponent } from '../blog/blog.component';
+import { ListComponent } from '../blog/list/list.component';
+import { DetailComponent } from '../blog/detail/detail.component';
+import { PostResolver } from '../blog/blog.post.resolver';
 
-const blogRoutes: Routes = [
+const r2d2Routes: Routes = [
   {
     path: '',
     component: BlogComponent,
@@ -15,8 +15,8 @@ const blogRoutes: Routes = [
         path: '',
         component: ListComponent,
         data: {
-          title: 'Blog',
-          category: 'personal'
+          title: 'R2-D2',
+          category: 'r2-d2'
         }
       },
       {
@@ -32,9 +32,9 @@ const blogRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(blogRoutes)
+    RouterModule.forChild(r2d2Routes)
   ],
   exports: [ RouterModule ]
 })
 
-export class BlogRoutingModule { }
+export class R2D2RoutingModule { }

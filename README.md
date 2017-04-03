@@ -22,8 +22,8 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - [x] Add open graph defaults
 - [x] Add route for blog post url with slug and date
 - [x] Update to Angular 4
+- [x] Add Open Graph support
 - [ ] Add server side rendering support
-- [ ] Add Open Graph support
 - [ ] Add blog comment system with social media SSO
 - [ ] Add blog navigation
 - [ ] Add blog history calendar

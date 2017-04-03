@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -7,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post/post.service';
 import { CategoryService } from '../../services/category/category.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MetaTag } from '../../models/MetaTag';
 
 import { PostFormComponent } from './post-form.component';
 import { ActivatedRoute } from '@angular/router';
-import { MdInputModule } from '@angular/material/input';
-import { MdSlideToggleModule } from '@angular/material/slide-toggle';
+import { MdInputModule } from '@angular/material';
+import { MdSlideToggleModule } from '@angular/material';
 
 describe('PostFormComponent', () => {
   let component: PostFormComponent;
@@ -44,6 +45,7 @@ describe('PostFormComponent', () => {
       declarations: [ PostFormComponent ],
       imports: [
         FormsModule,
+        BrowserAnimationsModule,
         MdSlideToggleModule.forRoot(),
         MdInputModule.forRoot(),
       ],
@@ -202,6 +204,46 @@ describe('PostFormComponent', () => {
       component.post.tags.push('test');
       component.removeTag('stuff');
       expect(component.post.tags).toEqual(['test']);
+    });
+  });
+
+  describe('addMeta', () => {
+    it('should not add when metaChoice is empty space', () => {
+      component.metaChoice = ' ';
+      component.metaValue = 'stuff';
+      component.addMeta();
+      expect(component.post.meta).toEqual([]);
+    });
+    it('should not add when metaValue is empty space', () => {
+      component.metaChoice = 'og:description';
+      component.metaValue = ' ';
+      component.addMeta();
+      expect(component.post.meta).toEqual([]);
+    });
+    it('should add', () => {
+      const tag = new MetaTag('og:video', 'test');
+      component.post.meta.push(tag);
+      component.metaChoice = 'og:audio';
+      component.metaValue = 'things';
+      component.addMeta();
+      expect(component.post.meta).toEqual([tag, new MetaTag('og:audio', 'things')]);
+      expect(component.metaChoice).toBe('og:description');
+      expect(component.metaValue).toBe('');
+    });
+  });
+
+  describe('removeMeta', () => {
+    it('should remove meta if exists', () => {
+      const tag = new MetaTag('og:video', 'test');
+      component.post.meta.push(tag);
+      component.removeMeta(tag);
+      expect(component.post.meta).toEqual([]);
+    });
+    it('should do nothing if tag does not exist', () => {
+      const tag = new MetaTag('og:video', 'test');
+      component.post.meta.push(tag);
+      component.removeMeta(new MetaTag('test', 'nope'));
+      expect(component.post.meta).toEqual([tag]);
     });
   });
 });

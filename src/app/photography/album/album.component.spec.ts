@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -7,41 +6,53 @@ import { AlbumComponent } from './album.component';
 import { FlickrService } from '../../services/flickr/flickr.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TitleService } from '../../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 describe('AlbumComponent', () => {
   let component: AlbumComponent;
   let fixture: ComponentFixture<AlbumComponent>;
-  const flickrServiceMock = {
-    getAlbums: jasmine.createSpy('getAlbums'),
-    getPhotos: jasmine.createSpy('getPhotos')
-  };
-  const fakeObservable = {
-    subscribe: jasmine.createSpy('subscribe')
-  };
-  const TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
+  const MetaServiceMock = {
+    setTitle: jasmine.createSpy('setTitle'),
+    setTag: jasmine.createSpy('setTag')
   };
 
-  flickrServiceMock.getAlbums.and.returnValue(fakeObservable);
-  flickrServiceMock.getPhotos.and.returnValue(fakeObservable);
+  const fakeData = {
+    json: jasmine.createSpy('json')
+  };
+  const photoData = {
+    photoset: {
+      title: 'album of stuff',
+      photo: [
+        { name: 'stuff' },
+        { name: 'things' }
+      ]
+    }
+  };
+  fakeData.json.and.returnValue(photoData);
 
   const activatedRouteMock = {
     snapshot: {
-      params: {
-        'id': 'things'
+      data: {
+        'album': fakeData
       }
     }
   };
+
+  const FullUrlServiceMock = {
+    url: jasmine.createSpy('url')
+  };
+  FullUrlServiceMock.url.and.returnValue('testurl');
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AlbumComponent ],
       imports: [ RouterTestingModule ],
       providers: [
-        { provide: FlickrService, useValue: flickrServiceMock },
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: TitleService, useValue: TitleServiceMock }
+        { provide: MetaService, useValue: MetaServiceMock },
+        { provide: FullUrlService, useValue: FullUrlServiceMock },
       ]
     })
     .compileComponents();
@@ -58,30 +69,11 @@ describe('AlbumComponent', () => {
   });
 
   it('should ngOnInit', () => {
+    component.photos = [];
     component.ngOnInit();
-    expect(flickrServiceMock.getPhotos).toHaveBeenCalledWith('things');
-    expect(fakeObservable.subscribe).toHaveBeenCalledWith(component.handlePhotos);
-  });
-
-  it('should handle photo data', () => {
-    const fakeData = {
-      json: jasmine.createSpy('json')
-    };
-    const photoData = {
-      photoset: {
-        title: 'album of stuff',
-        photo: [
-          { name: 'stuff' },
-          { name: 'things' }
-        ]
-      }
-    };
-    fakeData.json.and.returnValue(photoData);
-
-    component.handlePhotos(fakeData);
     expect(component.show).toBeTruthy();
     expect(component.photos).toEqual(photoData.photoset.photo);
     expect(component.title).toBe(photoData.photoset.title);
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('album of stuff');
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith('album of stuff');
   });
 });

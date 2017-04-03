@@ -1,23 +1,23 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { HomeComponent } from './home.component';
-import { TitleService } from '../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  const TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
+  const MetaServiceMock = {
+    setTitle: jasmine.createSpy('setTitle'),
+    setTag: jasmine.createSpy('setTag')
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       providers: [
-        { provide: TitleService, useValue: TitleServiceMock },
+        { provide: MetaService, useValue: MetaServiceMock },
       ]
     })
     .compileComponents();
@@ -35,6 +35,6 @@ describe('HomeComponent', () => {
 
   it('should set title on init', () => {
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Welcome');
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith('Welcome');
   });
 });

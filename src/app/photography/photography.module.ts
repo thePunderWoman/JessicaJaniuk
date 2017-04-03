@@ -6,6 +6,7 @@ import { PhotographyComponent } from './photography.component';
 import { AlbumComponent } from './album/album.component';
 import { PhotographyRoutingModule } from './photography.routing.module';
 import { AlbumListComponent } from './album-list/album-list.component';
+import { AlbumResolver } from './photography.album.resolver';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { AlbumListComponent } from './album-list/album-list.component';
     PhotographyComponent,
     AlbumComponent,
     AlbumListComponent
+  ],
+  providers: [
+    AlbumResolver
   ]
 })
 export class PhotographyModule { }

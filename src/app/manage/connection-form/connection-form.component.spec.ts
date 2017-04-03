@@ -5,9 +5,10 @@ import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConnectionService } from '../../services/connection/connection.service';
 import { Connection } from '../../models/connection';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ConnectionFormComponent } from './connection-form.component';
-import { MdInputModule } from '@angular/material/input';
+import { MdInputModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 
 describe('ConnectionFormComponent', () => {
@@ -41,6 +42,7 @@ describe('ConnectionFormComponent', () => {
       declarations: [ ConnectionFormComponent ],
       imports: [
         FormsModule,
+        BrowserAnimationsModule,
         MdInputModule.forRoot()
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

@@ -7,6 +7,7 @@ import { AuthGuard } from '../services/auth/auth-guard';
 import { MomentModule } from 'angular2-moment';
 import { DetailComponent } from './detail/detail.component';
 import { PaginationModule } from '../pagination/pagination.module';
+import { PostResolver } from './blog.post.resolver';
 
 @NgModule({
   imports: [
@@ -21,7 +22,13 @@ import { PaginationModule } from '../pagination/pagination.module';
     DetailComponent,
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    PostResolver
+  ],
+  exports: [
+    BlogComponent,
+    ListComponent,
+    DetailComponent
   ]
 })
 export class BlogModule { }

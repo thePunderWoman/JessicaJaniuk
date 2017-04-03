@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Post } from '../../models/post';
 import { MomentModule } from 'angular2-moment';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material/dialog';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { PostService } from '../../services/post/post.service';
 import { AuthService } from '../../services/auth/auth.service';

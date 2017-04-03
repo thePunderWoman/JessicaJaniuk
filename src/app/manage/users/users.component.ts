@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material/dialog';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({

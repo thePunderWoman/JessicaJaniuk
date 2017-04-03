@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { PageService } from '../../services/page/page.service';
 import { Page } from '../../models/page';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material/dialog';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';

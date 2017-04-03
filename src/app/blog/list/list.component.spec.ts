@@ -1,31 +1,42 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Post } from '../../models/post';
 
 import { ListComponent } from './list.component';
-import { TitleService } from '../../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
 import { PostService } from '../../services/post/post.service';
 import { MomentModule } from 'angular2-moment';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
-  const TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
+  const FullUrlServiceMock = {
+    url: jasmine.createSpy('url')
   };
+  FullUrlServiceMock.url.and.returnValue('testurl');
+  const MetaServiceMock = {
+    setTitle: jasmine.createSpy('setTitle'),
+    setTag: jasmine.createSpy('setTag')
+ };
   const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
   const PostServiceMock = {
-    getAllPublishedPersonal: jasmine.createSpy('getAllPublishedPersonal')
+    getAllPublishedByCategory: jasmine.createSpy('getAllPublishedByCategory')
   };
-  PostServiceMock.getAllPublishedPersonal.and.returnValue(fakeSubscribe);
+  PostServiceMock.getAllPublishedByCategory.and.returnValue(fakeSubscribe);
   const activatedRouteMock = {
-    params: fakeSubscribe
+    params: fakeSubscribe,
+    snapshot: {
+      data: {
+        title: 'Blog',
+        category: 'personal'
+      }
+    }
   };
 
   beforeEach(async(() => {
@@ -37,8 +48,9 @@ describe('ListComponent', () => {
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
-        { provide: TitleService, useValue: TitleServiceMock },
+        { provide: MetaService, useValue: MetaServiceMock },
         { provide: PostService, useValue: PostServiceMock },
+        { provide: FullUrlService, useValue: FullUrlServiceMock },
         { provide: ActivatedRoute, useValue: activatedRouteMock }
       ],
     })
@@ -46,7 +58,7 @@ describe('ListComponent', () => {
   }));
 
   beforeEach(() => {
-    PostServiceMock.getAllPublishedPersonal.calls.reset();
+    PostServiceMock.getAllPublishedByCategory.calls.reset();
     fakeSubscribe.subscribe.calls.reset();
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
@@ -60,20 +72,20 @@ describe('ListComponent', () => {
   it('should ngOnInit', () => {
     component.ngOnInit();
     expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.processRoute);
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Blog');
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith('Blog');
   });
 
   describe('processRoute', () => {
     it('should process route when params exist and get posts', () => {
       const params = { page: '2' };
       component.processRoute(params);
-      expect(PostServiceMock.getAllPublishedPersonal).toHaveBeenCalledWith(2);
+      expect(PostServiceMock.getAllPublishedByCategory).toHaveBeenCalledWith('personal', 2);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
     it('should process route when no params exist and get posts', () => {
       const params = {};
       component.processRoute(params);
-      expect(PostServiceMock.getAllPublishedPersonal).toHaveBeenCalledWith(1);
+      expect(PostServiceMock.getAllPublishedByCategory).toHaveBeenCalledWith('personal', 1);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
   });

@@ -1,39 +1,44 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { DetailComponent } from './detail.component';
 import { Post } from '../../models/post';
-import { TitleService } from '../../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
 import { MomentModule } from 'angular2-moment';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PostService } from '../../services/post/post.service';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
-  const TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
+  const MetaServiceMock = {
+    setTitle: jasmine.createSpy('setTitle'),
+    setTag: jasmine.createSpy('setTag')
   };
-  const fakeSubscribe = {
-    subscribe: jasmine.createSpy('subscribe')
+  const FullUrlServiceMock = {
+    url: jasmine.createSpy('url')
   };
+  FullUrlServiceMock.url.and.returnValue('testurl');
+  const post = {
+    publishDate: new Date(),
+    content: 'stuff',
+    title: 'post title',
+    published: true,
+    Meta: [{tag: 'stuff', value: 'things'}]
+  };
+  const postdata = { data: post };
+  const data = { json: jasmine.createSpy('json') };
+  data.json.and.returnValue(postdata);
   const activatedRouteMock = {
     snapshot: {
-      params: {
-        'year': 2017,
-        'month': 4,
-        'day': 2,
-        'key': 'this-is-a-key'
+      data: {
+        post: data
       }
     }
   };
-  const PostServiceMock = {
-    getByKeyAndDate: jasmine.createSpy('getByKeyAndDate')
-  };
-  PostServiceMock.getByKeyAndDate.and.returnValue(fakeSubscribe);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,8 +49,8 @@ describe('DetailComponent', () => {
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: TitleService, useValue: TitleServiceMock },
-        { provide: PostService, useValue: PostServiceMock }
+        { provide: FullUrlService, useValue: FullUrlServiceMock },
+        { provide: MetaService, useValue: MetaServiceMock }
       ],
     })
     .compileComponents();
@@ -63,23 +68,8 @@ describe('DetailComponent', () => {
 
   it('should ngOnInit', () => {
     component.ngOnInit();
-    expect(PostServiceMock.getByKeyAndDate).toHaveBeenCalledWith(2017, 4, 2, 'this-is-a-key');
-    expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePost);
-  });
-
-  it('should populate posts', () => {
-    const post = new Post();
-    post.publishDate = new Date();
-    post.content = 'stuff';
-    post.title = 'post title';
-    post.published = true;
-    const postdata = { data: post };
-    const data = { json: jasmine.createSpy('json') };
-    data.json.and.returnValue(postdata);
-    component.populatePost(data);
     expect(component.post).toBe(post);
     expect(component.show).toBeTruthy();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('post title');
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith('post title');
   });
-
 });

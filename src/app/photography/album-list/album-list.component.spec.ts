@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -6,7 +5,8 @@ import { DebugElement } from '@angular/core';
 import { AlbumListComponent } from './album-list.component';
 import { FlickrService } from '../../services/flickr/flickr.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TitleService } from '../../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
@@ -22,8 +22,14 @@ describe('AlbumListComponent', () => {
   flickrServiceMock.getAlbums.and.returnValue(fakeObservable);
   flickrServiceMock.getPhotos.and.returnValue(fakeObservable);
 
-  const TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
+  const FullUrlServiceMock = {
+    url: jasmine.createSpy('url')
+  };
+  FullUrlServiceMock.url.and.returnValue('testurl');
+
+  const MetaServiceMock = {
+    setTitle: jasmine.createSpy('setTitle'),
+    setTag: jasmine.createSpy('setTag')
   };
 
   beforeEach(async(() => {
@@ -32,7 +38,8 @@ describe('AlbumListComponent', () => {
       imports: [ RouterTestingModule ],
       providers: [
         { provide: FlickrService, useValue: flickrServiceMock },
-        { provide: TitleService, useValue: TitleServiceMock }
+        { provide: MetaService, useValue: MetaServiceMock },
+        { provide: FullUrlService, useValue: FullUrlServiceMock },
       ]
     })
     .compileComponents();
@@ -52,7 +59,7 @@ describe('AlbumListComponent', () => {
     component.ngOnInit();
     expect(flickrServiceMock.getAlbums).toHaveBeenCalled();
     expect(fakeObservable.subscribe).toHaveBeenCalledWith(component.handleAlbums);
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('Photography');
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith('Photography');
   });
 
   it('should handle photo data', () => {

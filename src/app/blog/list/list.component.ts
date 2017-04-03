@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '../../services/title/title.service';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
+import { MetaService } from '@nglibs/meta';
 import { PostService } from '../../services/post/post.service';
 import { Post } from '../../models/post';
 import { ActivatedRoute } from '@angular/router';
@@ -17,20 +18,25 @@ export class ListComponent implements OnInit {
   pages = 1;
   perPage = 10;
   totalPosts = 0;
+  title = 'Blog';
 
-  constructor(private postService: PostService, private titleService: TitleService, private route: ActivatedRoute) {
+  constructor(private postService: PostService, private meta: MetaService, private route: ActivatedRoute, private fullUrl: FullUrlService) {
     this.populatePosts = this.populatePosts.bind(this);
     this.processRoute = this.processRoute.bind(this);
+    this.title = route.snapshot.data['title'];
   }
 
   ngOnInit() {
     this.route.params.subscribe(this.processRoute);
-    this.titleService.setTitle('Blog');
+    this.meta.setTitle(this.route.snapshot.data['title']);
+    this.meta.setTag('og:title', 'Blog');
+    this.meta.setTag('og:description', 'Jessica Janiuk\'s Personal Blog');
+    this.meta.setTag('og:url', this.fullUrl.url());
   }
 
   processRoute(params) {
     this.page = (params && params.page) ? Number(params.page) : 1;
-    this.postService.getAllPublishedPersonal(this.page).subscribe(this.populatePosts);
+    this.postService.getAllPublishedByCategory(this.route.snapshot.data['category'], this.page).subscribe(this.populatePosts);
   }
 
   populatePosts(data) {

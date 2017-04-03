@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlickrService } from '../../services/flickr/flickr.service';
-import { TitleService } from '../../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 @Component({
   selector: 'app-album-list',
@@ -11,13 +12,15 @@ export class AlbumListComponent implements OnInit {
   albums: any = [];
   show = false;
 
-  constructor(private flickrService: FlickrService, private titleService: TitleService) {
+  constructor(private flickrService: FlickrService, private meta: MetaService, private fullUrl: FullUrlService) {
     this.handleAlbums = this.handleAlbums.bind(this);
   }
 
   ngOnInit() {
     this.flickrService.getAlbums().subscribe( this.handleAlbums );
-    this.titleService.setTitle('Photography');
+    this.meta.setTitle('Photography');
+    this.meta.setTag('og:title', 'Photography');
+    this.meta.setTag('og:url', this.fullUrl.url());
   }
 
   handleAlbums(data) {
