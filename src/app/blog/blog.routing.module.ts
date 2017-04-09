@@ -20,6 +20,14 @@ const blogRoutes: Routes = [
         }
       },
       {
+        path: ':page',
+        component: ListComponent,
+        data: {
+          title: 'Blog',
+          category: 'personal'
+        }
+      },
+      {
         path: 'post/:year/:month/:day/:key',
         component: DetailComponent,
         resolve: {
