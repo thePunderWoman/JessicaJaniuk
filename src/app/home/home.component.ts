@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +8,10 @@ import { TitleService } from '../services/title/title.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private titleService: TitleService) { }
+  constructor(private meta: MetaService) { }
 
   ngOnInit() {
-    this.titleService.setTitle('Welcome');
+    this.meta.setTitle('Welcome');
   }
 
 }

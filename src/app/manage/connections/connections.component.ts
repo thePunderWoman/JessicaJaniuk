@@ -3,7 +3,7 @@ import { ConnectionService } from '../../services/connection/connection.service'
 import { Connection } from '../../models/connection';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material/dialog';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({

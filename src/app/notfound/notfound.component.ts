@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '../services/title/title.service';
+import { MetaService } from '@nglibs/meta';
 
 @Component({
   selector: 'app-notfound',
@@ -8,9 +8,9 @@ import { TitleService } from '../services/title/title.service';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor(private titleService: TitleService) { }
+  constructor(private meta: MetaService) { }
 
   ngOnInit() {
-    this.titleService.setTitle('404! Not Found');
+    this.meta.setTitle('404! Not Found');
   }
 }

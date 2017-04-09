@@ -1,5 +1,5 @@
 @import "materialize/materialize.scss";
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.scss';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'animations';
 
 $link-color: color("grey", "darken-2") !default;
@@ -57,6 +57,10 @@ strong {
 
 .width-75 {
   width: 75%;
+}
+
+md-select {
+  margin-top: 8px;
 }
 
 @keyframes star-rotate {

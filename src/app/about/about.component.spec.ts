@@ -1,30 +1,42 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AboutComponent } from './about.component';
-import { TitleService } from '../services/title/title.service';
-import { PageService } from '../services/page/page.service';
+import { MetaService } from '@nglibs/meta';
+import { FullUrlService } from '../services/fullUrl/fullUrl.service';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AboutComponent', () => {
   let component: AboutComponent;
   let fixture: ComponentFixture<AboutComponent>;
-  const TitleServiceMock = {
-    setTitle: jasmine.createSpy('setTitle')
+  const MetaServiceMock = {
+    setTitle: jasmine.createSpy('setTitle'),
+    setTag: jasmine.createSpy('setTag'),
   };
-  const PageServiceMock = {
-    getByKey: jasmine.createSpy('getByKey')
+  const FullUrlServiceMock = {
+    url: jasmine.createSpy('url')
   };
+  FullUrlServiceMock.url.and.returnValue('testurl');
   const fakeSubscribe = { subscribe: jasmine.createSpy('subscribe') };
-  PageServiceMock.getByKey.and.returnValue(fakeSubscribe);
+  const data = { json: jasmine.createSpy('json') };
+  const pageData = { data: { content: 'content', title: 'titlestuff', Meta: [{tag: 'stuff', value: 'things'}] } };
+  data.json.and.returnValue(pageData);
+  const activatedRouteMock = {
+    snapshot: {
+      data: {
+        page: data
+      }
+    }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AboutComponent ],
       providers: [
-        { provide: PageService, useValue: PageServiceMock },
-        { provide: TitleService, useValue: TitleServiceMock },
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
+        { provide: MetaService, useValue: MetaServiceMock },
+        { provide: FullUrlService, useValue: FullUrlServiceMock },
       ],
     })
     .compileComponents();
@@ -41,19 +53,24 @@ describe('AboutComponent', () => {
   });
 
   it('should ngOnInit', () => {
+    spyOn(component, 'setMetaTags');
     component.ngOnInit();
-    expect(TitleServiceMock.setTitle).toHaveBeenCalledWith('About Me');
-    expect(PageServiceMock.getByKey).toHaveBeenCalledWith('aboutme');
-    expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.handlePage);
-  });
-
-  it('should handle page data', () => {
-    const data = { json: jasmine.createSpy('json') };
-    const pageData = { data: { content: 'content', title: 'titlestuff' } };
-    data.json.and.returnValue(pageData);
-    component.handlePage(data);
     expect(component.body).toBe('content');
     expect(component.title).toBe('titlestuff');
     expect(component.show).toBeTruthy();
+    expect(component.setMetaTags).toHaveBeenCalledWith(pageData);
+  });
+
+  it('should setMetaTags', () => {
+    component.setMetaTags(pageData);
+    expect(FullUrlServiceMock.url).toHaveBeenCalled();
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith(pageData.data.title);
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:title', pageData.data.title);
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:type', 'profile');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:url', 'testurl');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('profile:first_name', 'Jessica');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('profile:last_name', 'Janiuk');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('profile:gender', 'female');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('stuff', 'things');
   });
 });

@@ -5,10 +5,12 @@ import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageService } from '../../services/page/page.service';
 import { Page } from '../../models/page';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PageFormComponent } from './page-form.component';
-import { MdInputModule } from '@angular/material/input';
+import { MdInputModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { MetaTag } from '../../models/MetaTag';
 
 describe('PageFormComponent', () => {
   let component: PageFormComponent;
@@ -41,6 +43,7 @@ describe('PageFormComponent', () => {
       declarations: [ PageFormComponent ],
       imports: [
         FormsModule,
+        BrowserAnimationsModule,
         MdInputModule.forRoot()
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -117,7 +120,7 @@ describe('PageFormComponent', () => {
 
   describe('onSubmit', () => {
     it('should save new page when no id', () => {
-      const page = new Page('test', '', '');
+      const page = new Page('test', '', '', []);
       component.id = undefined;
       component.page = page;
       component.onSubmit();
@@ -125,7 +128,7 @@ describe('PageFormComponent', () => {
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.saveComplete);
     });
     it('should update existing user when id exists', () => {
-      const page = new Page('test', '', '');
+      const page = new Page('test', '', '', []);
       component.id = 5;
       component.page = page;
       component.onSubmit();
@@ -143,5 +146,45 @@ describe('PageFormComponent', () => {
     component.saveComplete(data);
     expect(component.saving).toBeFalsy();
     expect(component.id).toBe(6);
+  });
+
+  describe('addMeta', () => {
+    it('should not add when metaChoice is empty space', () => {
+      component.metaChoice = ' ';
+      component.metaValue = 'stuff';
+      component.addMeta();
+      expect(component.page.meta).toEqual([]);
+    });
+    it('should not add when metaValue is empty space', () => {
+      component.metaChoice = 'og:description';
+      component.metaValue = ' ';
+      component.addMeta();
+      expect(component.page.meta).toEqual([]);
+    });
+    it('should add', () => {
+      const tag = new MetaTag('og:video', 'test');
+      component.page.meta.push(tag);
+      component.metaChoice = 'og:audio';
+      component.metaValue = 'things';
+      component.addMeta();
+      expect(component.page.meta).toEqual([tag, new MetaTag('og:audio', 'things')]);
+      expect(component.metaChoice).toBe('og:description');
+      expect(component.metaValue).toBe('');
+    });
+  });
+
+  describe('removeMeta', () => {
+    it('should remove meta if exists', () => {
+      const tag = new MetaTag('og:video', 'test');
+      component.page.meta.push(tag);
+      component.removeMeta(tag);
+      expect(component.page.meta).toEqual([]);
+    });
+    it('should do nothing if tag does not exist', () => {
+      const tag = new MetaTag('og:video', 'test');
+      component.page.meta.push(tag);
+      component.removeMeta(new MetaTag('test', 'nope'));
+      expect(component.page.meta).toEqual([tag]);
+    });
   });
 });

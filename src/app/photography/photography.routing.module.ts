@@ -1,9 +1,10 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PhotographyComponent } from './photography.component';
 import { AlbumComponent } from './album/album.component';
 import { AlbumListComponent } from './album-list/album-list.component';
+import { AlbumResolver } from './photography.album.resolver';
 
 const photographyRoutes: Routes = [
   {
@@ -16,7 +17,10 @@ const photographyRoutes: Routes = [
       },
       {
         path: 'album/:id',
-        component: AlbumComponent
+        component: AlbumComponent,
+        resolve: {
+          album: AlbumResolver
+        }
       }
     ]
   },

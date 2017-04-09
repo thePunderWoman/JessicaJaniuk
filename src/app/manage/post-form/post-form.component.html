@@ -67,10 +67,40 @@
         </md-input-container>
         <button (click)="addTag()" type="button" color="secondary">Add</button>
       </div>
-      <div class="col s18">
+      <div class="col s8">
         <ul *ngIf="post.tags" class="tag-list">
           <li *ngFor="let tag of post.tags;">
             {{tag}} <a (click)="removeTag(tag)" style="cursor: pointer;">&times;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <h5>Meta Tags</h5>
+      </div>
+      <div class="col s2">
+        <md-select placeholder="Open Graph" required name="open-graph" [(ngModel)]="metaChoice" ngDefaultControl>
+          <md-option *ngFor="let metaOpt of metaOptions" [value]="metaOpt">
+            {{ metaOpt }}
+          </md-option>
+        </md-select>
+      </div>
+      <div class="col s10">
+        <md-input-container class="width-75">
+          <input mdInput
+                 placeholder="meta value"
+                 type="text"
+                 name="tag"
+                 [(ngModel)]="metaValue"
+          >
+        </md-input-container>
+        <button (click)="addMeta()" type="button" color="secondary">Add</button>
+      </div>
+      <div class="col s12">
+        <ul *ngIf="post.meta" class="meta-list">
+          <li *ngFor="let meta of post.meta;">
+            {{meta.tag}} - {{meta.value}} <a (click)="removeMeta(meta)" style="cursor: pointer;">&times;</a>
           </li>
         </ul>
       </div>

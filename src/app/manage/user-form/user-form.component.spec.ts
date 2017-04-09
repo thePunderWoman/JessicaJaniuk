@@ -8,8 +8,9 @@ import { User } from '../../models/user';
 
 import { UserFormComponent } from './user-form.component';
 import { ActivatedRoute } from '@angular/router';
-import { MdInputModule } from '@angular/material/input';
-import { MdSlideToggleModule } from '@angular/material/slide-toggle';
+import { MdInputModule } from '@angular/material';
+import { MdSlideToggleModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
@@ -46,6 +47,7 @@ describe('UserFormComponent', () => {
       declarations: [ UserFormComponent ],
       imports: [
         FormsModule,
+        BrowserAnimationsModule,
         MdSlideToggleModule.forRoot(),
         MdInputModule.forRoot(),
       ],

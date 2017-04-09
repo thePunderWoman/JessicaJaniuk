@@ -4,6 +4,8 @@ import { Category } from '../../models/category';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
 import { CategoryService } from '../../services/category/category.service';
+import { MetaEnum } from '../../models/MetaEnum';
+import { MetaTag } from '../../models/MetaTag';
 
 @Component({
   selector: 'app-post-form',
@@ -16,11 +18,15 @@ export class PostFormComponent implements OnInit {
   id: number;
   saving = false;
   categories: Category[] = [];
+  metaOptions: String[] = MetaEnum;
+  public metaChoice: string = MetaEnum[0];
+  public metaValue = '';
 
   constructor(private postService: PostService, private categoryService: CategoryService, private route: ActivatedRoute) {
     this.populatePost = this.populatePost.bind(this);
     this.populateCategories = this.populateCategories.bind(this);
     this.removeTag = this.removeTag.bind(this);
+    this.removeMeta = this.removeMeta.bind(this);
     this.saveComplete = this.saveComplete.bind(this);
   }
 
@@ -55,6 +61,7 @@ export class PostFormComponent implements OnInit {
     this.post.tags = [];
     const tags = post.Tags.map(tag => tag.name);
     this.post.tags.push.apply(this.post.tags, tags);
+    this.post.meta = post.Meta;
   }
 
   onSubmit(): void {
@@ -82,6 +89,21 @@ export class PostFormComponent implements OnInit {
     const ix = this.post.tags.findIndex((ptag) => { return ptag === tag; });
     if (ix > -1) {
       this.post.tags.splice(ix, 1);
+    }
+  }
+
+  addMeta(): void {
+    if (this.metaChoice.trim() !== '' && this.metaValue.trim() !== '') {
+      this.post.meta.push(new MetaTag(this.metaChoice, this.metaValue));
+    }
+    this.metaChoice = MetaEnum[0];
+    this.metaValue = '';
+  }
+
+  removeMeta(meta): void {
+    const ix = this.post.meta.findIndex((mtag) => { return mtag === meta; });
+    if (ix > -1) {
+      this.post.meta.splice(ix, 1);
     }
   }
 }

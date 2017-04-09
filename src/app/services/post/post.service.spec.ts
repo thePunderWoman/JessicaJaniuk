@@ -59,9 +59,9 @@ describe('PostService', () => {
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/published?page=1');
   }));
 
-  it('should call get all published personal posts endpoint', inject([PostService, HeaderService], (service: PostService) => {
+  it('should call get all published posts by category endpoint', inject([PostService, HeaderService], (service: PostService) => {
     service.apiBaseUrl = '/test/url/';
-    const response = service.getAllPublishedPersonal(1);
+    const response = service.getAllPublishedByCategory('personal', 1);
     expect(response).toBe('stuff');
     expect(MockHttp.get).toHaveBeenCalledWith('/test/url/post/category/personal?page=1');
   }));

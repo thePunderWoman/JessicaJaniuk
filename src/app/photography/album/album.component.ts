@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '../../services/title/title.service';
-import { FlickrService } from '../../services/flickr/flickr.service';
+import { MetaService } from '@nglibs/meta';
 import { ActivatedRoute } from '@angular/router';
+import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 @Component({
   selector: 'app-album',
@@ -13,21 +13,16 @@ export class AlbumComponent implements OnInit {
   title = '';
   photos: any = [];
 
-  constructor(private flickrService: FlickrService, private titleService: TitleService, private route: ActivatedRoute) {
-    this.handlePhotos = this.handlePhotos.bind(this);
-  }
+  constructor(private meta: MetaService, private route: ActivatedRoute, private fullUrl: FullUrlService) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
-    this.flickrService.getPhotos(id).subscribe(this.handlePhotos);
-  }
-
-  handlePhotos(data) {
-    this.show = true;
+    const data = this.route.snapshot.data['album'];
     const photos = data.json();
     this.title = photos.photoset.title;
     this.photos.push.apply(this.photos, photos.photoset.photo);
-    this.titleService.setTitle(this.title);
+    this.meta.setTitle(this.title);
+    this.meta.setTag('og:title', `Photography - ${this.title}`);
+    this.meta.setTag('og:url', this.fullUrl.url());
+    this.show = true;
   }
-
 }

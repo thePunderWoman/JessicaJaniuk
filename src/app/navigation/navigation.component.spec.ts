@@ -5,8 +5,8 @@ import { DebugElement } from '@angular/core';
 
 import { NavigationComponent } from './navigation.component';
 import { Router } from '@angular/router';
-import { MdMenuModule } from '@angular/material/menu';
-import { MdIconModule } from '@angular/material/icon';
+import { MdMenuModule } from '@angular/material';
+import { MdIconModule } from '@angular/material';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;

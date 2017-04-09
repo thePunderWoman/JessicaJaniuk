@@ -1,10 +1,10 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PublicComponent }        from './public.component';
-import { HomeComponent }        from '../home/home.component';
-import { AboutComponent }       from '../about/about.component';
-import { ConnectComponent }     from '../connect/connect.component';
-import { R2d2Component }     from '../r2d2/r2d2.component';
+import { PublicComponent } from './public.component';
+import { HomeComponent } from '../home/home.component';
+import { AboutComponent } from '../about/about.component';
+import { ConnectComponent } from '../connect/connect.component';
+import { PageResolver } from '../page/page.resolver';
 
 const publicRoutes: Routes = [
   {
@@ -12,9 +12,27 @@ const publicRoutes: Routes = [
     component: PublicComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'about', component: AboutComponent },
-      { path: 'connect', component: ConnectComponent },
-      { path: 'r2d2', component: R2d2Component },
+      {
+        path: 'about',
+        component: AboutComponent,
+        data: {
+          key: 'aboutme'
+        },
+        resolve: {
+          page: PageResolver
+        }
+      },
+      {
+        path: 'connect',
+        component: ConnectComponent,
+        data: {
+          key: 'connect'
+        },
+        resolve: {
+          page: PageResolver
+        }
+      },
+      { path: 'r2d2', loadChildren: 'app/r2d2/r2d2.module#R2D2Module' },
       { path: 'blog', loadChildren: 'app/blog/blog.module#BlogModule' },
       { path: 'photography', loadChildren: 'app/photography/photography.module#PhotographyModule' }
     ]

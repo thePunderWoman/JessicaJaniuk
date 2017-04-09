@@ -4,11 +4,12 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { UsersComponent } from './users.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MdIconModule } from '@angular/material/icon';
-import { MdDialogModule } from '@angular/material/dialog';
+import { MdIconModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
 import { UserService } from '../../services/user/user.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '../../models/user';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -32,6 +33,7 @@ describe('UsersComponent', () => {
       declarations: [ UsersComponent ],
       imports: [
         RouterTestingModule,
+        BrowserAnimationsModule,
         MdIconModule.forRoot(),
         MdDialogModule.forRoot()
       ],

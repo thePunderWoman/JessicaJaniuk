@@ -7,8 +7,8 @@ import { AuthService } from '../../services/auth/auth.service';
 
 import { PagesComponent } from './pages.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MdIconModule } from '@angular/material/icon';
-import { MdDialogModule } from '@angular/material/dialog';
+import { MdIconModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
 import { Page } from '../../models/page';
 
 describe('PagesComponent', () => {
