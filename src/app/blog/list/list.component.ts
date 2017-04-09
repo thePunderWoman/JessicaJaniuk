@@ -35,9 +35,8 @@ export class ListComponent implements OnInit {
   }
 
   processRoute(params) {
-    console.log(params.page);
     this.page = (params && params.page) ? Number(params.page) : 1;
-    this.postService.getAllPublishedByCategory(this.route.snapshot.data['category'], this.page).subscribe(this.populatePosts);
+    this.postService.getAllPublishedByCategory(this.route.snapshot.data['category'], this.page, this.perPage).subscribe(this.populatePosts);
   }
 
   populatePosts(data) {

@@ -79,13 +79,13 @@ describe('ListComponent', () => {
     it('should process route when params exist and get posts', () => {
       const params = { page: '2' };
       component.processRoute(params);
-      expect(PostServiceMock.getAllPublishedByCategory).toHaveBeenCalledWith('personal', 2);
+      expect(PostServiceMock.getAllPublishedByCategory).toHaveBeenCalledWith('personal', 2, 5);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
     it('should process route when no params exist and get posts', () => {
       const params = {};
       component.processRoute(params);
-      expect(PostServiceMock.getAllPublishedByCategory).toHaveBeenCalledWith('personal', 1);
+      expect(PostServiceMock.getAllPublishedByCategory).toHaveBeenCalledWith('personal', 1, 5);
       expect(fakeSubscribe.subscribe).toHaveBeenCalledWith(component.populatePosts);
     });
   });

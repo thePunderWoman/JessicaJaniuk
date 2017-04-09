@@ -11,19 +11,19 @@ export class PostService {
 
   constructor(public http: Http, private headerService: HeaderService) {}
 
-  getAll(page: number): Observable<Response> {
+  getAll(page: number, perPage: number = 10): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}post?page=${page}`, { headers: this.headerService.createAuthHeaders() });
+      .get(`${this.apiBaseUrl}post?page=${page}&perPage=${perPage}`, { headers: this.headerService.createAuthHeaders() });
   }
 
-  getAllPublished(page: number): Observable<Response> {
+  getAllPublished(page: number, perPage: number = 10): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}post/published?page=${page}`);
+      .get(`${this.apiBaseUrl}post/published?page=${page}&perPage=${perPage}`);
   }
 
-  getAllPublishedByCategory(category: string, page: number): Observable<Response> {
+  getAllPublishedByCategory(category: string, page: number, perPage: number = 10): Observable<Response> {
     return this.http
-      .get(`${this.apiBaseUrl}post/category/${category}?page=${page}`);
+      .get(`${this.apiBaseUrl}post/category/${category}?page=${page}&perPage=${perPage}`);
   }
 
   getById(id: number): Observable<Response> {
