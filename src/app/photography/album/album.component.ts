@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { ActivatedRoute } from '@angular/router';
 import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
@@ -21,8 +21,8 @@ export class AlbumComponent implements OnInit {
     this.title = photos.photoset.title;
     this.photos.push.apply(this.photos, photos.photoset.photo);
     this.meta.setTitle(this.title);
-    this.meta.setTag('og:title', `Photography - ${this.title}`);
-    this.meta.setTag('og:url', this.fullUrl.url());
+    this.meta.setTag({ property: 'og:title', content: `Photography - ${this.title}` });
+    this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
     this.show = true;
   }
 }

@@ -37,14 +37,14 @@ describe('PaginationComponent', () => {
 
   it('should handle input changes to page', () => {
     component.page = 1;
-    const change = new SimpleChange(1, 2);
+    const change = new SimpleChange(1, 2, false);
     component.ngOnChanges({'page': change});
     expect(component.page).toBe(2);
   });
 
   it('should handle input changes to pages', () => {
     component.pages = 1;
-    const change = new SimpleChange(1, 4);
+    const change = new SimpleChange(1, 4, false);
     component.ngOnChanges({'pages': change});
     expect(component.pages).toBe(4);
   });

@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AboutComponent } from './about.component';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../services/meta/meta.service';
 import { FullUrlService } from '../services/fullUrl/fullUrl.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,6 +13,7 @@ describe('AboutComponent', () => {
   const MetaServiceMock = {
     setTitle: jasmine.createSpy('setTitle'),
     setTag: jasmine.createSpy('setTag'),
+    setPageTag: jasmine.createSpy('setPageTag'),
   };
   const FullUrlServiceMock = {
     url: jasmine.createSpy('url')
@@ -65,12 +66,12 @@ describe('AboutComponent', () => {
     component.setMetaTags(pageData);
     expect(FullUrlServiceMock.url).toHaveBeenCalled();
     expect(MetaServiceMock.setTitle).toHaveBeenCalledWith(pageData.data.title);
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:title', pageData.data.title);
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:type', 'profile');
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:url', 'testurl');
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('profile:first_name', 'Jessica');
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('profile:last_name', 'Janiuk');
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('profile:gender', 'female');
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('stuff', 'things');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:title', content: pageData.data.title });
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:type', content: 'profile' });
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:url', content: 'testurl' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'profile:first_name', content: 'Jessica' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'profile:last_name', content: 'Janiuk' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'profile:gender', content: 'female' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'stuff', content: 'things' });
   });
 });

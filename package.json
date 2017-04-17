@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "node dist/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,7 +12,7 @@
     "coverage": "ng test --code-coverage --single-run",
     "view-coverage": "http-server -c-1 -o -p 9875 ./coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls -v",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "ng build --aot --prod && gulp before:ngc && ngc && gulp after:ngc && webpack"
   },
   "private": true,
   "engines": {
@@ -21,23 +21,19 @@
   },
   "dependencies": {
     "@angular/animations": "^4.0.1",
-    "@angular/cli": "^1.0.0",
     "@angular/common": "^4.0.1",
     "@angular/compiler": "^4.0.1",
-    "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "^4.0.1",
     "@angular/forms": "^4.0.1",
     "@angular/http": "^4.0.1",
     "@angular/material": "^2.0.0-beta.3",
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
-    "@angular/platform-server": "^4.0.1",
+    "@angular/platform-server": "^4.0.2",
     "@angular/router": "^4.0.1",
-    "@nglibs/meta": "^0.4.0-rc.1",
     "angular2-material-datepicker": "^0.5.0",
     "angular2-moment": "^1.0.0",
     "core-js": "^2.4.1",
-    "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "forcedomain": "^0.8.0",
     "hammerjs": "^2.0.8",
@@ -47,15 +43,20 @@
     "rxjs": "^5.3.0",
     "tinymce": "^4.5.6",
     "ts-helpers": "^1.1.1",
-    "ts-node": "2.0.0",
-    "typescript": "^2.2.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
+    "@angular/cli": "^1.0.0",
+    "@angular/compiler-cli": "^4.0.1",
     "@types/jasmine": "2.5.41",
     "@types/node": "~7.0.0",
     "codelyzer": "~2.0.0",
     "coveralls": "^2.13.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^0.4.6",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
@@ -65,6 +66,10 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.0",
-    "tslint": "~4.5.0"
+    "ts-loader": "^2.0.3",
+    "tslint": "~4.5.0",
+    "typescript": "^2.2.2",
+    "webpack": "~2.2.0",
+    "webpack-node-externals": "^1.5.4"
   }
 }

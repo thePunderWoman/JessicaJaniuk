@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ConnectComponent } from './connect.component';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../services/meta/meta.service';
 import { PageService } from '../services/page/page.service';
 import { ConnectionService } from '../services/connection/connection.service';
 import { FullUrlService } from '../services/fullUrl/fullUrl.service';
@@ -14,7 +14,8 @@ describe('ConnectComponent', () => {
   let fixture: ComponentFixture<ConnectComponent>;
   const MetaServiceMock = {
     setTitle: jasmine.createSpy('setTitle'),
-    setTag: jasmine.createSpy('setTag')
+    setTag: jasmine.createSpy('setTag'),
+    setPageTag: jasmine.createSpy('setPageTag'),
   };
   const fbList = { subscribe: jasmine.createSpy('subscribe') };
   const FullUrlServiceMock = {
@@ -83,9 +84,9 @@ describe('ConnectComponent', () => {
     component.setMetaTags(pageData);
     expect(FullUrlServiceMock.url).toHaveBeenCalled();
     expect(MetaServiceMock.setTitle).toHaveBeenCalledWith(pageData.data.title);
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:title', pageData.data.title);
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('og:url', 'testurl');
-    expect(MetaServiceMock.setTag).toHaveBeenCalledWith('stuff', 'things');
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:title', content: pageData.data.title });
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:url', content: 'testurl' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'stuff', content: 'things' });
   });
 
 });

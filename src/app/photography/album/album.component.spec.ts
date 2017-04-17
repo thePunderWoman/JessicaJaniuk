@@ -6,7 +6,7 @@ import { AlbumComponent } from './album.component';
 import { FlickrService } from '../../services/flickr/flickr.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 describe('AlbumComponent', () => {

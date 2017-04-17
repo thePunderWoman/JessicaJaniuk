@@ -115,9 +115,9 @@ describe('PagesComponent', () => {
 
   it('should handle delete', () => {
     component.key = 5;
-    const page1 = new Page('test', 'testerson', 'key');
+    const page1 = new Page('test', 'testerson', 'key', []);
     page1.id = 5;
-    const page2 = new Page('name', 'last', 'key2');
+    const page2 = new Page('name', 'last', 'key2', []);
     page2.id = 2;
     component.pages.push(page1);
     component.pages.push(page2);

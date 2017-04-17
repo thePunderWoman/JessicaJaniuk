@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FlickrService } from '../../services/flickr/flickr.service';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 @Component({
@@ -19,8 +19,8 @@ export class AlbumListComponent implements OnInit {
   ngOnInit() {
     this.flickrService.getAlbums().subscribe( this.handleAlbums );
     this.meta.setTitle('Photography');
-    this.meta.setTag('og:title', 'Photography');
-    this.meta.setTag('og:url', this.fullUrl.url());
+    this.meta.setTag({ property: 'og:title', content: 'Photography' });
+    this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
   }
 
   handleAlbums(data) {

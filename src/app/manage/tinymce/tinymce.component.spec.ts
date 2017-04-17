@@ -88,7 +88,7 @@ describe('TinymceComponent', () => {
 
   describe('ngOnChanges', () => {
     it('should handle on changes when readonly', () => {
-      const change = new SimpleChange('readOnly', 'readOnly');
+      const change = new SimpleChange('readOnly', 'readOnly', false);
       const attr = { setAttribute: jasmine.createSpy('setAttribute') };
       component.tinymceEditor = jasmine.createSpyObj('editor', ['getBody']);
       component.tinymceEditor.getBody.and.returnValue(attr);
@@ -96,7 +96,7 @@ describe('TinymceComponent', () => {
       expect(attr.setAttribute).toHaveBeenCalledWith('contenteditable', false);
     });
     it('should handle on changes when not read only', () => {
-      const change = new SimpleChange('things', 'things');
+      const change = new SimpleChange('things', 'things', false);
       const attr = { setAttribute: jasmine.createSpy('setAttribute') };
       component.tinymceEditor = jasmine.createSpyObj('editor', ['getBody']);
       component.tinymceEditor.getBody.and.returnValue(attr);
