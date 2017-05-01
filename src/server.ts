@@ -1,7 +1,5 @@
 import 'reflect-metadata';
 import 'zone.js/dist/zone-node';
-import forceDomain from 'forcedomain';
-import compression from 'compression';
 import { renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.module.ngfactory';
@@ -9,6 +7,8 @@ import * as express from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+const forceDomain = require('forcedomain');
+const compression = require('compression');
 
 const PORT = process.env.PORT || 4200;
 const env = process.env.NODE_ENV || 'development';
