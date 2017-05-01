@@ -68,7 +68,7 @@ describe('PageService', () => {
 
   it('should call save page endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    const page = new Page('', '', '');
+    const page = new Page('', '', '', []);
     const response = service.save(page);
     expect(response).toBe('posted');
     expect(MockHttp.post).toHaveBeenCalledWith('/test/url/page', page, { headers: 'fake headers' });
@@ -76,7 +76,7 @@ describe('PageService', () => {
 
   it('should call update page endpoint', inject([PageService, HeaderService], (service: PageService) => {
     service.apiBaseUrl = '/test/url/';
-    const page = new Page('', '', '');
+    const page = new Page('', '', '', []);
     const response = service.update(5, page);
     expect(response).toBe('putted');
     expect(MockHttp.put).toHaveBeenCalledWith('/test/url/page/5', page, { headers: 'fake headers' });

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from '../../models/post';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 
 @Component({
   selector: 'app-detail',
@@ -28,14 +28,14 @@ export class DetailComponent implements OnInit {
 
   setMetaTags() {
     this.meta.setTitle(this.post.title);
-    this.meta.setTag('og:title', this.post.title);
-    this.meta.setTag('og:type', 'article');
-    this.meta.setTag('og:url', this.fullUrl.url());
-    this.meta.setTag('article:published_time', this.post.publishDate.toString());
-    this.meta.setTag('article:modified_time', this.post.publishDate.toString());
-    this.meta.setTag('article:author', 'Jessica Janiuk');
+    this.meta.setTag({ property: 'og:title', content: this.post.title });
+    this.meta.setTag({ property: 'og:type', content: 'article' });
+    this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
+    this.meta.setPageTag({ property: 'article:published_time', content: this.post.publishDate.toString() });
+    this.meta.setPageTag({ property: 'article:modified_time', content: this.post.publishDate.toString() });
+    this.meta.setPageTag({ property: 'article:author', content: 'Jessica Janiuk' });
     this.post.meta.forEach((tag) => {
-      this.meta.setTag(tag.tag, tag.value);
+      this.meta.setPageTag({ property: tag.tag, content: tag.value });
     });
   }
 }

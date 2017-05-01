@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  router: Router;
-
-  constructor(private _router: Router) {
-    this.router = _router;
-  }
+  constructor(private location: Location) {}
 
   isNotHome() {
-    return this.router.url !== '/';
+    return this.location.path() !== '';
   }
 }

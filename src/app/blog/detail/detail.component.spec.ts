@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 
 import { DetailComponent } from './detail.component';
 import { Post } from '../../models/post';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { MomentModule } from 'angular2-moment';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,7 +16,8 @@ describe('DetailComponent', () => {
   let fixture: ComponentFixture<DetailComponent>;
   const MetaServiceMock = {
     setTitle: jasmine.createSpy('setTitle'),
-    setTag: jasmine.createSpy('setTag')
+    setTag: jasmine.createSpy('setTag'),
+    setPageTag: jasmine.createSpy('setPageTag'),
   };
   const FullUrlServiceMock = {
     url: jasmine.createSpy('url')
@@ -67,9 +68,25 @@ describe('DetailComponent', () => {
   });
 
   it('should ngOnInit', () => {
+    spyOn(component, 'setMetaTags');
     component.ngOnInit();
     expect(component.post).toBe(post);
     expect(component.show).toBeTruthy();
-    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith('post title');
+    expect(component.setMetaTags).toHaveBeenCalled();
+  });
+
+  it('should set meta tags', () => {
+    component.post = new Post(post);
+    component.post.meta = post.Meta;
+    component.setMetaTags();
+    expect(FullUrlServiceMock.url).toHaveBeenCalled();
+    expect(MetaServiceMock.setTitle).toHaveBeenCalledWith(post.title);
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:title', content: post.title });
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:type', content: 'article' });
+    expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:url', content: 'testurl' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:published_time', content: post.publishDate.toString() });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:modified_time', content: post.publishDate.toString() });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:author', content: 'Jessica Janiuk' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'stuff', content: 'things' });
   });
 });

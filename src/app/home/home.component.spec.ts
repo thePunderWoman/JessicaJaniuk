@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { HomeComponent } from './home.component';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../services/meta/meta.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

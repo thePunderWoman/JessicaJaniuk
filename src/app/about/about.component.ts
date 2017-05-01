@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MetaService } from '@nglibs/meta';
 import { ActivatedRoute } from '@angular/router';
 import { FullUrlService } from '../services/fullUrl/fullUrl.service';
+import { Page } from '../models/page';
+import { MetaService } from '../services/meta/meta.service';
 
 @Component({
   selector: 'app-about',
@@ -9,6 +10,7 @@ import { FullUrlService } from '../services/fullUrl/fullUrl.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  metaTags: HTMLMetaElement[] = [];
   body = '';
   title = '';
   show = false;
@@ -27,15 +29,17 @@ export class AboutComponent implements OnInit {
   }
 
   setMetaTags(page) {
+    this.metaTags = page.data.Meta;
     this.meta.setTitle(page.data.title);
-    this.meta.setTag('og:title', page.data.title);
-    this.meta.setTag('og:type', 'profile');
-    this.meta.setTag('og:url', this.fullUrl.url());
-    this.meta.setTag('profile:first_name', 'Jessica');
-    this.meta.setTag('profile:last_name', 'Janiuk');
-    this.meta.setTag('profile:gender', 'female');
+    this.meta.setTag({ property: 'og:title', content: page.data.title });
+    this.meta.setTag({ property: 'og:type', content: 'profile' });
+    this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
+    this.meta.setPageTag({ property: 'profile:first_name', content: 'Jessica' });
+    this.meta.setPageTag({ property: 'profile:last_name', content: 'Janiuk' });
+    this.meta.setPageTag({ property: 'profile:gender', content: 'female' });
     page.data.Meta.forEach((tag) => {
-      this.meta.setTag(tag.tag, tag.value);
+      this.meta.setPageTag({ property: tag.tag, content: tag.value });
     });
   }
+
 }

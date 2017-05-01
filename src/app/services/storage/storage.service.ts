@@ -5,7 +5,7 @@ export class StorageService {
   private provider: Storage;
 
   constructor() {
-    this.provider = window.sessionStorage;
+    this.provider = sessionStorage;
   }
 
   set(key: string, value: string): void {

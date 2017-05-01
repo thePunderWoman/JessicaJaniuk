@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../services/meta/meta.service';
 import { PageService } from '../services/page/page.service';
 import { ConnectionService } from '../services/connection/connection.service';
 import { Connection } from '../models/connection';
@@ -39,10 +39,10 @@ export class ConnectComponent implements OnInit {
 
   setMetaTags(page) {
     this.meta.setTitle(page.data.title);
-    this.meta.setTag('og:title', page.data.title);
-    this.meta.setTag('og:url', this.fullUrl.url());
+    this.meta.setTag({ property: 'og:title', content: page.data.title });
+    this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
     page.data.Meta.forEach((tag) => {
-      this.meta.setTag(tag.tag, tag.value);
+      this.meta.setPageTag({ property: tag.tag, content: tag.value });
     });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { PostService } from '../../services/post/post.service';
 import { Post } from '../../models/post';
 import { ActivatedRoute } from '@angular/router';
@@ -29,9 +29,9 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(this.processRoute);
     this.meta.setTitle(this.route.snapshot.data['title']);
-    this.meta.setTag('og:title', 'Blog');
-    this.meta.setTag('og:description', 'Jessica Janiuk\'s Personal Blog');
-    this.meta.setTag('og:url', this.fullUrl.url());
+    this.meta.setTag({ property: 'og:title', content: 'Blog' });
+    this.meta.setTag({ property: 'og:description', content: 'Jessica Janiuk\'s Personal Blog' });
+    this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
   }
 
   processRoute(params) {

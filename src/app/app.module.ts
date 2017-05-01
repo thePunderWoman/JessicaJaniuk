@@ -1,13 +1,10 @@
-import { MetaModule, MetaLoader, MetaStaticLoader, PageTitlePositioning } from '@nglibs/meta';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './app.routing.module';
 import { MomentModule } from 'angular2-moment';
-import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './notfound/notfound.component';
@@ -17,7 +14,7 @@ import { ManageModule } from './manage/manage.module';
 import { PublicModule } from './public/public.module';
 
 import { FlickrService } from './services/flickr/flickr.service';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from './services/meta/meta.service';
 import { AuthService } from './services/auth/auth.service';
 import { StorageService } from './services/storage/storage.service';
 import { UserService } from './services/user/user.service';
@@ -28,6 +25,10 @@ import { CategoryService } from './services/category/category.service';
 import { HeaderService } from './services/header/header.service';
 import { FullUrlService } from './services/fullUrl/fullUrl.service';
 import { PageResolver } from './page/page.resolver';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+
+export { AppComponent, NotFoundComponent };
 
 @NgModule({
   declarations: [
@@ -35,20 +36,15 @@ import { PageResolver } from './page/page.resolver';
     NotFoundComponent,
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    MaterialModule.forRoot(),
+    BrowserModule.withServerTransition({appId: 'jessica-janiuk'}),
     FormsModule,
     HttpModule,
     HeaderModule,
     ManageModule,
     PublicModule,
     AppRoutingModule,
-    MomentModule,
-    MaterialModule.forRoot(),
-    MetaModule.forRoot({
-      provide: MetaLoader,
-      useFactory: (metaFactory)
-    })
+    MomentModule
   ],
   providers: [
     FlickrService,
@@ -64,21 +60,10 @@ import { PageResolver } from './page/page.resolver';
     FullUrlService,
     PageResolver
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    AppComponent,
+    NotFoundComponent,
+  ],
 })
 export class AppModule { }
-
-export function metaFactory(): MetaLoader {
-  return new MetaStaticLoader({
-    pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
-    pageTitleSeparator: ' | ',
-    applicationName: 'Jessica Janiuk',
-    defaults: {
-      title: 'Welcome | Jessica Janiuk',
-      description: 'Nerdfighter. Developer. Writer. Droid Builder Gamer. Photographer. Historical Fencer. Speaker. Trans. Lesbian. Woman.',
-      'og:image': 'https://jessicajaniuk.com/assets/site-image.png',
-      'og:type': 'website',
-      'og:locale': 'en_US'
-    }
-  });
-}

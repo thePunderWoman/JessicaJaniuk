@@ -4,7 +4,7 @@ import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Post } from '../../models/post';
 
 import { ListComponent } from './list.component';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { PostService } from '../../services/post/post.service';
 import { MomentModule } from 'angular2-moment';
 import { ActivatedRoute } from '@angular/router';

@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { AlbumListComponent } from './album-list.component';
 import { FlickrService } from '../../services/flickr/flickr.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../../services/meta/meta.service';
 import { FullUrlService } from '../../services/fullUrl/fullUrl.service';
 
 describe('AlbumListComponent', () => {

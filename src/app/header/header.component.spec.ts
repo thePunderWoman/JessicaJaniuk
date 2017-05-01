@@ -5,19 +5,21 @@ import { DebugElement } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  const routerStub = { url: '/' };
+  const locationMock = {
+    path: jasmine.createSpy('path')
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: Router, useValue: routerStub },
+        { provide: Location, useValue: locationMock },
       ]
     })
     .compileComponents();
@@ -35,13 +37,13 @@ describe('HeaderComponent', () => {
 
   describe('isNotHome', () => {
     it('should be false if at home', () => {
-      component.router.url = '/';
-      expect(component.isNotHome()).toBeFalsy();
+      locationMock.path.and.returnValue('');
+      expect(fixture.componentInstance.isNotHome()).toBeFalsy();
     });
 
     it('should be true if not at home', () => {
-      component.router.url = '/nothome';
-      expect(component.isNotHome()).toBeTruthy();
+      locationMock.path.and.returnValue('/nothome');
+      expect(fixture.componentInstance.isNotHome()).toBeTruthy();
     });
   });
 });

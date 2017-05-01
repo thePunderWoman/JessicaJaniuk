@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { NotFoundComponent } from './notfound.component';
-import { MetaService } from '@nglibs/meta';
+import { MetaService } from '../services/meta/meta.service';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
