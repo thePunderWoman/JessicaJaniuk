@@ -11,7 +11,8 @@ module.exports = {
   target: 'node',
   externals: [nodeExternals({
      whitelist: [
-       /^@angular\/material/
+       /^@angular\/material/,
+       /ngx-cookie/
      ]
    })],
   node: {

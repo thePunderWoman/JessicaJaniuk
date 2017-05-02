@@ -7,16 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthenticationComponent } from './authentication.component';
 import { AuthService } from '../../services/auth/auth.service';
-import { StorageService } from '../../services/storage/storage.service';
+import { CookieService } from 'ngx-cookie';
 import { MdInputModule } from '@angular/material';
 import { Router } from '@angular/router';
 
 describe('AuthenticationComponent', () => {
   let component: AuthenticationComponent;
   let fixture: ComponentFixture<AuthenticationComponent>;
-  const StorageServiceMock = {
+  const CookieServiceMock = {
     get: jasmine.createSpy('get'),
-    set: jasmine.createSpy('set')
+    put: jasmine.createSpy('put')
   };
   const AuthServiceMock = {
     isLoggedIn: jasmine.createSpy('isLoggedIn'),
@@ -44,7 +44,7 @@ describe('AuthenticationComponent', () => {
         MdInputModule.forRoot(),
       ],
       providers: [
-        { provide: StorageService, useValue: StorageServiceMock },
+        { provide: CookieService, useValue: CookieServiceMock },
         { provide: AuthService, useValue: AuthServiceMock },
         { provide: Router, useValue: routerStub }
       ]
@@ -63,12 +63,12 @@ describe('AuthenticationComponent', () => {
   });
 
   it('should determine not logged in when not authed', () => {
-    StorageServiceMock.get.and.returnValue(undefined);
+    CookieServiceMock.get.and.returnValue(undefined);
     expect(component.isLoggedIn()).toBeFalsy();
   });
 
   it('should determine is logged in when authed', () => {
-    StorageServiceMock.get.and.returnValue('stuff');
+    CookieServiceMock.get.and.returnValue('stuff');
     expect(component.isLoggedIn()).toBeTruthy();
   });
 
@@ -87,18 +87,24 @@ describe('AuthenticationComponent', () => {
 
   describe('onAuthenticate', () => {
     beforeEach(() => {
-      StorageServiceMock.set.calls.reset();
+      CookieServiceMock.put.calls.reset();
       routerStub.navigate.calls.reset();
     });
 
     it('should set values and redirect on ok', () => {
+      component.domain = 'testdomain';
+      component.secureCookie = true;
       const data = { ok: true, json: jasmine.createSpy('json') };
       const response = { token: 'blah', expires: 'things', user: 'stuff' };
+      const options = { path: '/', domain: 'testdomain', expires: response.expires, secure: true};
       data.json.and.returnValue(response);
       component.onAuthenticate(data);
-      expect(StorageServiceMock.set).toHaveBeenCalledWith('user', `"${response.user}"`);
-      expect(StorageServiceMock.set)
-        .toHaveBeenCalledWith('token', '{"token":"blah","expires":"things"}');
+      expect(CookieServiceMock.put).toHaveBeenCalledWith('user', `"${response.user}"`, options);
+      expect(CookieServiceMock.put)
+        .toHaveBeenCalledWith(
+          'token',
+          '{"token":"blah","expires":"things"}',
+          options);
       expect(routerStub.navigate).toHaveBeenCalledWith(['/manage']);
     });
     it('should do nothing if not ok', () => {
@@ -106,8 +112,8 @@ describe('AuthenticationComponent', () => {
       const response = { token: 'blah', expires: 'things', user: 'stuff' };
       data.json.and.returnValue(response);
       component.onAuthenticate(data);
-      expect(StorageServiceMock.set).not.toHaveBeenCalled();
-      expect(StorageServiceMock.set).not.toHaveBeenCalled();
+      expect(CookieServiceMock.put).not.toHaveBeenCalled();
+      expect(CookieServiceMock.put).not.toHaveBeenCalled();
       expect(routerStub.navigate).not.toHaveBeenCalled();
     });
   });

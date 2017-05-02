@@ -1,19 +1,19 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { HeaderService } from './header.service';
-import { StorageService } from '../storage/storage.service';
+import { CookieService } from 'ngx-cookie';
 import { Headers } from '@angular/http';
 
 describe('HeaderService', () => {
-  const StorageServiceMock = {
+  const CookieServiceMock = {
     get: jasmine.createSpy('get'),
   };
-  StorageServiceMock.get.and.returnValue('{ "token": "faketoken" }');
+  CookieServiceMock.get.and.returnValue('{ "token": "faketoken" }');
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         HeaderService,
-        { provide: StorageService, useValue: StorageServiceMock }
+        { provide: CookieService, useValue: CookieServiceMock }
       ]
     });
   });
@@ -22,9 +22,9 @@ describe('HeaderService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should generate headers', inject([HeaderService, StorageService], (service: HeaderService, storageService: StorageService) => {
+  it('should generate headers', inject([HeaderService, CookieService], (service: HeaderService, cookieService: CookieService) => {
     const headers = service.createAuthHeaders();
     expect(headers.get('Authorization')).toBe('Bearer faketoken');
-    expect(StorageServiceMock.get).toHaveBeenCalledWith('token');
+    expect(CookieServiceMock.get).toHaveBeenCalledWith('token');
   }));
 });

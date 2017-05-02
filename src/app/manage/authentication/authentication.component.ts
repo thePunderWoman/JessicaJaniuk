@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { StorageService } from '../../services/storage/storage.service';
+import { CookieService } from 'ngx-cookie';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-authentication',
@@ -11,16 +12,18 @@ import { Router } from '@angular/router';
 export class AuthenticationComponent {
   public username: string;
   public password: string;
+  public domain: string = environment.domain;
+  public secureCookie: boolean = environment.production;
 
   constructor(
     private authService: AuthService,
-    private storageService: StorageService,
+    private cookieService: CookieService,
     private router: Router) {
     this.onAuthenticate = this.onAuthenticate.bind(this);
   }
 
   isLoggedIn() {
-    return this.storageService.get('token') && this.storageService.get('user');
+    return this.cookieService.get('token') && this.cookieService.get('user');
   }
 
   logout() {
@@ -36,8 +39,18 @@ export class AuthenticationComponent {
     const response = data.json();
     if (data.ok && !response.error) {
       const tokenData = { token: response.token, expires: response.expires };
-      this.storageService.set('user', JSON.stringify(response.user));
-      this.storageService.set('token', JSON.stringify(tokenData));
+      const options = { path: '/', domain: this.domain, expires: response.expires, secure: this.secureCookie};
+      console.log(options);
+      this.cookieService.put(
+        'user',
+        JSON.stringify(response.user),
+        options
+      );
+      this.cookieService.put(
+        'token',
+        JSON.stringify(tokenData),
+        options
+      );
       this.router.navigate(['/manage']);
     }
   }

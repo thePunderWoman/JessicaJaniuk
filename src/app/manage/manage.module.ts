@@ -9,7 +9,6 @@ import { BlogComponent } from './blog/blog.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
-import { DatepickerModule } from 'angular2-material-datepicker';
 import { PagesComponent } from './pages/pages.component';
 import { PageFormComponent } from './page-form/page-form.component';
 import { TinymceComponent } from './tinymce/tinymce.component';
@@ -29,7 +28,6 @@ import { PaginationModule } from '../pagination/pagination.module';
     CommonModule,
     FormsModule,
     ManageRoutingModule,
-    DatepickerModule,
     Ng2DatetimePickerModule,
     MomentModule,
     PaginationModule,

@@ -27,11 +27,11 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(this.processRoute);
     this.meta.setTitle(this.route.snapshot.data['title']);
     this.meta.setTag({ property: 'og:title', content: 'Blog' });
     this.meta.setTag({ property: 'og:description', content: 'Jessica Janiuk\'s Personal Blog' });
     this.meta.setTag({ property: 'og:url', content: this.fullUrl.url() });
+    this.route.params.subscribe(this.processRoute);
   }
 
   processRoute(params) {

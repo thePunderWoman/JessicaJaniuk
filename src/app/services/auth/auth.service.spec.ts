@@ -3,7 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { User } from '../../models/user';
-import { StorageService } from '../storage/storage.service';
+import { CookieService } from 'ngx-cookie';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions } from '@angular/http';
 
@@ -12,10 +12,10 @@ describe('AuthService', () => {
   const fakeSubscribe = {
     subscribe: jasmine.createSpy('subscribe')
   };
-  const StorageServiceMock = {
+  const CookieServiceMock = {
     get: jasmine.createSpy('get'),
-    set: jasmine.createSpy('set'),
-    remove: jasmine.createSpy('remove')
+    put: jasmine.createSpy('put'),
+    removeAll: jasmine.createSpy('removeAll')
   };
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       providers: [
         AuthService,
-        { provide: StorageService, useValue: StorageServiceMock },
+        { provide: CookieService, useValue: CookieServiceMock },
         MockBackend,
         BaseRequestOptions,
         {
@@ -53,24 +53,23 @@ describe('AuthService', () => {
     }));
   });
 
-  it('should get use from cache', inject([AuthService, StorageService], (service: AuthService, storage: StorageService) => {
-    StorageServiceMock.get.and.returnValue('{"firstName": "Jessica"}');
+  it('should get use from cache', inject([AuthService, CookieService], (service: AuthService, cookieService: CookieService) => {
+    CookieServiceMock.get.and.returnValue('{"firstName": "Jessica"}');
     service.getUserFromCache();
     expect(service.user.firstName).toBe('Jessica');
   }));
 
   it('should not get use from cache when no user in cache',
-    inject([AuthService, StorageService], (service: AuthService, storage: StorageService) => {
+    inject([AuthService, CookieService], (service: AuthService, cookieService: CookieService) => {
     service.user = undefined;
-    StorageServiceMock.get.and.returnValue(null);
+    CookieServiceMock.get.and.returnValue(null);
     service.getUserFromCache();
     expect(service.user).toBeUndefined();
   }));
 
   it('should log out', inject([AuthService], (service: AuthService) => {
     service.logout();
-    expect(StorageServiceMock.remove).toHaveBeenCalledWith('user');
-    expect(StorageServiceMock.remove).toHaveBeenCalledWith('token');
+    expect(CookieServiceMock.removeAll).toHaveBeenCalled();
   }));
 
   describe('isLoggedIn', () => {
