@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './app.routing.module';
 import { MomentModule } from 'angular2-moment';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './notfound/notfound.component';
@@ -16,7 +17,6 @@ import { PublicModule } from './public/public.module';
 import { FlickrService } from './services/flickr/flickr.service';
 import { MetaService } from './services/meta/meta.service';
 import { AuthService } from './services/auth/auth.service';
-import { StorageService } from './services/storage/storage.service';
 import { UserService } from './services/user/user.service';
 import { PageService } from './services/page/page.service';
 import { ConnectionService } from './services/connection/connection.service';
@@ -44,13 +44,13 @@ export { AppComponent, NotFoundComponent };
     ManageModule,
     PublicModule,
     AppRoutingModule,
-    MomentModule
+    MomentModule,
+    CookieModule.forRoot()
   ],
   providers: [
     FlickrService,
     MetaService,
     AuthService,
-    StorageService,
     UserService,
     PageService,
     HeaderService,

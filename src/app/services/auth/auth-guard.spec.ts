@@ -2,13 +2,13 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AuthGuard } from './auth-guard';
-import { StorageService } from '../storage/storage.service';
+import { CookieService } from 'ngx-cookie';
 import { AuthService } from './auth.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 
 describe('AuthGuard', () => {
-  const StorageServiceMock = {
+  const CookieServiceMock = {
     get: jasmine.createSpy('get')
   };
 
@@ -20,7 +20,7 @@ describe('AuthGuard', () => {
   };
 
   beforeEach(() => {
-    StorageServiceMock.get.calls.reset();
+    CookieServiceMock.get.calls.reset();
     AuthServiceMock.logout.calls.reset();
     routerStub.navigate.calls.reset();
     TestBed.configureTestingModule({
@@ -28,7 +28,7 @@ describe('AuthGuard', () => {
         AuthGuard,
         { provide: Router, useValue: routerStub },
         { provide: AuthService, useValue: AuthServiceMock },
-        { provide: StorageService, useValue: StorageServiceMock }
+        { provide: CookieService, useValue: CookieServiceMock }
       ]
     });
   });
@@ -122,11 +122,11 @@ describe('AuthGuard', () => {
 
   describe('retrieveUser', () => {
     it('should return null if no user in storage', inject([AuthGuard], (guard: AuthGuard) => {
-      StorageServiceMock.get.and.returnValue(null);
+      CookieServiceMock.get.and.returnValue(null);
       expect(guard.retrieveUser()).toBeNull();
     }));
     it('should return User if user in storage', inject([AuthGuard], (guard: AuthGuard) => {
-      StorageServiceMock.get.and.returnValue('{"isAdmin": true}');
+      CookieServiceMock.get.and.returnValue('{"isAdmin": true}');
       const user = guard.retrieveUser();
       expect(user).not.toBeNull();
       expect(user.isAdmin).toBeTruthy();
@@ -135,11 +135,11 @@ describe('AuthGuard', () => {
 
   describe('retrieveToken', () => {
     it('should return null if no token in storage', inject([AuthGuard], (guard: AuthGuard) => {
-      StorageServiceMock.get.and.returnValue(null);
+      CookieServiceMock.get.and.returnValue(null);
       expect(guard.retrieveToken()).toBeNull();
     }));
     it('should return User if user in storage', inject([AuthGuard], (guard: AuthGuard) => {
-      StorageServiceMock.get.and.returnValue('{"token": "data", "expires": "date"}');
+      CookieServiceMock.get.and.returnValue('{"token": "data", "expires": "date"}');
       const token = guard.retrieveToken();
       expect(token).not.toBeNull();
     }));

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
-import { StorageService } from '../storage/storage.service';
+import { CookieService } from 'ngx-cookie';
 import { environment } from '../../../environments/environment';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,7 @@ export class AuthService {
   apiBaseUrl: string = environment.apiUrl;
   public user: User;
 
-  constructor(private storageService: StorageService, private http: Http) {
+  constructor(private cookieService: CookieService, private http: Http) {
     this.getUserFromCache();
   }
 
@@ -23,15 +23,14 @@ export class AuthService {
   }
 
   getUserFromCache() {
-    const userString = this.storageService.get('user');
+    const userString = this.cookieService.get('user');
     if (userString) {
       this.user = JSON.parse(userString) as User;
     }
   }
 
   logout(): void {
-   this.storageService.remove('token');
-   this.storageService.remove('user');
+   this.cookieService.removeAll();
  }
 
   isLoggedIn(): boolean {
