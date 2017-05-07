@@ -3,15 +3,18 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from './auth.service';
 import { User } from '../../models/user';
+import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
+  decode = jwt_decode;
+
   constructor(private cookieService: CookieService, private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    const user = this.retrieveUser();
-    const tokenData = this.retrieveToken();
-    if (user && user.isAdmin && tokenData && tokenData.token && Date.now() <= new Date(tokenData.expires).getTime()) {
+    const token = this.retrieveToken();
+    const user = this.retrieveUser(token);
+    if (token && user && user.isAdmin) {
       return true;
     }
     this.authService.logout();
@@ -20,9 +23,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(): boolean {
-    const user = this.retrieveUser();
-    const tokenData = this.retrieveToken();
-    if (user && user.isAdmin && tokenData && tokenData.token && Date.now() <= new Date(tokenData.expires).getTime()) {
+    const token = this.retrieveToken();
+    const user = this.retrieveUser(token);
+    if (token && user && user.isAdmin) {
       return true;
     }
     this.authService.logout();
@@ -30,21 +33,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return false;
   }
 
-  retrieveUser(): User {
-    const userString = this.cookieService.get('user');
-    if (userString) {
-      const user: User = JSON.parse(userString) as User;
-      return user;
+  retrieveUser(token: string): User {
+    if (token) {
+      return this.decode(token) as User;
     }
     return null;
   }
 
   retrieveToken(): any {
-    const tokenString = this.cookieService.get('token');
-    if (tokenString) {
-      const tokenData = JSON.parse(tokenString);
-      return tokenData;
-    }
-    return null;
+    const token = this.cookieService.get('token');
+    return (token) ? token : null;
   }
 }

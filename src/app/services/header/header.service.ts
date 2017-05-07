@@ -8,8 +8,8 @@ export class HeaderService {
 
   createAuthHeaders(): Headers {
     const headers = new Headers();
-    const tokenData = JSON.parse(this.cookieService.get('token'));
-    headers.append('Authorization', `Bearer ${tokenData.token}`);
+    const token = this.cookieService.get('token');
+    headers.append('Authorization', `Bearer ${token}`);
     return headers;
   }
 }

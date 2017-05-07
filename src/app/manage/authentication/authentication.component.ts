@@ -23,7 +23,7 @@ export class AuthenticationComponent {
   }
 
   isLoggedIn() {
-    return this.cookieService.get('token') && this.cookieService.get('user');
+    return this.cookieService.get('token');
   }
 
   logout() {
@@ -38,17 +38,10 @@ export class AuthenticationComponent {
   onAuthenticate(data) {
     const response = data.json();
     if (data.ok && !response.error) {
-      const tokenData = { token: response.token, expires: response.expires };
       const options = { path: '/', domain: this.domain, expires: response.expires, secure: this.secureCookie};
-      console.log(options);
-      this.cookieService.put(
-        'user',
-        JSON.stringify(response.user),
-        options
-      );
       this.cookieService.put(
         'token',
-        JSON.stringify(tokenData),
+        response.token,
         options
       );
       this.router.navigate(['/manage']);
