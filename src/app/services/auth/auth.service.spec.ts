@@ -1,11 +1,10 @@
-/* tslint:disable:no-unused-variable */
-
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { User } from '../../models/user';
 import { CookieService } from 'ngx-cookie';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions } from '@angular/http';
+import jwt_decode from 'jwt-decode';
 
 describe('AuthService', () => {
   let MockHttp;
@@ -23,6 +22,8 @@ describe('AuthService', () => {
       post: jasmine.createSpy('get')
     };
     MockHttp.post.and.returnValue('stuff');
+
+    CookieServiceMock.get.and.returnValue(undefined);
 
     TestBed.configureTestingModule({
       providers: [
@@ -54,7 +55,8 @@ describe('AuthService', () => {
   });
 
   it('should get use from cache', inject([AuthService, CookieService], (service: AuthService, cookieService: CookieService) => {
-    CookieServiceMock.get.and.returnValue('{"firstName": "Jessica"}');
+    CookieServiceMock.get.and.returnValue('fakeToken');
+    service.decode = jasmine.createSpy('jwt_decode').and.returnValue({firstName: 'Jessica'});
     service.getUserFromCache();
     expect(service.user.firstName).toBe('Jessica');
   }));
@@ -62,6 +64,7 @@ describe('AuthService', () => {
   it('should not get use from cache when no user in cache',
     inject([AuthService, CookieService], (service: AuthService, cookieService: CookieService) => {
     service.user = undefined;
+    service.decode = jasmine.createSpy('jwt_decode').and.returnValue(undefined);
     CookieServiceMock.get.and.returnValue(null);
     service.getUserFromCache();
     expect(service.user).toBeUndefined();
@@ -73,13 +76,14 @@ describe('AuthService', () => {
   }));
 
   describe('isLoggedIn', () => {
-
-    it('should be logged in when a user is present', inject([AuthService], (service: AuthService) => {
+    it('should be logged in when a user is present',
+      inject([AuthService], (service: AuthService) => {
       service.user = new User('', '', '', '', true);
       expect(service.isLoggedIn()).toBeTruthy();
     }));
 
-    it('should not be logged in when no user', inject([AuthService], (service: AuthService) => {
+    it('should not be logged in when no user',
+      inject([AuthService], (service: AuthService) => {
       service.user = undefined;
       expect(service.isLoggedIn()).toBeFalsy();
     }));
@@ -87,7 +91,8 @@ describe('AuthService', () => {
   });
 
   describe('isAdmin', () => {
-    it('should be admin when logged in and admin is true', inject([AuthService], (service: AuthService) => {
+    it('should be admin when logged in and admin is true',
+      inject([AuthService], (service: AuthService) => {
       service.user = new User('', '', '', '', true);
       expect(service.isAdmin()).toBeTruthy();
     }));
@@ -98,7 +103,8 @@ describe('AuthService', () => {
       expect(service.isAdmin()).toBeFalsy();
     }));
 
-    it('should not be admin when not logged in', inject([AuthService], (service: AuthService) => {
+    it('should not be admin when not logged in',
+      inject([AuthService], (service: AuthService) => {
       service.user = undefined;
       expect(service.isAdmin()).toBeFalsy();
     }));

@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -99,11 +98,10 @@ describe('AuthenticationComponent', () => {
       const options = { path: '/', domain: 'testdomain', expires: response.expires, secure: true};
       data.json.and.returnValue(response);
       component.onAuthenticate(data);
-      expect(CookieServiceMock.put).toHaveBeenCalledWith('user', `"${response.user}"`, options);
       expect(CookieServiceMock.put)
         .toHaveBeenCalledWith(
           'token',
-          '{"token":"blah","expires":"things"}',
+          'blah',
           options);
       expect(routerStub.navigate).toHaveBeenCalledWith(['/manage']);
     });
@@ -112,7 +110,6 @@ describe('AuthenticationComponent', () => {
       const response = { token: 'blah', expires: 'things', user: 'stuff' };
       data.json.and.returnValue(response);
       component.onAuthenticate(data);
-      expect(CookieServiceMock.put).not.toHaveBeenCalled();
       expect(CookieServiceMock.put).not.toHaveBeenCalled();
       expect(routerStub.navigate).not.toHaveBeenCalled();
     });

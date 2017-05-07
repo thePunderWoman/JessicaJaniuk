@@ -4,11 +4,13 @@ import { CookieService } from 'ngx-cookie';
 import { environment } from '../../../environments/environment';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
   apiBaseUrl: string = environment.apiUrl;
   public user: User;
+  decode = jwt_decode;
 
   constructor(private cookieService: CookieService, private http: Http) {
     this.getUserFromCache();
@@ -23,9 +25,9 @@ export class AuthService {
   }
 
   getUserFromCache() {
-    const userString = this.cookieService.get('user');
-    if (userString) {
-      this.user = JSON.parse(userString) as User;
+    const token = this.cookieService.get('token');
+    if (token) {
+      this.user = this.decode(token) as User;
     }
   }
 

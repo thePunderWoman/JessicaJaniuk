@@ -7,7 +7,7 @@ describe('HeaderService', () => {
   const CookieServiceMock = {
     get: jasmine.createSpy('get'),
   };
-  CookieServiceMock.get.and.returnValue('{ "token": "faketoken" }');
+  CookieServiceMock.get.and.returnValue('faketoken');
 
   beforeEach(() => {
     TestBed.configureTestingModule({
