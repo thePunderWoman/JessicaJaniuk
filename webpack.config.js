@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 module.exports = {
   entry: {
@@ -26,5 +27,16 @@ module.exports = {
     rules: [
       { test: /\.ts$/, loader: 'ts-loader' }
     ]
-  }
+  },
+  plugins: [
+    new AotPlugin({
+      "mainPath": "main.ts",
+      "hostReplacementPaths": {
+        "environments/environment.ts": "environments/environment.prod.ts"
+      },
+      "exclude": [],
+      "tsConfigPath": "src/tsconfig.app.json",
+      "skipCodeGeneration": true
+    })
+  ]
 }

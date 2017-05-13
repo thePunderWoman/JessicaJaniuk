@@ -4,8 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: true,
-  apiUrl: 'https://jessica-janiuk-api.herokuapp.com/',
-  baseUrl: 'https://jessicajaniuk.com',
-  domain: 'jessicajaniuk.com'
+  production: false,
+  apiUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:4200',
+  domain: 'localhost'
 };
