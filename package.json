@@ -13,7 +13,8 @@
     "coverage": "ng test --code-coverage --single-run",
     "view-coverage": "http-server -c-1 -o -p 9875 ./coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls -v",
-    "postinstall": "ng build --aot --prod && gulp before:ngc && ngc && gulp after:ngc && webpack"
+    "postinstall": "ng build --aot --prod && gulp before:ngc && ngc && gulp after:ngc && webpack",
+    "ngc": "ngc --help"
   },
   "private": true,
   "engines": {
