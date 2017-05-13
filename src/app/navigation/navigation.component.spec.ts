@@ -16,8 +16,8 @@ describe('NavigationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NavigationComponent ],
       imports: [
-        MdMenuModule.forRoot(),
-        MdIconModule.forRoot(),
+        MdMenuModule,
+        MdIconModule,
       ],
       providers: [
         { provide: Router, useValue: Router },

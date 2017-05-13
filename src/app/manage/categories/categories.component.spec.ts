@@ -31,8 +31,8 @@ describe('CategoriesComponent', () => {
       declarations: [ CategoriesComponent ],
       imports: [
         RouterTestingModule,
-        MdIconModule.forRoot(),
-        MdDialogModule.forRoot()
+        MdIconModule,
+        MdDialogModule
       ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },

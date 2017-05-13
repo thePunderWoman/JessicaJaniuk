@@ -8,7 +8,7 @@ import { PostResolver } from '../blog/blog.post.resolver';
 
 const r2d2Routes: Routes = [
   {
-    path: '',
+    path: 'r2d2',
     component: BlogComponent,
     children: [
       {

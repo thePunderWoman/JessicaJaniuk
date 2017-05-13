@@ -31,7 +31,7 @@ import { PaginationModule } from '../pagination/pagination.module';
     Ng2DatetimePickerModule,
     MomentModule,
     PaginationModule,
-    MaterialModule.forRoot()
+    MaterialModule
   ],
   declarations: [
     ManageComponent,

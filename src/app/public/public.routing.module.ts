@@ -32,9 +32,9 @@ const publicRoutes: Routes = [
           page: PageResolver
         }
       },
-      { path: 'r2d2', loadChildren: 'app/r2d2/r2d2.module#R2D2Module' },
-      { path: 'blog', loadChildren: 'app/blog/blog.module#BlogModule' },
-      { path: 'photography', loadChildren: 'app/photography/photography.module#PhotographyModule' }
+      { path: '', loadChildren: 'app/r2d2/r2d2.module#R2D2Module' },
+      { path: '', loadChildren: 'app/blog/blog.module#BlogModule' },
+      { path: '', loadChildren: 'app/photography/photography.module#PhotographyModule' }
     ]
   }
 ];

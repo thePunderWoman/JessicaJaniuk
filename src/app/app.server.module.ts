@@ -9,7 +9,7 @@ export class ServerFactoryLoader extends NgModuleFactoryLoader {
   load(path: string): Promise<NgModuleFactory<any>> {
     return new Promise((resolve, reject) => {
       const [file, className] = path.split('#');
-      const classes = require('../../dist/ngfactory/src/app' + file.slice(1) + '.ngfactory');
+      const classes = require('../../dist/ngfactory/src/' + file + '.ngfactory');
       resolve(classes[className + 'NgFactory']);
     });
   }

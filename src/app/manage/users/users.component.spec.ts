@@ -34,8 +34,8 @@ describe('UsersComponent', () => {
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
-        MdIconModule.forRoot(),
-        MdDialogModule.forRoot()
+        MdIconModule,
+        MdDialogModule
       ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },

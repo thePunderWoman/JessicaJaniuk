@@ -40,7 +40,7 @@ describe('AuthenticationComponent', () => {
       imports: [
         FormsModule,
         BrowserAnimationsModule,
-        MdInputModule.forRoot(),
+        MdInputModule,
       ],
       providers: [
         { provide: CookieService, useValue: CookieServiceMock },

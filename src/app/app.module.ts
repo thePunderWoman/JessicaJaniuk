@@ -36,7 +36,7 @@ export { AppComponent, NotFoundComponent };
     NotFoundComponent,
   ],
   imports: [
-    MaterialModule.forRoot(),
+    MaterialModule,
     BrowserModule.withServerTransition({appId: 'jessica-janiuk'}),
     FormsModule,
     HttpModule,

@@ -16,7 +16,7 @@ describe('DeleteDialogComponent', () => {
       declarations: [ DeleteDialogComponent ],
       imports: [
         BrowserAnimationsModule,
-        MdDialogModule.forRoot()
+        MdDialogModule
       ],
       providers: [
         { provide: MdDialogRef, useValue: mockMdDialogRef }
