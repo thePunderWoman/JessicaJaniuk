@@ -8,7 +8,7 @@ import { AlbumResolver } from './photography.album.resolver';
 
 const photographyRoutes: Routes = [
   {
-    path: '',
+    path: 'photography',
     component: PhotographyComponent,
     children: [
       {
