@@ -28,6 +28,9 @@ describe('DetailComponent', () => {
     content: 'stuff',
     title: 'post title',
     published: true,
+    Category: {
+      name: 'Personal'
+    },
     Meta: [{tag: 'stuff', value: 'things'}]
   };
   const postdata = { data: post };
@@ -86,7 +89,12 @@ describe('DetailComponent', () => {
     expect(MetaServiceMock.setTag).toHaveBeenCalledWith({ property: 'og:url', content: 'testurl' });
     expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:published_time', content: post.publishDate.toString() });
     expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:modified_time', content: post.publishDate.toString() });
-    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:author', content: 'Jessica Janiuk' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:section', content: 'Personal' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'article:author',
+      content: 'https://www.facebook.com/jessica.janiuk' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'og:description', content: '' });
+    expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'og:image',
+      content: 'https://jessicajaniuk.com/assets/blog-post-image.png' });
     expect(MetaServiceMock.setPageTag).toHaveBeenCalledWith({ property: 'stuff', content: 'things' });
   });
 });
