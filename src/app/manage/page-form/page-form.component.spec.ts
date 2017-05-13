@@ -44,7 +44,7 @@ describe('PageFormComponent', () => {
       imports: [
         FormsModule,
         BrowserAnimationsModule,
-        MdInputModule.forRoot()
+        MdInputModule
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [

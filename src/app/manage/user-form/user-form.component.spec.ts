@@ -48,8 +48,8 @@ describe('UserFormComponent', () => {
       imports: [
         FormsModule,
         BrowserAnimationsModule,
-        MdSlideToggleModule.forRoot(),
-        MdInputModule.forRoot(),
+        MdSlideToggleModule,
+        MdInputModule,
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },

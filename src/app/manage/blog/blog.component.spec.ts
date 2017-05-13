@@ -37,8 +37,8 @@ describe('BlogComponent', () => {
       imports: [
         RouterTestingModule,
         MomentModule,
-        MdIconModule.forRoot(),
-        MdDialogModule.forRoot()
+        MdIconModule,
+        MdDialogModule
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [

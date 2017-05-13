@@ -16,7 +16,7 @@ import { MaterialModule } from '@angular/material';
     PublicRoutingModule,
     BlogModule,
     PhotographyModule,
-    MaterialModule.forRoot()
+    MaterialModule
   ],
   declarations: [
     PublicComponent,

@@ -32,8 +32,8 @@ describe('PagesComponent', () => {
       declarations: [ PagesComponent ],
       imports: [
         RouterTestingModule,
-        MdIconModule.forRoot(),
-        MdDialogModule.forRoot()
+        MdIconModule,
+        MdDialogModule
       ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },

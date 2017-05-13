@@ -17,7 +17,7 @@ describe('PublicComponent', () => {
       declarations: [ PublicComponent, NavigationComponent ],
       imports: [
         RouterTestingModule,
-        MaterialModule.forRoot()
+        MaterialModule
       ]
     })
     .compileComponents();

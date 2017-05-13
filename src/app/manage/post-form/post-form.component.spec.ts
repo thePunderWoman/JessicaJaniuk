@@ -46,8 +46,8 @@ describe('PostFormComponent', () => {
       imports: [
         FormsModule,
         BrowserAnimationsModule,
-        MdSlideToggleModule.forRoot(),
-        MdInputModule.forRoot(),
+        MdSlideToggleModule,
+        MdInputModule,
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA

@@ -43,7 +43,7 @@ describe('CategoryFormComponent', () => {
       imports: [
         FormsModule,
         BrowserAnimationsModule,
-        MdInputModule.forRoot()
+        MdInputModule
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteMock },

@@ -32,8 +32,8 @@ describe('ConnectionsComponent', () => {
       declarations: [ ConnectionsComponent ],
       imports: [
         RouterTestingModule,
-        MdIconModule.forRoot(),
-        MdDialogModule.forRoot()
+        MdIconModule,
+        MdDialogModule
       ],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
