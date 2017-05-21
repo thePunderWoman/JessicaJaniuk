@@ -1,0 +1,64 @@
+{
+  "dynamic": {
+    "group": [
+      {
+        "name": "api",
+        "urls": {
+          "https://jessica-janiuk-api.herokuapp.com/": {
+            "match": "prefix"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "maxAgeMs": 3600000,
+          "maxEntries": 30,
+          "strategy": "lru"
+        }
+      }
+    ]
+  },
+  "external": {
+   "urls": [
+      {
+        "url": "https://fonts.googleapis.com/css?family=Material+Icons"
+      },
+      {
+        "url": "https://fonts.googleapis.com/css?family=Roboto:400,300"
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2"
+      },
+      {
+        "url": "https://use.typekit.net/dlk7ypt.js"
+      }
+    ]
+  },
+  "routing": {
+    "index": "/index.html",
+    "routes": {
+      "/": {
+        "prefix": false
+      },
+      "/about": {
+        "prefix": true
+      },
+      "/blog": {
+        "prefix": true,
+        "onlyWithoutExtension": true
+      },
+      "/r2d2": {
+        "prefix": true,
+        "onlyWithoutExtension": true
+      },
+      "/connect": {
+        "prefix": true
+      },
+      "/photography": {
+        "prefix": true
+      },
+      "^/regex/.*/route$": {
+        "match": "regex"
+      }
+    }
+  }
+}

@@ -18,7 +18,8 @@
         "favicon-32x32.png",
         "mstile-150x150.png",
         "safari-pinned-tab.svg",
-        "tinymce.css"
+        "tinymce.css",
+        "manifest.json"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -27,6 +28,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "serviceWorker": true,
       "styles": [
         "../node_modules/font-awesome/css/font-awesome.css",
         "styles.scss"
@@ -79,11 +81,6 @@
       }
     }
   ],
-  "addons": [
-    "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)",
-    "../node_modules/materialize-css/fonts/roboto/*.+(otf|eot|svg|ttf|woff|woff2)"
-  ],
-  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
@@ -107,18 +104,13 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": false,
-      "template": false
+    "class": {
+      "spec": false
     },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
+    "component": {
+      "spec": true,
+      "inlineStyle": false,
+      "inlineTemplate": false
     }
   }
 }
