@@ -1,4 +1,8 @@
 {
+  "static.ignore": [
+    "/assets/fonts/roboto/",
+    "/assets/social/"
+  ],
   "dynamic": {
     "group": [
       {
@@ -6,12 +10,15 @@
         "urls": {
           "https://jessica-janiuk-api.herokuapp.com/": {
             "match": "prefix"
+          },
+          "https://api.flickr.com/services/rest/": {
+            "match": "prefix"
           }
         },
         "cache": {
-          "optimizeFor": "performance",
+          "optimizeFor": "freshness",
           "maxAgeMs": 3600000,
-          "maxEntries": 30,
+          "maxEntries": 40,
           "strategy": "lru"
         }
       }
@@ -23,18 +30,12 @@
         "url": "https://fonts.googleapis.com/css?family=Material+Icons"
       },
       {
-        "url": "https://fonts.googleapis.com/css?family=Roboto:400,300"
-      },
-      {
-        "url": "https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2"
-      },
-      {
         "url": "https://use.typekit.net/dlk7ypt.js"
       }
     ]
   },
   "routing": {
-    "index": "/index.html",
+    "index": "/",
     "routes": {
       "/": {
         "prefix": false
@@ -51,13 +52,11 @@
         "onlyWithoutExtension": true
       },
       "/connect": {
-        "prefix": true
+        "prefix": true,
+        "onlyWithoutExtension": true
       },
       "/photography": {
         "prefix": true
-      },
-      "^/regex/.*/route$": {
-        "match": "regex"
       }
     }
   }
