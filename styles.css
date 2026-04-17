@@ -8,16 +8,16 @@
   --purple-600: #534AB7;
   --purple-800: #3C3489;
   --purple-900: #26215C;
-  --bg: #0e0b1f;
-  --bg-card: #16112e;
-  --bg-card-hover: #1e1840;
-  --text-primary: #f0eeff;
-  --text-secondary: #a89fd8;
-  --text-muted: #6b5fa8;
-  --accent: #7F77DD;
-  --accent-bright: #AFA9EC;
-  --border: rgba(127, 119, 221, 0.18);
-  --border-hover: rgba(175, 169, 236, 0.35);
+  --bg: #1e1a3a;
+  --bg-card: #2a2550;
+  --bg-card-hover: #343062;
+  --text-primary: #f5f3ff;
+  --text-secondary: #c4bde8;
+  --text-muted: #8d82c4;
+  --accent: #9590e0;
+  --accent-bright: #c4bff0;
+  --border: rgba(149, 144, 224, 0.22);
+  --border-hover: rgba(196, 191, 240, 0.4);
 }
 
 html { scroll-behavior: smooth; }
@@ -25,6 +25,8 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Outfit', sans-serif;
   background-color: var(--bg);
+  background-image: url('images/starbird-tile.svg');
+  background-size: 100px 150px;
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -63,7 +65,7 @@ body::after {
   left: -20%;
   width: 70%;
   height: 70%;
-  background: radial-gradient(ellipse, rgba(83,74,183,0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(105,96,200,0.15) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -186,7 +188,7 @@ h1 {
   font-size: 0.75rem;
   padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(127, 119, 221, 0.12);
+  background: rgba(149, 144, 224, 0.15);
   border: 0.5px solid var(--border);
   color: var(--accent-bright);
   letter-spacing: 0.03em;
@@ -246,7 +248,7 @@ h1 {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: rgba(127, 119, 221, 0.15);
+  background: rgba(149, 144, 224, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,8 +293,8 @@ h1 {
 .event-callout {
   width: 100%;
   padding: 18px 20px;
-  background: rgba(83, 74, 183, 0.1);
-  border: 0.5px solid rgba(127, 119, 221, 0.3);
+  background: rgba(105, 96, 200, 0.12);
+  border: 0.5px solid rgba(149, 144, 224, 0.35);
   border-radius: 14px;
   margin-bottom: 2.5rem;
   animation: fadeUp 0.6s ease 0.3s both;
@@ -308,7 +310,7 @@ h1 {
   color: var(--accent-bright);
   text-decoration: none;
   font-weight: 500;
-  border-bottom: 0.5px solid rgba(175, 169, 236, 0.4);
+  border-bottom: 0.5px solid rgba(196, 191, 240, 0.45);
   transition: border-color 0.2s, color 0.2s;
 }
 
